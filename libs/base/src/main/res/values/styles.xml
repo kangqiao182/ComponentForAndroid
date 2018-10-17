@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="base_AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="base_AppTheme" parent="base_AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/base_chain</item>
+        <item name="colorPrimaryDark">@color/base_chain</item>
+        <item name="colorAccent">@color/base_chain</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
+        <item name="alertDialogTheme">@style/base_alert_dialog</item>
+    </style>
+
+    <style name="base_AppTheme2" parent="base_AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/base_white</item>
+        <item name="colorPrimaryDark">@color/base_bg_activity</item>
+        <item name="colorAccent">@color/base_chain</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="coordinatorLayoutStyle">@style/Widget.Support.CoordinatorLayout</item>
+        <item name="alertDialogTheme">@style/base_alert_dialog</item>
+    </style>
+
+
+    <style name="base_Theme.LauncherAppTheme" parent="base_AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@color/base_chain</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="base_fullTransparent" parent="base_AppTheme">
+        <item name="android:windowBackground">@color/base_translucence</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowActionBar">false</item>
+        <!--<item name="android:windowFullscreen">true</item>-->
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    </style>
+
+    <style name="base_TabLayout.TabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">18sp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="base_alert_dialog" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/base_chain</item>
+    </style>
+
+
+    <!--Begin 文本样式集-->
+    <style name="base_text_title">
+        <item name="android:textColor">@color/base_text_title</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="base_text_title1">
+        <item name="android:textColor">@color/base_text_title</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="base_text_title2">
+        <item name="android:textColor">@color/base_text_title</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="base_text_title3">
+        <item name="android:textColor">@color/base_text_title</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="base_text_primary1">
+        <item name="android:textColor">@color/base_text_primary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="base_text_primary2">
+        <item name="android:textColor">@color/base_text_primary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="base_text_primary3">
+        <item name="android:textColor">@color/base_text_primary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="base_text_secondary1">
+        <item name="android:textColor">@color/base_text_secondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="base_text_secondary2">
+        <item name="android:textColor">@color/base_text_secondary</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="base_text_secondary3">
+        <item name="android:textColor">@color/base_text_secondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="base_text_white1">
+        <item name="android:textColor">@color/base_text_white</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="base_text_white2">
+        <item name="android:textColor">@color/base_text_white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="base_text_white3">
+        <item name="android:textColor">@color/base_text_white</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="base_text_assist">
+        <item name="android:textColor">@color/base_text_secondary</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <!--文本样式集 End-->
+
+</resources>

@@ -1,0 +1,50 @@
+<resources>
+    <string name="base_ok">OK</string>
+    <string name="base_good">好的</string>
+    <string name="base_confirm">确定</string>
+    <string name="base_commit">提交</string>
+    <string name="base_cancel">取消</string>
+    <string name="base_now">现在</string>
+    <string name="base_wait_moment">过一会</string>
+    <string name="base_not_tip">不再提示</string>
+    <string name="base_error">错误</string>
+    <string name="base_hint">提示</string>
+    <string name="base_click_retry">点击重试</string>
+
+
+    <!--系统-->
+    <string name="base_sys_error_retry">出错啦! 点击重试</string>
+    <string name="base_sys_no_trade_records">无交易记录</string>
+    <string name="base_sys_no_records">暂无记录</string>
+    <string name="base_sys_hard_loading">努力加载中</string>
+    <string name="base_sys_no_message">目前暂无消息</string>
+    <string name="base_sys_no_address">您还没有地址\n请点击右上角添加地址</string>
+    <string name="base_sys_check_net">网络不给力，检查下吧</string>
+    <string name="base_sys_loading">数据加载中</string>
+
+
+    <string name="base_just_now">刚刚</string>
+    <string name="base_second_ago">秒前</string>
+    <string name="base_minute_ago">分钟前</string>
+    <string name="base_hour_ago">小时前</string>
+    <string name="base_day_ago">天前</string>
+    <string name="base_month_ago">月前</string>
+    <string name="base_year_ago">年前</string>
+
+    <string name="base_request_succeed">请求成功</string>
+    <string name="base_commit_succeed">提交成功</string>
+
+
+    <string name="base_share_wx_friend_circle">朋友圈</string>
+    <string name="base_share_wx_friend_good">微信好友</string>
+    <string name="base_share_copy_link">复制链接</string>
+    <string name="base_share_save_img">保存图片</string>
+    <string name="base_share_copied_link">已拷贝到剪切板</string>
+    <string name="base_share_saved_img">已保存到本地, 快去查看吧</string>
+    <string name="base_share_error">参数错误, 无法分享</string>
+
+    <string name="base_unit_volume">量:</string>
+
+    <string name="base_currency_unit_cny">人民币</string>
+    <string name="base_currency_unit_usd">美元</string>
+</resources>

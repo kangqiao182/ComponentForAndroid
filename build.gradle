@@ -1,0 +1,42 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from :"config.gradle"
+
+buildscript {
+    ext.kotlin_version = '1.2.71'
+    ext.arouter_register = "1.0.2"
+    repositories {
+        google()
+        maven { url 'http://jitpack.io' }
+        jcenter { url 'http://jcenter/bintray.com/' }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+        maven { url 'http://s3.amazonaws.com/fabric-artifacts/public' }
+        //maven { url "http://mvn.mob.com/android" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+
+        classpath 'com.github.MEiDIK:Cipher.so:dev-SNAPSHOT'
+        classpath "com.alibaba:arouter-register:$arouter_register"
+        classpath 'com.didi.virtualapk:gradle:0.9.8.6'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "http://jitpack.io" }
+        maven { url 'http://s3.amazonaws.com/fabric-artifacts/public' }
+        maven { url "http://mvn.gt.igexin.com/nexus/content/repositories/releases/" }
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

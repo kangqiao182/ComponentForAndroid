@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zp.android.api" >
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <application>
+        <meta-data
+            android:name="CHANNEL_CU"
+            android:value="web" />
+
+        <meta-data
+            android:name="COMPANY_ID"
+            android:value="${COMPANY_ID}" />
+    </application>
+</manifest>

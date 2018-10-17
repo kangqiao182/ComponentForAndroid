@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+
+    resourcePrefix "common_"
+    dataBinding.enabled true
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+        }
+        pre {
+            initWith release
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    configurations {
+        all*.exclude group: 'com.android.support', module: 'support-v13'
+    }
+
+    // Support库
+    api rootProject.ext.supportLibs
+    // Arch, anko, koin
+    api rootProject.ext.archLibs
+    // RxJava2
+    api rootProject.ext.rxJavaLibs
+    api rootProject.ext.commonLibs
+
+    // APT dependencies(Kotlin内置的注解处理器)
+    //kapt rootProject.ext.annotationProcessorLibs
+    kapt glideCompilerKapt
+    //GlideOkHttp
+    api(rootProject.ext.otherDeps["glideOkhttp"]) {
+        exclude group: 'glide-parent'
+    }
+
+    // testImplementation rootProject.ext.testDeps["junit"]
+    // androidTestImplementation rootProject.ext.testDeps["runner"]
+    // androidTestImplementation rootProject.ext.testDeps["espresso-core"]
+    // //leakCanary
+    // debugImplementation rootProject.ext.testDeps["leakcanary-debug"]
+    // releaseImplementation rootProject.ext.testDeps["leakcanary-release"]
+}

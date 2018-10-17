@@ -1,0 +1,10 @@
+// 主项目
+include ':app'
+// 共享资源(针对特定项目app)
+include 'store:wanandroid'
+// 工具包
+include ':libs:lib_api', ':libs:lib_picker'
+// 基础包
+include ':libs:common', ':libs:component', ':libs:base'
+// 模块包
+include ':modules:test'

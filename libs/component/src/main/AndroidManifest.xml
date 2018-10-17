@@ -1,0 +1,19 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zp.android.component" >
+
+    <application>
+        <activity android:name=".SchemaFilterActivity">
+            <!-- Schame -->
+            <intent-filter>
+                <data
+                    android:host="m.zp.com"
+                    android:scheme="http"/>
+
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="base_colorPrimary">@color/base_chain</color>
+    <color name="base_colorPrimaryDark">@color/base_chain</color>
+    <color name="base_colorAccent">@color/base_white</color>
+
+    <color name="base_black">@android:color/black</color>
+    <color name="base_blue">#005EFF</color>
+    <color name="base_white">#FFFFFF</color>
+    <color name="base_red">#F65757</color>
+    <color name="base_yellow">#FFBB53</color>
+    <color name="base_green">#2EC39B</color>
+    <color name="base_grey">#BDBDBD</color>
+    <color name="base_transparent">#00FFFFFF</color>
+    <color name="base_translucence">#15377BEF</color>
+    <color name="base_disable">#979EAF</color>
+    <color name="base_select">#F7F7F7</color>
+    <color name="base_bg_activity">#F5F5F5</color>
+    <color name="base_bg_white">#FFFFFF</color>
+    <color name="base_line">#E9EBED</color>
+    <color name="base_chain">@color/base_blue</color>
+
+
+    <!--分隔线-->
+    <color name="base_border">#DBDDE2</color>
+    <color name="base_divide">#E9EBED</color>
+    <color name="base_divide_gray_color">@color/base_divide</color>
+
+    <!--text color-->
+    <color name="base_text_title">#0D1A3B</color>
+    <color name="base_text_primary">#3D4862</color>
+    <color name="base_text_secondary">#6E7689</color>
+    <color name="base_text_disable">#B6BAC4</color>
+
+    <color name="base_text_white_disable">#4DFFFFFF</color>
+
+    <color name="base_text_red">@color/base_red</color>
+    <color name="base_text_black">@color/base_black</color>
+    <color name="base_text_white">@color/base_white</color>
+    <color name="base_bottom_tab_inactive">#FF979EAF</color>
+    <color name="base_text_yellow">@color/base_yellow</color>
+    <color name="base_text_green">@color/base_green</color>
+
+    <!-- Market -->
+    <color name="base_market_up">@color/base_green</color>
+    <color name="base_market_down">@color/base_red</color>
+    <color name="base_market_normal">@color/base_grey</color>
+    <color name="base_market_tx_normal">#666666</color>
+
+
+    <color name="base_dotted_line">#EAEAEA</color>
+</resources>

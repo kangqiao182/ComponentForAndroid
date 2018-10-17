@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="api_sys_invalid_response_data_that_not_convert_to_cmdresponse">Invalid response data, data formats are not code, msg, data</string>
+
+    <string name="api_sys_check_net">check again, the Internet lags</string>
+    <string name="api_unexpected_error">Unknown error, please try again later</string>
+</resources>

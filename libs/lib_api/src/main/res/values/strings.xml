@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="api_sys_invalid_response_data_that_not_convert_to_cmdresponse">无效的响应数据, 数据不是code, msg, data格式的</string>
+
+    <string name="api_sys_check_net">网络不给力，检查下吧</string>
+    <string name="api_unexpected_error">未知错误，请稍后再试</string>
+</resources>

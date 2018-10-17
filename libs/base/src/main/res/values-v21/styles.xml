@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="base_AppTheme" parent="base_AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/base_chain</item>
+        <item name="colorPrimaryDark">@color/base_chain</item>
+        <item name="colorAccent">@color/base_chain</item>
+        <item name="android:windowBackground">@color/base_white</item>
+        <!--<item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>-->
+        <item name="android:colorAccent">@color/base_chain</item>
+        <item name="alertDialogTheme">@style/base_alert_dialog</item>
+    </style>
+
+    <style name="base_AppTheme2" parent="base_AppTheme.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/base_white</item>
+        <item name="colorPrimaryDark">@color/base_bg_activity</item>
+        <item name="colorAccent">@color/base_chain</item>
+        <item name="android:windowBackground">@color/base_white</item>
+        <!--<item name="coordinatorLayoutStyle">@style/Widget.Design.CoordinatorLayout</item>-->
+        <item name="android:colorAccent">@color/base_white</item>
+        <item name="android:statusBarColor">@color/base_white</item>
+        <item name="alertDialogTheme">@style/base_alert_dialog</item>
+    </style>
+
+    <style name="base_edittext" parent="base_AppTheme">
+        <item name="colorPrimary">@color/base_blue</item>
+        <item name="colorPrimaryDark">@color/base_blue</item>
+        <item name="colorAccent">@color/base_blue</item>
+        <!--<item name="colorControlNormal">@color/base_green</item>
+        <item name="colorControlActivated">@color/base_red</item>
+        &lt;!&ndash;<item name="android:background">@null</item>&ndash;&gt;
+        <item name="android:textCursorDrawable">@color/base_blue</item>-->
+    </style>
+</resources>

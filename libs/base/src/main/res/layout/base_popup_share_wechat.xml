@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:id="@+id/activity_share_entry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_cancel"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/base_bg_white_radius5"
+        android:orientation="horizontal"
+        android:paddingBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="25dp">
+
+        <TextView
+            android:id="@+id/tv_friend_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:drawableTop="@mipmap/base_ic_friend_circle"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/base_share_wx_friend_circle"
+            android:textColor="#FF0E1A3B"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_friend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:drawableTop="@mipmap/base_ic_friend"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/base_share_wx_friend_good"
+            android:textColor="#FF0E1A3B"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/tv_copy_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:drawableTop="@mipmap/base_ic_link"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/base_share_copy_link"
+            android:textColor="#FF0E1A3B"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_save_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="8dp"
+            android:drawableTop="@mipmap/base_ic_save"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/base_share_save_img"
+            android:textColor="#FF0E1A3B"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/base_header_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/base_btn_blue_radius5"
+        android:text="@string/base_cancel"
+        style="@style/base_text_white1" />
+
+</RelativeLayout>

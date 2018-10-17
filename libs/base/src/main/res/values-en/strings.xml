@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="base_ok">OK</string>
+    <string name="base_good">Yes</string>
+    <string name="base_confirm">Confirm</string>
+    <string name="base_commit">Submit</string>
+    <string name="base_cancel">Cancel</string>
+    <string name="base_now">Now</string>
+    <string name="base_wait_moment">Later</string>
+    <string name="base_not_tip">Do not prompt again</string>
+    <string name="base_error">Error</string>
+    <string name="base_hint">Hint</string>
+    <string name="base_click_retry">Click Retry</string>
+
+
+    <!--系统-->
+    <string name="base_sys_error_retry">Wrong! Click retry.</string>
+    <string name="base_sys_no_trade_records">No transaction record</string>
+    <string name="base_sys_no_records">No records</string>
+    <string name="base_sys_hard_loading">Loading</string>
+    <string name="base_sys_no_message">No news yet</string>
+    <string name="base_sys_no_address">You don\'t have an address. Please click the upper-right corner to add an address.</string>
+    <string name="base_sys_check_net">check again, the Internet lags</string>
+    <string name="base_sys_loading">Data Loading</string>
+    <string name="base_just_now">just now</string>
+    <string name="base_second_ago">Seconds ago</string>
+    <string name="base_minute_ago">minutes ago</string>
+    <string name="base_hour_ago">hours ago</string>
+    <string name="base_day_ago">days ago</string>
+    <string name="base_month_ago">months ago</string>
+    <string name="base_year_ago">years ago</string>
+    <string name="base_request_succeed">request succeeded</string>
+    <string name="base_commit_succeed">Submitted successfully</string>
+    <string name="base_share_wx_friend_circle">tech cycle</string>
+    <string name="base_share_wx_friend_good">WeChat friends</string>
+    <string name="base_share_copy_link">Copy Link</string>
+    <string name="base_share_save_img">Save Picture</string>
+    <string name="base_share_copied_link">Copied to the clipboard</string>
+    <string name="base_share_saved_img">Saved locally,  check it now.</string>
+    <string name="base_share_error">Parameter error! Can\'t share</string>
+    <string name="base_unit_volume">Vol:</string>
+    <string name="base_currency_unit_cny">RMB</string>
+    <string name="base_currency_unit_usd">USD</string>
+</resources>

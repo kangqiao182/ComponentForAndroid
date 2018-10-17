@@ -1,0 +1,125 @@
+//apply plugin: 'cipher.so'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.alibaba.arouter'
+apply plugin: 'com.didi.virtualapk.host'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
+android {
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android.minSdkVersion
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        applicationId "com.zp.android.app"
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+        renderscriptTargetApi 21
+        renderscriptSupportModeEnabled true
+
+        ndk {
+            abiFilters "armeabi-v7a", "x86_64", "x86"
+        }
+    }
+
+    dataBinding.enabled true
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+        }
+        pre {
+            initWith release
+        }
+    }
+
+    packagingOptions {
+        pickFirst 'META-INF/*'
+        exclude 'lib/armeabi/libcoldlar-lib.so'
+        exclude 'org/apache/commons/codec/language/bm/gen_approx_hungarian.txt'
+        exclude 'org/apache/commons/codec/language/bm/*.txt'
+        exclude 'org/apache/commons/codec/**'
+        exclude 'javax/annotation/**'
+        exclude 'com/google/**'
+        exclude 'org/bitcoinj/**'
+    }
+
+    lintOptions {
+        //textOutput "stdout"
+        //textReport true
+        //checkAllWarnings true
+        //warningsAsErrors true
+        //showAll true
+        //explainIssues true
+        checkReleaseBuilds false
+        abortOnError false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    androidExtensions {
+        experimental = true
+    }
+}
+
+/*
+configurations.all {
+    resolutionStrategy {
+        force "com.squareup.okio:okio:1.13.0"
+        force "com.squareup.okhttp3:okhttp:{$dependVersion.okHttp}"
+        force  (group: "com.android.support", name: 'support-v4', version: "{$dependVersion.support}")
+        force  (group: "com.android.support", name: 'support-v7', version: "{$dependVersion.support}")
+        force  (group: "com.android.support", name: 'recyclerview-v7', version: "{$dependVersion.support}")
+        force  (group: "com.android.support", name: 'support-annotations', version: "{$dependVersion.support}")
+        force 'com.fasterxml.jackson.core:jackson-databind:2.9.0.pr3'
+        force 'com.fasterxml.jackson.core:jackson-core:2.9.0.pr3'
+        force 'com.fasterxml.jackson.core:jackson-annotations:2.9.0.pr3'
+    }
+}
+*/
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(':store:wanandroid')
+    implementation project(':libs:base')
+    implementation project(':libs:lib_api')
+    implementation project(':modules:test')
+    kapt arouterCompilerKapt
+    kapt databindingKapt
+
+    // testImplementation rootProject.ext.testDeps["junit"]
+    // androidTestImplementation rootProject.ext.testDeps["runner"]
+    // androidTestImplementation rootProject.ext.testDeps["espresso-core"]
+    // //leakCanary
+    // debugImplementation rootProject.ext.testDeps["leakcanary-debug"]
+    // releaseImplementation rootProject.ext.testDeps["leakcanary-release"]
+}
+
+//https://github.com/MEiDIK/Cipher.so
+/*
+cipher.so {
+    keys {
+        signkey {
+            value = "kangqiao"
+        }
+    }
+    encryptSeed = 'zhaopan610@163.com' //用于加密的密钥
+}
+*/
+
