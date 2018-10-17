@@ -14,16 +14,16 @@
         android:title="@string/knowledge_system"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/action_navigation"
-        android:enabled="true"
-        android:icon="@drawable/ic_navigation"
-        android:title="@string/navigation"
-        app:showAsAction="ifRoom"/>
-    <item
         android:id="@+id/action_project"
         android:enabled="true"
         android:icon="@drawable/ic_project"
         android:title="@string/project"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_mine"
+        android:enabled="true"
+        android:icon="@drawable/ic_mine"
+        android:title="@string/mine"
         app:showAsAction="ifRoom"/>
 
 </menu>

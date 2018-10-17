@@ -1,16 +1,25 @@
 package com.zp.android.app.ui
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.zp.android.app.R
+import com.zp.android.app.ui.main.MainFragment
+import com.zp.android.base.BaseActivity
+import com.zp.android.component.RouterPath
 
-class MainActivity : AppCompatActivity() {
+@Route(path = RouterPath.APP.MAIN, name = "App首页")
+class MainActivity : BaseActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.layout_root_container)
 
+        if (null == findFragment(MainFragment::class.java)){
+            loadRootFragment(R.id.root_container, MainFragment.newInstance())
+        }
     }
+
 }
 
 
