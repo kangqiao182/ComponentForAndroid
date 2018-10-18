@@ -100,6 +100,7 @@ dependencies {
     implementation project(':libs:base')
     implementation project(':libs:lib_api')
     implementation project(':modules:test')
+    implementation project(':modules:home')
     kapt arouterCompilerKapt
     kapt databindingKapt
 

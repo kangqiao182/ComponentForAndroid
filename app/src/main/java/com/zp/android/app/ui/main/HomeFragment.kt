@@ -9,7 +9,8 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import com.zp.android.app.R
 import com.zp.android.base.BaseFragment
-import kotlinx.coroutines.experimental.android.UI
+import com.zp.android.common.AKBaseQuickAdapter
+import com.zp.android.common.AKItemViewUI
 import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -18,6 +19,7 @@ import org.jetbrains.anko.support.v4.swipeRefreshLayout
 /**
  * Created by zhaopan on 2018/10/17.
  */
+@Deprecated("用home模块的")
 class HomeFragment : BaseFragment(){
     companion object {
         const val TAG: String = "HomeFragment"
@@ -49,6 +51,7 @@ class HomeFragmentUI: AnkoComponent<HomeFragment>{
             recycleView = recyclerView {
                 layoutParams = RelativeLayout.LayoutParams(matchParent, matchParent)
                 backgroundColorResource = R.color.base_red
+
             }
         }
     }

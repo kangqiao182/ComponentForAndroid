@@ -30,6 +30,13 @@ object RouterPath {
         }
     }
 
+    interface Home {
+        companion object {
+            const val MAIN = "/home/mian"
+            const val HOME = "/home/home"
+        }
+    }
+
     interface TEST {
         companion object {
             const val MAIN = "/test/main"

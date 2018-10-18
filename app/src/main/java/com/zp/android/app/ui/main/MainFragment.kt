@@ -1,11 +1,14 @@
 package com.zp.android.app.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.alibaba.android.arouter.launcher.ARouter
 import com.zp.android.app.R
 import com.zp.android.base.BaseFragment
+import com.zp.android.component.RouterPath
 import kotlinx.android.synthetic.main.fragment_main.*
 import me.yokeyword.fragmentation.SupportFragment
 
@@ -35,9 +38,11 @@ class MainFragment : BaseFragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        var firstFragment = findChildFragment(HomeFragment::class.java)
+        val homeFragment =  ARouter.getInstance().build(RouterPath.Home.HOME).navigation() as SupportFragment
+        val firstFragment: SupportFragment? = findChildFragment(homeFragment.javaClass)
+        Log.d("zp:::", " homeFragment = ${homeFragment} firstFragment = ${firstFragment}, class = ${homeFragment.javaClass} savedInstanceState = ${savedInstanceState}")
         if (firstFragment == null) {
-            mFragments[FIRST] = HomeFragment.newInstance()
+            mFragments[FIRST] = homeFragment
             mFragments[SECOND] = KnowledgeTreeFragment.newInstance()
             mFragments[THIRD] = ProjectFragment.newInstance()
             mFragments[FOURTH] = MineFragment.newInstance()
@@ -51,7 +56,6 @@ class MainFragment : BaseFragment() {
             )
         } else {
             // 这里库已经做了Fragment恢复,所有不需要额外的处理了, 不会出现重叠问题
-
             // 这里我们需要拿到mFragments的引用
             mFragments[FIRST] = firstFragment
             mFragments[SECOND] = findChildFragment(KnowledgeTreeFragment::class.java)
@@ -79,4 +83,10 @@ class MainFragment : BaseFragment() {
             }
         }
     }
+
+    override fun onSupportVisible() {
+        super.onSupportVisible()
+
+    }
+
 }
