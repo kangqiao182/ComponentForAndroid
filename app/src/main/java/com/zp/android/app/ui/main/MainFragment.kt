@@ -30,7 +30,7 @@ class MainFragment : BaseFragment() {
     }
 
     private val mFragments = arrayOfNulls<SupportFragment>(4)
-    private var preTabIndex = FIRST
+    private var currentTab = FIRST
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_main, container, false)
@@ -48,7 +48,7 @@ class MainFragment : BaseFragment() {
             mFragments[FOURTH] = MineFragment.newInstance()
 
             loadMultipleRootFragment(
-                R.id.container, preTabIndex,
+                R.id.container, currentTab,
                 mFragments[FIRST],
                 mFragments[SECOND],
                 mFragments[THIRD],
@@ -72,10 +72,10 @@ class MainFragment : BaseFragment() {
             // BottomNavigationViewHelper.disableShiftMode(this)
             labelVisibilityMode = 1
             setOnNavigationItemSelectedListener {
-                val currentTabIndex = tabIdArray.indexOf(it.itemId)
-                if(currentTabIndex in FIRST..FOURTH){
-                    showHideFragment(mFragments[currentTabIndex], mFragments[preTabIndex])
-                    preTabIndex = currentTabIndex
+                val selectTab = tabIdArray.indexOf(it.itemId)
+                if(selectTab in FIRST..FOURTH){
+                    showHideFragment(mFragments[selectTab], mFragments[currentTab])
+                    currentTab = selectTab
                     return@setOnNavigationItemSelectedListener true
                 } else {
                     return@setOnNavigationItemSelectedListener false
