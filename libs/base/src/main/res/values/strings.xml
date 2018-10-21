@@ -11,6 +11,13 @@
     <string name="base_hint">提示</string>
     <string name="base_click_retry">点击重试</string>
 
+    <!-- Menu Action -->
+    <string name="base_action_search">搜索</string>
+    <string name="base_action_share">分享</string>
+    <string name="base_action_like">收藏</string>
+    <string name="base_action_browser">用浏览器打开</string>
+    <string name="base_share_article_url">%1$s分享【%2$s】：%3$s</string>
+
 
     <!--系统-->
     <string name="base_sys_error_retry">出错啦! 点击重试</string>

@@ -8,3 +8,5 @@ import android.support.v4.app.FragmentActivity
 
 fun <T : Any> FragmentActivity.argument(key: String) =
         lazy { intent.extras[key] as? T ?: error("Intent Argument $key is missing") }
+
+fun <T : Any> FragmentActivity.argument(key: String, def: T) = intent.extras[key] as? T ?: def

@@ -3,6 +3,7 @@ package com.zp.android.common
 import android.view.ViewManager
 import com.rengwuxian.materialedittext.MaterialEditText
 import com.youth.banner.Banner
+import org.jetbrains.anko.AnkoViewDslMarker
 import org.jetbrains.anko.custom.ankoView
 
 /**
@@ -22,5 +23,11 @@ inline fun ViewManager.banner(theme: Int = 0, init: Banner.() -> Unit): Banner {
 ////设置MaterialEditText
 inline fun ViewManager.mdEditText(theme: Int = 0) = mdEditText(theme) {}
 inline fun ViewManager.mdEditText(theme: Int = 0, init: MaterialEditText.() -> Unit) = ankoView({ MaterialEditText(it) }, theme, init)
+
+inline fun ViewManager.toolbarV7(): android.support.v7.widget.Toolbar = toolbarV7() {}
+inline fun ViewManager.toolbarV7(init: (android.support.v7.widget.Toolbar).() -> Unit): android.support.v7.widget.Toolbar {
+    return ankoView({android.support.v7.widget.Toolbar(it)}, theme = 0) { init() }
+}
+
 
 

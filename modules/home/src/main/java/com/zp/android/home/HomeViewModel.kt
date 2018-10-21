@@ -34,7 +34,8 @@ class HomeViewModel(
         states.value = LoadingEvent
         launch {
             homeApi.getBanners()
-                .retryWhen(RxUtil.retryAndDelay())
+                //.retryWhen(RxUtil.retryAndDelay())
+                .compose(RxUtil.applySchedulersToObservable())
                 .subscribe({
                     bannerList.value = it.data
                 }, {

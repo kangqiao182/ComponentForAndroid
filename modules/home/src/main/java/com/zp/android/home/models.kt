@@ -1,6 +1,7 @@
 package com.zp.android.home
 
 import com.squareup.moshi.Json
+import com.zp.android.common.widget.GlideImageLoader
 import java.io.Serializable
 
 /**
@@ -64,7 +65,9 @@ data class BannerItem(
     @Json(name = "title") val title: String,
     @Json(name = "type") val type: Int,
     @Json(name = "url") val url: String
-)
+): GlideImageLoader.GetImageUrl{
+    override fun getImageUrl() = imagePath
+}
 
 data class HotKey(
     @Json(name = "id") val id: Int,

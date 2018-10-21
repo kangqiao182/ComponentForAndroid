@@ -1,6 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -40,4 +47,5 @@ dependencies {
     api project(":libs:component")
     api project(":libs:common")
     api project(":libs:net")
+    //kapt arouterCompilerKapt
 }

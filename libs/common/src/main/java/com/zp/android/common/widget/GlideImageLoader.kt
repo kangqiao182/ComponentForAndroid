@@ -12,13 +12,13 @@ import com.youth.banner.loader.ImageLoader
 class GlideImageLoader: ImageLoader(){
 
     interface GetImageUrl {
-        val imageUrl: String
+        fun getImageUrl(): String
     }
 
     override fun displayImage(context: Context, path: Any, imageView: ImageView) {
         var imageUrl = path
         if (path is GetImageUrl) {
-            imageUrl = (path as GetImageUrl).imageUrl
+            imageUrl = (path as GetImageUrl).getImageUrl()
         }
         //Glide 加载图片简单用法
         Glide.with(context).load(imageUrl).into(imageView)

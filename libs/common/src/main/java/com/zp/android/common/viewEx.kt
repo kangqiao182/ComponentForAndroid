@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.support.animation.DynamicAnimation
 import android.support.animation.SpringAnimation
 import android.support.animation.SpringForce
+import android.support.annotation.AttrRes
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +16,7 @@ import timber.log.Timber
  */
 
 fun View?.setVisible(visible: Boolean = true) {
-    if (this != null) visibility = if(visible) View.VISIBLE else View.GONE
+    if (this != null) visibility = if (visible) View.VISIBLE else View.GONE
 }
 
 /**
@@ -109,13 +110,24 @@ fun EditText.disableSoftKeyboard() {
  * @param dampingRatio The damping rate of the animation, see [SpringForce]
  */
 fun View.createSpringAnimation(
-        property: DynamicAnimation.ViewProperty,
-        finalPosition: Float,
-        stiffness: Float,
-        dampingRatio: Float
+    property: DynamicAnimation.ViewProperty,
+    finalPosition: Float,
+    stiffness: Float,
+    dampingRatio: Float
 ) = SpringAnimation(this, property).apply {
     spring = SpringForce(finalPosition).apply {
         this.stiffness = stiffness
         this.dampingRatio = dampingRatio
+    }
+}
+
+/**获取ActionBar的高度*/
+inline fun View.attrDimen(@AttrRes attr: Int, def: Int = 0): Int {
+    val attrs = arrayListOf(attr).toIntArray()
+    val values = context.theme.obtainStyledAttributes(attrs)
+    try {
+        return values.getDimensionPixelSize(0, def)//第一个参数数组索引，第二个参数 默认值
+    } finally {
+        values.recycle()
     }
 }

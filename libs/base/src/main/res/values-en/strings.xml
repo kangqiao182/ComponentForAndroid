@@ -12,6 +12,12 @@
     <string name="base_hint">Hint</string>
     <string name="base_click_retry">Click Retry</string>
 
+    <!-- Menu Action -->
+    <string name="base_action_search">Search</string>
+    <string name="base_action_share">Share</string>
+    <string name="base_action_like">Like</string>
+    <string name="base_action_browser">Browser</string>
+    <string name="base_share_article_url">%1$sShare【%2$s】：%3$s</string>
 
     <!--系统-->
     <string name="base_sys_error_retry">Wrong! Click retry.</string>

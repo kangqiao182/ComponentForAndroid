@@ -53,6 +53,9 @@
         <item name="colorAccent">@color/base_chain</item>
     </style>
 
+    <style name="base_AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="base_AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!--Begin 文本样式集-->
     <style name="base_text_title">

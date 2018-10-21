@@ -20,10 +20,13 @@ import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.bumptech.glide.Glide
 import com.youth.banner.Banner
+import com.youth.banner.BannerConfig
+import com.youth.banner.Transformer
 import com.zp.android.base.BaseFragment
+import com.zp.android.base.WebActivity
 import com.zp.android.base.mvvm.*
-import com.zp.android.base.widget.BannerLayout
 import com.zp.android.common.*
+import com.zp.android.common.widget.GlideImageLoader
 import com.zp.android.component.RouterPath
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
@@ -64,15 +67,17 @@ class HomeFragment : BaseFragment() {
             it?.let { ui.updateArticleData(it) }
         })
         viewModel.bannerList.observe(this, Observer {
-            it?.let { ui.updateBannerList(it) }
+            it?.let {
+                ui.updateBannerList(it)
+            }
         })
 
-        requestHomeData(0)
+        requestHomeData(true,0)
     }
 
-    fun requestHomeData(num: Int) {
+    fun requestHomeData(isRefresh: Boolean, num: Int) {
         viewModel.getArticleData(num)
-        viewModel.getBannerList()
+        if(isRefresh) viewModel.getBannerList()
     }
 
 }
@@ -81,13 +86,19 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
     lateinit var recycleView: RecyclerView
     lateinit var akAdapter: AKBaseQuickAdapter<Article, AKItemViewUI<Article>>
-    lateinit var bannerView: Banner
+    val bannerView: Banner by lazy { initAndAddBannerView() }
+    private var bannerList: List<BannerItem>? = null
     private var isRefresh = true
 
     override fun createView(ui: AnkoContext<HomeFragment>) = with(ui) {
         swipeRefreshLayout {
             swipeRefreshLayout = this
             layoutParams = RelativeLayout.LayoutParams(matchParent, matchParent)
+            onRefresh {
+                isRefresh = true
+                akAdapter.setEnableLoadMore(false)
+                ui.owner.requestHomeData(isRefresh, 0)
+            }
 
             recycleView = recyclerView {
                 layoutParams = RelativeLayout.LayoutParams(matchParent, matchParent)
@@ -97,41 +108,44 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
                 })
             }
 
-            initView(ui)
+            akAdapter = object : AKBaseQuickAdapter<Article, AKItemViewUI<Article>>() {
+                override fun onCreateItemView() = ArticleAKItemViewUI()
+            }.apply {
+                setOnItemClickListener { adapter, view, position ->
+                    (adapter.getItem(position) as? Article)?.run {
+                        // 打开文章链接.
+                        WebActivity.open(ctx, link, title, id)
+                    }
+                }
+
+                setOnLoadMoreListener({
+                    isRefresh = false
+                    swipeRefreshLayout.isRefreshing = false
+                    val page = akAdapter.data.size / 20
+                    ui.owner.requestHomeData(isRefresh, page)
+                }, recycleView)
+
+            }
+            recycleView.adapter = akAdapter
+            //akAdapter.bindToRecyclerView(recycleView)
         }
     }
 
-    private fun initView(ui: AnkoContext<HomeFragment>) {
-        akAdapter = object : AKBaseQuickAdapter<Article, AKItemViewUI<Article>>() {
-            override fun onCreateItemView() = ArticleAKItemViewUI()
-        }.apply {
-            setOnItemClickListener { adapter, view, position ->
-                (adapter.getItem(position) as? Article)?.let {
-                    // 打开文章链接.
+    private fun initAndAddBannerView(): Banner {
+        val bannerLayout = LayoutInflater.from(recycleView.context).inflate(R.layout.home_view_banner, null, false)
+        val banner: Banner = bannerLayout.find(R.id.banner)
+        banner.run {
+            setImageLoader(GlideImageLoader())
+            setBannerAnimation(Transformer.Default)
+            setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE)
+            setOnBannerListener{ position ->
+                bannerList?.get(position)?.run {
+                    WebActivity.open(banner.context, url, title, id)
                 }
             }
-            recycleView.adapter = this
-            //akAdapter.bindToRecyclerView(recycleView)
-            setOnLoadMoreListener({
-                isRefresh = false
-                swipeRefreshLayout.isRefreshing = false
-                val page = akAdapter.data.size / 20
-                ui.owner.requestHomeData(page)
-            }, recycleView)
-
-            addHeaderView(BannerLayout(ui.ctx).apply {
-                bannerView = banner
-                onBannerListener { position ->
-
-                }
-            })
         }
-
-        swipeRefreshLayout.onRefresh {
-            isRefresh = true
-            akAdapter.setEnableLoadMore(false)
-            ui.owner.requestHomeData(0)
-        }
+        akAdapter.addHeaderView(bannerLayout)
+        return banner
     }
 
     fun updateArticleData(articles: ArticleResponseBody) {
@@ -157,6 +171,7 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
     }
 
     fun updateBannerList(list: List<BannerItem>) {
+        bannerList = list
         bannerView.update(list, list.map { it.title })
     }
 }
