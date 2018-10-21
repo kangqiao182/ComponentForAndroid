@@ -13,6 +13,7 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSwipeBackEnable(false)
         setContentView(R.layout.layout_root_container)
 
         if (null == findFragment(MainFragment::class.java)){
