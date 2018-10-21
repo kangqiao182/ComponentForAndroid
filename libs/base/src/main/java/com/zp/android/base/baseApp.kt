@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.support.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
+import com.bumptech.glide.annotation.GlideModule
 import com.zp.android.base.utils.I18NUtil
 import com.zp.android.base.utils.SPUtil
 import me.yokeyword.fragmentation.Fragmentation
@@ -24,6 +25,22 @@ open abstract class ModuleApp: BaseApp(), ModuleInitializer {
 
 }
 
+open abstract class MainApp: BaseApp(){
+    override fun onCreate() {
+        super.onCreate()
+
+        //不建议在Application初始化时加载插件, 应按需加载.
+        //com.zp.android.component.loadPlugin(this)
+
+        // 初始化组件 Application
+        AppConfig.initModuleApp(this)
+        // 其他操作
+        // 所有 Application 初始化后的操作
+        AppConfig.initModuleData(this)
+    }
+}
+
+@GlideModule
 open abstract class BaseApp: MultiDexApplication() {
     companion object {
         open lateinit var application: Application private set
@@ -33,6 +50,7 @@ open abstract class BaseApp: MultiDexApplication() {
         super.attachBaseContext(base)
         application = this
         com.zp.android.component.initVirtualApk(base)
+        com.zp.android.net.initNetConfig(this)
     }
 
     //BaseApp的OnCreate中写相关
@@ -63,16 +81,6 @@ open abstract class BaseApp: MultiDexApplication() {
 
         //初始化语言设置
         I18NUtil.changeAppLanguage(this)
-
-
-        //不建议在Application初始化时加载插件, 应按需加载.
-        //com.zp.android.component.loadPlugin(this)
-
-        // 初始化组件 Application
-        AppConfig.initModuleApp(this)
-        // 其他操作
-        // 所有 Application 初始化后的操作
-        AppConfig.initModuleData(this)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {

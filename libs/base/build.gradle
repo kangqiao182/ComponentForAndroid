@@ -39,4 +39,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(":libs:component")
     api project(":libs:common")
+    api project(":libs:net")
 }

@@ -1,82 +1,85 @@
 package com.zp.android.home
 
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.squareup.moshi.Json
 import java.io.Serializable
 
 /**
  * Created by zhaopan on 2018/10/10.
  */
+data class HttpResult<T>(@Json(name = "data") val data: T,
+                         @Json(name = "errorCode") val errorCode: Int,
+                         @Json(name = "errorMsg") val errorMsg: String)
 
 //文章
 data class ArticleResponseBody(
-    @JsonProperty("curPage") val curPage: Int = 0,
-    @JsonProperty("datas") var datas: MutableList<Article>? = null,
-    @JsonProperty("offset") val offset: Int,
-    @JsonProperty("over") val over: Boolean,
-    @JsonProperty("pageCount") val pageCount: Int,
-    @JsonProperty("size") val size: Int,
-    @JsonProperty("total") val total: Int
-): Serializable
+    @Json(name = "curPage") val curPage: Int,
+    @Json(name = "datas") var datas: MutableList<Article>,
+    @Json(name = "offset") val offset: Int,
+    @Json(name = "over") val over: Boolean,
+    @Json(name = "pageCount") val pageCount: Int,
+    @Json(name = "size") val size: Int,
+    @Json(name = "total") val total: Int
+)
 
 //文章
 data class Article(
-    @JsonProperty("apkLink") val apkLink: String = "",
-    @JsonProperty("author") val author: String = "",
-    @JsonProperty("chapterId") val chapterId: Int,
-    @JsonProperty("chapterName") val chapterName: String = "",
-    @JsonProperty("collect") var collect: Boolean,
-    @JsonProperty("courseId") val courseId: Int,
-    @JsonProperty("desc") val desc: String = "",
-    @JsonProperty("envelopePic") val envelopePic: String = "",
-    @JsonProperty("fresh") val fresh: Boolean,
-    @JsonProperty("id") val id: Int,
-    @JsonProperty("link") val link: String = "",
-    @JsonProperty("niceDate") val niceDate: String = "",
-    @JsonProperty("origin") val origin: String = "",
-    @JsonProperty("projectLink") val projectLink: String = "",
-    @JsonProperty("publishTime") val publishTime: Long,
-    @JsonProperty("superChapterId") val superChapterId: Int,
-    @JsonProperty("superChapterName") val superChapterName: String = "",
-    @JsonProperty("tags") val tags: MutableList<Tag>? = null,
-    @JsonProperty("title") val title: String = "",
-    @JsonProperty("type") val type: Int,
-    @JsonProperty("userId") val userId: Int,
-    @JsonProperty("visible") val visible: Int,
-    @JsonProperty("zan") val zan: Int,
-    @JsonProperty("top") var top: String = ""
-): Serializable
+    @Json(name = "apkLink") val apkLink: String,
+    @Json(name = "author") val author: String,
+    @Json(name = "chapterId") val chapterId: Int,
+    @Json(name = "chapterName") val chapterName: String,
+    @Json(name = "collect") var collect: Boolean,
+    @Json(name = "courseId") val courseId: Int,
+    @Json(name = "desc") val desc: String,
+    @Json(name = "envelopePic") val envelopePic: String,
+    @Json(name = "fresh") val fresh: Boolean,
+    @Json(name = "id") val id: Int,
+    @Json(name = "link") val link: String,
+    @Json(name = "niceDate") val niceDate: String,
+    @Json(name = "origin") val origin: String,
+    @Json(name = "projectLink") val projectLink: String,
+    @Json(name = "publishTime") val publishTime: Long,
+    @Json(name = "superChapterId") val superChapterId: Int,
+    @Json(name = "superChapterName") val superChapterName: String,
+    @Json(name = "tags") val tags: MutableList<Tag>,
+    @Json(name = "title") val title: String,
+    @Json(name = "type") val type: Int,
+    @Json(name = "userId") val userId: Int,
+    @Json(name = "visible") val visible: Int,
+    @Json(name = "zan") val zan: Int,
+    @Json(name = "top") var top: String
+)
 
 data class Tag(
-    @JsonProperty("name") val name: String = "",
-    @JsonProperty("url") val url: String = ""
-): Serializable
+    @Json(name = "name") val name: String,
+    @Json(name = "url") val url: String
+)
 
 //轮播图
-data class Banner(
-    @JsonProperty("desc") val desc: String = "",
-    @JsonProperty("id") val id: Int,
-    @JsonProperty("imagePath") val imagePath: String = "",
-    @JsonProperty("isVisible") val isVisible: Int,
-    @JsonProperty("order") val order: Int,
-    @JsonProperty("title") val title: String = "",
-    @JsonProperty("type") val type: Int,
-    @JsonProperty("url") val url: String = ""
-): Serializable
+data class BannerItem(
+    @Json(name = "desc") val desc: String,
+    @Json(name = "id") val id: Int,
+    @Json(name = "imagePath") val imagePath: String,
+    @Json(name = "isVisible") val isVisible: Int,
+    @Json(name = "order") val order: Int,
+    @Json(name = "title") val title: String,
+    @Json(name = "type") val type: Int,
+    @Json(name = "url") val url: String
+)
 
 data class HotKey(
-    @JsonProperty("id") val id: Int,
-    @JsonProperty("link") val link: String = "",
-    @JsonProperty("name") val name: String = "",
-    @JsonProperty("order") val order: Int,
-    @JsonProperty("visible") val visible: Int
-): Serializable
+    @Json(name = "id") val id: Int,
+    @Json(name = "link") val link: String,
+    @Json(name = "name") val name: String,
+    @Json(name = "order") val order: Int,
+    @Json(name = "visible") val visible: Int
+)
 
 //常用网站
 data class Friend(
-    @JsonProperty("icon") val icon: String = "",
-    @JsonProperty("id") val id: Int,
-    @JsonProperty("link") val link: String = "",
-    @JsonProperty("name") val name: String = "",
-    @JsonProperty("order") val order: Int,
-    @JsonProperty("visible") val visible: Int
-): Serializable
+    @Json(name = "icon") val icon: String,
+    @Json(name = "id") val id: Int,
+    @Json(name = "link") val link: String,
+    @Json(name = "name") val name: String,
+    @Json(name = "order") val order: Int,
+    @Json(name = "visible") val visible: Int
+)

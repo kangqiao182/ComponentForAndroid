@@ -8,9 +8,10 @@ import android.app.Application
 
 object AppConfig{
     const val TEST = "com.zp.android.test.TestApp"
+    const val HOME = "com.zp.android.home.HomeApp"
 
     val MAIN_APP_CONFIG = arrayOf(
-            TEST
+            TEST, HOME
     )
 
     fun prepareModules() = MAIN_APP_CONFIG

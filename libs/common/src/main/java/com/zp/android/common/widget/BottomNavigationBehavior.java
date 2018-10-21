@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by chenxz on 2017/11/25.
+ * Created by zhaopan on 2017/11/25.
  */
 
 public class BottomNavigationBehavior extends CoordinatorLayout.Behavior<View> {

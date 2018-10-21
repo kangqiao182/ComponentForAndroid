@@ -2,6 +2,7 @@ package com.zp.android.common
 
 import android.view.ViewManager
 import com.rengwuxian.materialedittext.MaterialEditText
+import com.youth.banner.Banner
 import org.jetbrains.anko.custom.ankoView
 
 /**
@@ -9,10 +10,10 @@ import org.jetbrains.anko.custom.ankoView
  */
 
 //Banner 轮播图
-//inline fun ViewManager.banner(theme: Int = 0) = banner(theme) {}
-//inline fun ViewManager.banner(theme: Int = 0, init: Banner.() -> Unit): Banner {
-//    return ankoView({ Banner(it) }, theme = theme, init = init)
-//}
+inline fun ViewManager.banner(theme: Int = 0) = banner(theme) {}
+inline fun ViewManager.banner(theme: Int = 0, init: Banner.() -> Unit): Banner {
+    return ankoView({ Banner(it) }, theme = theme, init = init)
+}
 
 ////设置ItemView
 //inline fun ViewManager.settingItem(theme: Int = 0) = settingItem(theme) {}

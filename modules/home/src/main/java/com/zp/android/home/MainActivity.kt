@@ -9,6 +9,7 @@ import com.zp.android.base.utils.RxUtil
 import com.zp.android.common.snackBarToast
 import com.zp.android.component.RouterExtras
 import com.zp.android.component.RouterPath
+import com.zp.android.net.RetrofitHelper
 import org.jetbrains.anko.*
 import org.jetbrains.anko.constraint.layout.constraintLayout
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -24,6 +25,8 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    val homeApi by lazy { RetrofitHelper.createService(HomeApi::class.java) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.d("进入Test")
@@ -38,10 +41,10 @@ class MainActivity : BaseActivity() {
 
                 button("加载数据"){
                     onClick {
-                        HomeApi.getArticles(1)
+                        homeApi.getArticles(1)
                             .compose(RxUtil.applySchedulersToObservable())
                             .subscribe({
-                                it.datas
+                                it.data.datas
                                 toast("加载成功!!!")
                             },{
                                 snackBarToast(this@button,"加载失败!!!")

@@ -66,7 +66,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':store:wanandroid')
     implementation project(':libs:base')
-    implementation project(':libs:lib_api')
     kapt arouterCompilerKapt
     kapt databindingKapt
 }

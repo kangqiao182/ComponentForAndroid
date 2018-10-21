@@ -76,7 +76,7 @@ abstract class BaseApi {
         when {
             type != null -> request.converter(JsonConvert(type))
             clazz != null -> request.converter(JsonConvert<CmdResponse<T>>(clazz))
-            else -> request.converter(JsonConvert())
+            else -> request.converter(JsonConvert<CmdResponse<T>>())
         }
 
         return request

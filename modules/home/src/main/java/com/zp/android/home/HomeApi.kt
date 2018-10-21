@@ -1,40 +1,35 @@
 package com.zp.android.home
 
-import com.lzy.okgo.cache.CacheMode
-import com.lzy.okgo.model.HttpParams
-import com.zp.android.api.BaseApi
 import io.reactivex.Observable
+import retrofit2.http.*
 
 
 /**
  * Created by zhaopan on 2018/9/18.
  */
 
-object HomeApi: BaseApi() {
+interface HomeApi {
 
     /**
      * 获取轮播图
      * http://www.wanandroid.com/banner/json
      */
-    // @GET("banner/json")
-    // fun getBanners(): Observable<List<Banner>>>
+    @GET("banner/json")
+    fun getBanners(): Observable<HttpResult<List<BannerItem>>>
 
     /**
      * 获取首页置顶文章列表
      * http://www.wanandroid.com/article/top/json
      */
-    // @GET("article/top/json")
-    // fun getTopArticles(): Observable<MutableList<Article>>
-
+    @GET("article/top/json")
+    fun getTopArticles(): Observable<HttpResult<MutableList<Article>>>
 
     /**
      * 获取文章列表
      * http://www.wanandroid.com/article/list/0/json
      * @param pageNum
      */
-    @JvmOverloads
-    fun getArticles(pageNum: Int, cacheMode: CacheMode = CacheMode.NO_CACHE): Observable<ArticleResponseBody> {
-        return get2("article/list/${pageNum}/json", null, cacheMode)
-    }
+    @GET("article/list/{pageNum}/json")
+    fun getArticles(@Path("pageNum") pageNum: Int): Observable<HttpResult<ArticleResponseBody>>
 
 }
