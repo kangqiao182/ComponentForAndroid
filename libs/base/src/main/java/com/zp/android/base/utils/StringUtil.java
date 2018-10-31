@@ -82,7 +82,7 @@ public class StringUtil {
 
  /*   public static String getString(int resId) {
         try {
-            return ChainApp.getApp().getResources().getString(resId);
+            return App.getApp().getResources().getString(resId);
         } catch (Resources.NotFoundException e) {
             return "";
         }

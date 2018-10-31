@@ -25,6 +25,9 @@
     <dimen name="textSize_titleSmall">16sp</dimen>
     <dimen name="textSize_title">18sp</dimen>
 
+
+    <dimen name="design_tab_text_size">14sp</dimen>
+    <dimen name="design_tab_text_size_2line">12sp</dimen>
     <!-- dp -->
     <dimen name="dp_05">0.5dp</dimen>
     <dimen name="dp_1">1dp</dimen>
@@ -44,6 +47,7 @@
     <dimen name="dp_28">28dp</dimen>
     <dimen name="dp_30">30dp</dimen>
     <dimen name="dp_36">36dp</dimen>
+    <dimen name="dp_40">40dp</dimen>
     <dimen name="dp_50">50dp</dimen>
     <dimen name="dp_54">54dp</dimen>
     <dimen name="dp_60">60dp</dimen>

@@ -70,7 +70,7 @@ private fun initOkGo(application: Application) {
     //val sslParams2 = HttpsUtils.getSslSocketFactory(SafeTrustManager())
 
     //方法三：使用预埋证书，校验服务端证书（自签名证书）
-    //var sslParams3 = HttpsUtils.getSslSocketFactory(chainApp.assets.open("xxx.cer"))
+    //var sslParams3 = HttpsUtils.getSslSocketFactory(App.assets.open("xxx.cer"))
     //方法四：使用bks证书和密码管理客户端证书（双向认证），使用预埋证书，校验服务端证书（自签名证书）
     //HttpsUtils.SSLParams sslParams4 = HttpsUtils.getSslSocketFactory(getAssets().open("xxx.bks"), "123456", getAssets().open("yyy.cer"));
 

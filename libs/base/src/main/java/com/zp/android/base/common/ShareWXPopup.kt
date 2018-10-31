@@ -64,11 +64,11 @@ class ShareWXPopup(val context: Activity): BasePopupWindow(context){
     }
 
     override fun onCreateShowAnimation(): Animation {
-        return AnimationUtils.loadAnimation(ChainApp.app, R.anim.base_bottom_in)
+        return AnimationUtils.loadAnimation(App.app, R.anim.base_bottom_in)
     }
 
     override fun onCreateDismissAnimation(): Animation? {
-        return AnimationUtils.loadAnimation(ChainApp.app, R.anim.base_bottom_out)
+        return AnimationUtils.loadAnimation(App.app, R.anim.base_bottom_out)
     }
 
     fun doShareWeChat(platform: String){

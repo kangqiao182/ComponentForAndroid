@@ -37,6 +37,22 @@ object RouterPath {
         }
     }
 
+    interface Knowledge {
+        companion object {
+            const val MAIN = "/knowledge/mian"
+            const val HOME = "/knowledge/home"
+            const val LIST = "/knowledge/list"
+            const val DETAIL = "/knowledge/detail"
+        }
+        interface PARAM{
+            companion object {
+                const val LIST_TITLE = "title"
+                const val LIST_CONTENT_DATA = "content_data"
+                const val DETAIL_CID = "cid"
+            }
+        }
+    }
+
     interface TEST {
         companion object {
             const val MAIN = "/test/main"

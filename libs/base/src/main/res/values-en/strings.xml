@@ -12,12 +12,27 @@
     <string name="base_hint">Hint</string>
     <string name="base_click_retry">Click Retry</string>
 
+    <string name="base_exit_tip">Press again to exit the WanAndroid</string>
+    <string name="base_share_article_url">%1$sShare【%2$s】：%3$s</string>
+    <string name="base_no_data">No Data</string>
+    <string name="base_no_network">Network Anomaly</string>
+    <string name="base_no_network_tip">Please check the network and click reload</string>
+    <string name="base_data_error">Data acquisition failed</string>
+    <string name="base_network_unavailable_tip">Network connection is not available, please check the network settings!</string>
+
     <!-- Menu Action -->
     <string name="base_action_search">Search</string>
     <string name="base_action_share">Share</string>
     <string name="base_action_like">Like</string>
     <string name="base_action_browser">Browser</string>
-    <string name="base_share_article_url">%1$sShare【%2$s】：%3$s</string>
+
+    <!-- Nav Action -->
+    <string name="base_nav_my_collect">Collect</string>
+    <string name="base_nav_setting">Setting</string>
+    <string name="base_nav_about_us">About Us</string>
+    <string name="base_nav_logout">Logout</string>
+    <string name="base_nav_night_mode">Night Mode</string>
+    <string name="base_nav_todo">TODO Tool</string>
 
     <!--系统-->
     <string name="base_sys_error_retry">Wrong! Click retry.</string>
@@ -35,8 +50,10 @@
     <string name="base_day_ago">days ago</string>
     <string name="base_month_ago">months ago</string>
     <string name="base_year_ago">years ago</string>
+
     <string name="base_request_succeed">request succeeded</string>
     <string name="base_commit_succeed">Submitted successfully</string>
+
     <string name="base_share_wx_friend_circle">tech cycle</string>
     <string name="base_share_wx_friend_good">WeChat friends</string>
     <string name="base_share_copy_link">Copy Link</string>
@@ -44,7 +61,9 @@
     <string name="base_share_copied_link">Copied to the clipboard</string>
     <string name="base_share_saved_img">Saved locally,  check it now.</string>
     <string name="base_share_error">Parameter error! Can\'t share</string>
+
     <string name="base_unit_volume">Vol:</string>
+
     <string name="base_currency_unit_cny">RMB</string>
     <string name="base_currency_unit_usd">USD</string>
 </resources>

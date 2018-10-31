@@ -7,9 +7,6 @@ import java.io.Serializable
 /**
  * Created by zhaopan on 2018/10/10.
  */
-data class HttpResult<T>(@Json(name = "data") val data: T,
-                         @Json(name = "errorCode") val errorCode: Int,
-                         @Json(name = "errorMsg") val errorMsg: String)
 
 //文章
 data class ArticleResponseBody(

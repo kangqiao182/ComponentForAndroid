@@ -11,13 +11,28 @@
     <string name="base_hint">提示</string>
     <string name="base_click_retry">点击重试</string>
 
+
+    <string name="base_exit_tip">再按一次退出程序</string>
+    <string name="base_share_article_url">%1$s分享【%2$s】：%3$s</string>
+    <string name="base_no_data">暂无数据</string>
+    <string name="base_no_network">网络异常</string>
+    <string name="base_no_network_tip">请检查网络后点击重新加载</string>
+    <string name="base_data_error">数据获取失败</string>
+    <string name="base_network_unavailable_tip">网络连接不可用,请检查网络设置!</string>
+
     <!-- Menu Action -->
     <string name="base_action_search">搜索</string>
     <string name="base_action_share">分享</string>
     <string name="base_action_like">收藏</string>
     <string name="base_action_browser">用浏览器打开</string>
-    <string name="base_share_article_url">%1$s分享【%2$s】：%3$s</string>
 
+    <!-- Nav Action -->
+    <string name="base_nav_my_collect">收藏</string>
+    <string name="base_nav_setting">设置</string>
+    <string name="base_nav_about_us">关于我们</string>
+    <string name="base_nav_logout">退出登录</string>
+    <string name="base_nav_night_mode">夜间模式</string>
+    <string name="base_nav_todo">TODO工具</string>
 
     <!--系统-->
     <string name="base_sys_error_retry">出错啦! 点击重试</string>
@@ -40,7 +55,6 @@
 
     <string name="base_request_succeed">请求成功</string>
     <string name="base_commit_succeed">提交成功</string>
-
 
     <string name="base_share_wx_friend_circle">朋友圈</string>
     <string name="base_share_wx_friend_good">微信好友</string>

@@ -9,9 +9,10 @@ import android.app.Application
 object AppConfig{
     const val TEST = "com.zp.android.test.TestApp"
     const val HOME = "com.zp.android.home.HomeApp"
+    const val KNOWLEDGE = "com.zp.android.knowledge.KnowledgeApp"
 
     val MAIN_APP_CONFIG = arrayOf(
-            TEST, HOME
+            TEST, HOME, KNOWLEDGE
     )
 
     fun prepareModules() = MAIN_APP_CONFIG
@@ -20,8 +21,8 @@ object AppConfig{
         for (moduleApp in prepareModules()) {
             try {
                 val clazz = Class.forName(moduleApp)
-                val baseApp = clazz.newInstance() as? ModuleInitializer
-                baseApp?.initModuleApp(application)
+                val moduleApp = clazz.newInstance() as? ModuleInitializer
+                moduleApp?.initModuleApp(application)
             } catch (e: ClassNotFoundException) {
                 e.printStackTrace()
             } catch (e: IllegalAccessException) {
@@ -36,8 +37,8 @@ object AppConfig{
         for (moduleApp in prepareModules()) {
             try {
                 val clazz = Class.forName(moduleApp)
-                val baseApp = clazz.newInstance() as? ModuleInitializer
-                baseApp?.initModuleData(application)
+                val moduleApp = clazz.newInstance() as? ModuleInitializer
+                moduleApp?.initModuleData(application)
             } catch (e: ClassNotFoundException) {
                 e.printStackTrace()
             } catch (e: IllegalAccessException) {

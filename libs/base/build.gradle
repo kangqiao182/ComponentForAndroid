@@ -47,5 +47,5 @@ dependencies {
     api project(":libs:component")
     api project(":libs:common")
     api project(":libs:net")
-    //kapt arouterCompilerKapt
+    kapt arouterCompilerKapt
 }

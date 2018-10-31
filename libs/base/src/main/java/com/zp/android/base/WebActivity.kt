@@ -61,13 +61,13 @@ class WebActivity : BaseActivity() {
     }
 
     @Autowired
-    var id = 0
+    @JvmField var id = 0
     @Autowired
-    var title = ""
+    @JvmField var title = ""
     @Autowired
-    var url = ""
+    @JvmField var url = ""
     @Autowired
-    var isShowTitle = true
+    @JvmField var isShowTitle = true
 
     private val ui: WebActivityUI by lazy { WebActivityUI() }
     private lateinit var agentWeb: AgentWeb

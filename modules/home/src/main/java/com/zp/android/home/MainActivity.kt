@@ -15,7 +15,7 @@ import org.jetbrains.anko.constraint.layout.constraintLayout
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import timber.log.Timber
 
-@Deprecated("测试, 做独立启动时用. ")
+@Deprecated("测试, 做模块独立运行入口.")
 @Route(path = RouterPath.Home.MAIN, name = "", extras = RouterExtras.FLAG_LOGIN)
 class MainActivity : BaseActivity() {
 

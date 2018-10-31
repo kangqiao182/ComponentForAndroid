@@ -18,7 +18,7 @@ class HomeApp : ModuleApp() {
     }
 
     override fun initModuleApp(application: Application) {
-        startKoin(application, homeModules)
+        startKoin(application.applicationContext, homeModules)
     }
 
     override fun initModuleData(application: Application) {

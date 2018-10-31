@@ -101,6 +101,7 @@ dependencies {
     implementation project(':libs:lib_api')
     implementation project(':modules:test')
     implementation project(':modules:home')
+    implementation project(':modules:knowledge')
     kapt arouterCompilerKapt
     kapt databindingKapt
 

@@ -60,7 +60,7 @@ object CaptureViewUtil {
             e.printStackTrace()
         }
         //通知图库即使更新,否则不能看到图片
-        //ChainApp.app.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getAbsolutePath())))
+        //App.app.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + file.getAbsolutePath())))
     }
 
     fun bitmap2ByteArray(bitmap: Bitmap): ByteArray{

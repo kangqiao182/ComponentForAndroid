@@ -51,7 +51,7 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun initView() {
-        viewModel.states.observe(this, Observer { event ->
+        viewModel.events.observe(this, Observer { event ->
             when (event) {
                 is LoadingEvent -> { /*显示加载中...*/
                 }
@@ -63,7 +63,7 @@ class HomeFragment : BaseFragment() {
                 }
             }
         })
-        viewModel.articleList.observe(this, Observer {
+        viewModel.articleData.observe(this, Observer {
             it?.let { ui.updateArticleData(it) }
         })
         viewModel.bannerList.observe(this, Observer {
@@ -114,7 +114,7 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
                 setOnItemClickListener { adapter, view, position ->
                     (adapter.getItem(position) as? Article)?.run {
                         // 打开文章链接.
-                        WebActivity.open(ctx, link, title, id)
+                        WebActivity.open(link, title, id)
                     }
                 }
 
@@ -140,7 +140,7 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
             setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE)
             setOnBannerListener{ position ->
                 bannerList?.get(position)?.run {
-                    WebActivity.open(banner.context, url, title, id)
+                    WebActivity.open(url, title, id)
                 }
             }
         }

@@ -69,7 +69,7 @@ class CrashHandler private constructor() : Thread.UncaughtExceptionHandler {
                 e1.printStackTrace()
             }
 
-            //todo 未从chainApp中移值完成.
+            //todo 未从App中移值完成.
             //exitApp(mContext)
             //Process.killProcess(Process.myPid())
             //System.exit(1)

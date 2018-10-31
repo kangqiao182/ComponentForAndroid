@@ -1,5 +1,6 @@
 package com.zp.android.home
 
+import com.zp.android.net.HttpResult
 import io.reactivex.Observable
 import retrofit2.http.*
 

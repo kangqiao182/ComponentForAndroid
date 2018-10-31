@@ -12,26 +12,26 @@ class HomeViewModel(
     val homeApi: HomeApi
 ) : RxViewModel() {
 
-    val states =  SingleLiveEvent<ViewModelEvent>()
-    val articleList = MutableLiveData<ArticleResponseBody>()
+    val events =  SingleLiveEvent<ViewModelEvent>()
+    val articleData = MutableLiveData<ArticleResponseBody>()
     val bannerList = MutableLiveData<List<BannerItem>>()
 
     fun getArticleData(num: Int){
-        states.value = LoadingEvent
+        events.value = LoadingEvent
         launch {
             homeApi.getArticles(num)
                 .compose(RxUtil.applySchedulersToObservable())
                 .subscribe({
-                    states.value = SuccessEvent
-                    articleList.value = it.data
+                    events.value = SuccessEvent
+                    articleData.value = it.data
                 }, {
-                    states.value = FailedEvent(it)
+                    events.value = FailedEvent(it)
                 })
         }
     }
 
     fun getBannerList(){
-        states.value = LoadingEvent
+        events.value = LoadingEvent
         launch {
             homeApi.getBanners()
                 //.retryWhen(RxUtil.retryAndDelay())
@@ -39,7 +39,7 @@ class HomeViewModel(
                 .subscribe({
                     bannerList.value = it.data
                 }, {
-                    states.value = FailedEvent(it)
+                    events.value = FailedEvent(it)
                 })
         }
     }
