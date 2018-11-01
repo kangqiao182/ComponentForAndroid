@@ -8,13 +8,13 @@ import org.koin.dsl.module.module
  * Created by zhaopan on 2018/10/28.
  */
 
-val viewModule = module {
+val viewModule = module(path = "Knowledge") {
     // ViewModel for ViewModel
     viewModel { ViewModel(get()) }
 
 }
 
-val dataModule = module(createOnStart = true) {
+val dataModule = module(path = "Knowledge", createOnStart = true) {
     // HomeApi 网络请求
     single<ServerAPI> { RetrofitHelper.createService(ServerAPI::class.java) }
 
