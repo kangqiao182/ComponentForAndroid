@@ -1,3 +1,5 @@
 <resources>
 
+    <string name="test_module_name" translatable="false">TestModule</string>
+
 </resources>

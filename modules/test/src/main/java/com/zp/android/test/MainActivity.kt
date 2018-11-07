@@ -27,32 +27,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Timber.d("进入Test")
-        UI (true) {
-            constraintLayout {
-                val tvMain = textView("Test模块首页Main"){
-                    id = View.generateViewId()
-                    textSize = 16f
-                    textColorResource = R.color.base_text_green
-                }.lparams(wrapContent, wrapContent){
-                }
 
-                button("加载数据"){
-                    onClick {
-                        TestApi.getTestInfo("zp")
-                            .compose(RxUtil.applySchedulersToObservable())
-                            .subscribe({
-                                it.list
-                                toast("加载成功!!!")
-                            },{
-                                snackBarToast(this@button,"加载失败!!!")
-                                Timber.d(it)
-                            })
-                    }
-                }.lparams(matchParent, wrapContent){
-                    topToBottom = tvMain.id
-                }
-
-            }
-        }
     }
 }

@@ -1,4 +1,4 @@
-package com.zp.android.test
+package com.zp.android.user
 
 import java.io.Serializable
 

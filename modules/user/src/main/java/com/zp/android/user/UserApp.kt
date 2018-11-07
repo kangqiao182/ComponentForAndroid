@@ -1,4 +1,4 @@
-package com.zp.android.test
+package com.zp.android.user
 
 import android.app.Application
 import com.zp.android.base.ModuleApp
@@ -8,7 +8,7 @@ import org.koin.standalone.StandAloneContext
  * Created by zhaopan on 2018/11/07.
  */
 
-class TestApp : ModuleApp() {
+class UserApp : ModuleApp() {
 
 
     override fun onCreate() {

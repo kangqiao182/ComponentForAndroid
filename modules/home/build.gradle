@@ -18,7 +18,7 @@ android {
 
     defaultConfig {
         if (project.isRunAlone.toBoolean()) {
-            applicationId "com.zp.android.home"
+            applicationId rootProject.ext.android.applicationBaseId + project.getName()
             multiDexEnabled true
         }
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -30,7 +30,7 @@ android {
     }
 
     dataBinding.enabled true
-    resourcePrefix "home_"
+    resourcePrefix project.getName() + "_"
 
     buildTypes {
         release {

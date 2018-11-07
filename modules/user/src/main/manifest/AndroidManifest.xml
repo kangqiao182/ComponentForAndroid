@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.zp.android.test">
+    package="com.zp.android.user">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/base_ic_launcher"
-        android:label="@string/test_module_name"
+        android:label="@string/user_module_name"
         android:supportsRtl="true"
-        android:name=".TestApp"
+        android:name=".UserApp"
         android:theme="@style/base_AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
