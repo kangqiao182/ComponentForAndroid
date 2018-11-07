@@ -5,15 +5,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/base_bg_activity"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-            android:fitsSystemWindows="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    <include layout="@layout/toolbar" />
+
+    <include layout="@layout/container" />
 
     <android.support.design.widget.BottomNavigationView
             android:id="@+id/bottom_navigation"

@@ -24,6 +24,8 @@ object RouterPath {
     interface APP {
         companion object {
             const val MAIN = "/app/main"
+            const val SEARCH = "/app/search"
+            const val LOGIN = "/app/login"
             const val SPLASH = "/app/splash"
             const val DANGER = "/app/danger"
             const val DEBUG = "/app/debug"

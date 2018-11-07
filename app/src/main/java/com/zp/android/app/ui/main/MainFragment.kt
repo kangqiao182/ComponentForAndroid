@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zp.android.app.R
+import com.zp.android.app.R.id.toolbar
 import com.zp.android.base.BaseFragment
 import com.zp.android.component.RouterPath
 import kotlinx.android.synthetic.main.fragment_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 import me.yokeyword.fragmentation.SupportFragment
 
 /**
@@ -66,6 +68,10 @@ class MainFragment : BaseFragment() {
     }
 
     override fun initView() {
+        toolbar.run {
+            title = getString(R.string.app_name)
+            //setSupportActionBar(this)
+        }
         val tabIdArray = arrayOf(R.id.action_home, R.id.action_knowledge_system, R.id.action_project, R.id.action_mine)
         bottom_navigation.run {
             // 以前使用 BottomNavigationViewHelper.disableShiftMode(this) 方法来设置底部图标和字体都显示并去掉点击动画

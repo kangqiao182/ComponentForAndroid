@@ -34,6 +34,17 @@ object SPUtil {
 
     fun getStringSet(key: String, default: Set<String>? = null) = sp.getStringSet(key, default)
 
+    fun <T> get(key: String, default: T){
+        when(default) {
+            is Boolean -> sp.getBoolean(key, default)
+            is Float -> sp.getFloat(key, default)
+            is Int -> sp.getInt(key, default)
+            is Long -> sp.getLong(key, default)
+            is String -> sp.getString(key, default)
+            else -> sp.getString(key, default.toString())
+        }
+    }
+
     fun <T> put(key: String, value: T) {
         val editor = sp.edit()
         when{
