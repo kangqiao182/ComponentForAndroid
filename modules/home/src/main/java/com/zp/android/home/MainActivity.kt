@@ -20,7 +20,7 @@ import timber.log.Timber
 class MainActivity : BaseActivity() {
 
     companion object {
-        fun open(){
+        fun open() {
             ARouter.getInstance().build(RouterPath.TEST.MAIN).navigation()
         }
     }
@@ -29,32 +29,30 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setSwipeBackEnable(false)
         Timber.d("进入Test")
-        UI (true) {
-            constraintLayout {
-                val tvMain = textView("Test模块首页Main"){
-                    id = View.generateViewId()
-                    textSize = 16f
-                    textColorResource = R.color.base_text_green
-                }.lparams(wrapContent, wrapContent){
-                }
+        constraintLayout {
+            val tvMain = textView("Test模块首页Main") {
+                id = View.generateViewId()
+                textSize = 16f
+                textColorResource = R.color.base_text_green
+            }.lparams(wrapContent, wrapContent) {
+            }
 
-                button("加载数据"){
-                    onClick {
-                        homeApi.getArticles(1)
-                            .compose(RxUtil.applySchedulersToObservable())
-                            .subscribe({
-                                it.data.datas
-                                toast("加载成功!!!")
-                            },{
-                                snackBarToast(this@button,"加载失败!!!")
-                                Timber.d(it)
-                            })
-                    }
-                }.lparams(matchParent, wrapContent){
-                    topToBottom = tvMain.id
+            button("加载数据") {
+                onClick {
+                    homeApi.getArticles(1)
+                        .compose(RxUtil.applySchedulersToObservable())
+                        .subscribe({
+                            it.data.datas
+                            toast("加载成功!!!")
+                        }, {
+                            snackBarToast(this@button, "加载失败!!!")
+                            Timber.d(it)
+                        })
                 }
-
+            }.lparams(matchParent, wrapContent) {
+                topToBottom = tvMain.id
             }
         }
     }

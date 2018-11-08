@@ -3,7 +3,6 @@
     package="com.zp.android.test">
 
     <application>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

@@ -19,7 +19,11 @@ import kotlinx.android.synthetic.main.toolbar.*
 import me.yokeyword.fragmentation.SupportFragment
 import android.support.v4.app.ActivityCompat
 import android.widget.TextView
+import com.zp.android.base.RxBus
+import com.zp.android.base.utils.RxUtil
 import com.zp.android.base.utils.SPUtil
+import com.zp.android.component.ServiceFactory
+import com.zp.android.component.event.LoginSuccessEvent
 import com.zp.android.store.wanandroid.Constant
 import org.jetbrains.anko.find
 
@@ -39,8 +43,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private val mFragments = arrayOfNulls<SupportFragment>(4)
     private var currentTab = FIRST
     private lateinit var tvNavUsername: TextView
-    private val isLogin get() = SPUtil.getBoolean(Constant.LOGIN_KEY, false)
-    private val username get() = SPUtil.getString(Constant.USERNAME_KEY, "")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
@@ -54,10 +56,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             loadRootFragment(R.id.root_container, newInstance())
         }*/
 
-        val homeFragment =  ARouter.getInstance().build(RouterPath.Home.HOME).navigation() as SupportFragment
-        val knowledgeFragment =  ARouter.getInstance().build(RouterPath.Knowledge.HOME).navigation() as SupportFragment
+        val homeFragment = ARouter.getInstance().build(RouterPath.Home.HOME).navigation() as SupportFragment
+        val knowledgeFragment = ARouter.getInstance().build(RouterPath.Knowledge.HOME).navigation() as SupportFragment
         val firstFragment: SupportFragment? = findFragment(homeFragment.javaClass)
-        Log.d("zp:::", " homeFragment = ${homeFragment} firstFragment = ${firstFragment}, class = ${homeFragment.javaClass} savedInstanceState = ${savedInstanceState}")
+        Log.d(
+            "zp:::",
+            " homeFragment = ${homeFragment} firstFragment = ${firstFragment}, class = ${homeFragment.javaClass} savedInstanceState = ${savedInstanceState}"
+        )
         if (firstFragment == null) {
             mFragments[FIRST] = homeFragment
             mFragments[SECOND] = knowledgeFragment
@@ -98,14 +103,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             labelVisibilityMode = 1
             setOnNavigationItemSelectedListener {
                 val selectTab = tabIdArray.indexOf(it.itemId)
-                if(selectTab in FIRST..FOURTH){
-                    if(selectTab != currentTab) { //切换Tab
+                if (selectTab in FIRST..FOURTH) {
+                    if (selectTab != currentTab) { //切换Tab
                         showHideFragment(mFragments[selectTab], mFragments[currentTab])
                         toolbar.title = it.title
                         currentTab = selectTab
                     } else { //重复选择当前Tab, TabReselected.
                         mFragments[selectTab]?.run {
-                            if(childFragmentManager.backStackEntryCount > 1){ //说明当前Tab非引模块首页, fragment回退栈数量大于1
+                            if (childFragmentManager.backStackEntryCount > 1) { //说明当前Tab非引模块首页, fragment回退栈数量大于1
                                 // todo Do what you can do
                             }
                         }
@@ -123,9 +128,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             var toggle = ActionBarDrawerToggle(
                 this@MainActivity,
                 this,
-                toolbar
-                , R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close)
+                toolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close
+            )
             addDrawerListener(toggle)
             toggle.syncState()
         }
@@ -133,18 +139,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.run {
             setNavigationItemSelectedListener(this@MainActivity)
             tvNavUsername = getHeaderView(0).find(R.id.tv_username)
-            menu.findItem(R.id.nav_logout).isVisible = isLogin
+            menu.findItem(R.id.nav_logout).isVisible = ServiceFactory.userService.isLogin()
         }
-        /*tvNavUsername?.run {
-            text = if (!isLogin) getString(R.string.login) else username
-            setOnClickListener({
-                if (!isLogin) {
-                    LoginActivity.open()
+        tvNavUsername?.run {
+            text = if (ServiceFactory.userService.isLogin()) getString(R.string.login) else ServiceFactory.userService.getUserName()
+            setOnClickListener {
+                if (!ServiceFactory.userService.isLogin()) {
+                    ARouter.getInstance().build(RouterPath.User.LOGIN).navigation()
                 } else {
-
                 }
-            })
-        }*/
+            }
+        }
+
+        RxBus.toObservableSticky(LoginSuccessEvent.javaClass)
+            .compose(RxUtil.applySchedulersToObservable())
+            .subscribe {
+                nav_view.menu.findItem(R.id.nav_logout).isVisible = ServiceFactory.userService.isLogin()
+                tvNavUsername.text = if (ServiceFactory.userService.isLogin()) getString(R.string.login) else ServiceFactory.userService.getUserName()
+            }
     }
 
     override fun onBackPressedSupport() {
@@ -187,7 +199,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
             }
             R.id.nav_logout -> {
-
+                ServiceFactory.userService.logout()
             }
             R.id.nav_night_mode -> {
 

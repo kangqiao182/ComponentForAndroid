@@ -3,7 +3,8 @@
     package="com.zp.android.user">
 
     <application>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".RegisterActivity"/>
     </application>
 
 </manifest>

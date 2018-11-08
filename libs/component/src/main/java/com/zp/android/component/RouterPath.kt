@@ -11,6 +11,7 @@ object RouterPath {
     interface Service {
         companion object {
             const val TEST = "/service/test"
+            const val USER = "/service/user"
         }
     }
 
@@ -60,6 +61,7 @@ object RouterPath {
         companion object {
             const val MAIN      = "/user/main"
             const val LOGIN     = "/user/login"
+            const val REGISTER     = "/user/register"
             const val SETTINGS  = "/user/settings"
         }
 

@@ -6,7 +6,8 @@ package com.zp.android.store.wanandroid
 
 interface Constant {
     companion object {
-        const val LOGIN_KEY = "login_key"
-        const val USERNAME_KEY = "username_key"
+        const val LOGIN_KEY = "loginData"
+        const val USERNAME_KEY = "username"
+        const val PASSWORD_KEY = "password"
     }
 }

@@ -1,5 +1,6 @@
 package com.zp.android.component
 
+import android.content.Context
 import com.alibaba.android.arouter.facade.template.IProvider
 
 /**
@@ -10,6 +11,6 @@ import com.alibaba.android.arouter.facade.template.IProvider
  */
 
 
-interface BaseService: IProvider {
-
+interface BaseService : IProvider {
+    override fun init(context: Context) {}
 }

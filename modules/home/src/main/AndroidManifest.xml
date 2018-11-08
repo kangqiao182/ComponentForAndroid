@@ -3,7 +3,6 @@
     package="com.zp.android.home">
 
     <application>
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

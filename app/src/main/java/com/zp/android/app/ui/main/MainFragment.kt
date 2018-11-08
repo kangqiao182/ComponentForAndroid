@@ -17,6 +17,8 @@ import me.yokeyword.fragmentation.SupportFragment
 /**
  * Created by zhaopan on 2018/10/17.
  */
+
+@Deprecated("使用MainActivity了")
 class MainFragment : BaseFragment() {
     companion object {
         const val TAG: String = "MainFragment"
