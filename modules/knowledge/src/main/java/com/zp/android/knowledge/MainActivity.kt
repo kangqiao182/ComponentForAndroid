@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.zp.android.base.BaseActivity
 import com.zp.android.component.RouterExtras
 import com.zp.android.component.RouterPath
+import com.zp.android.knowledge.ui.MainFragment
 
 /**
  * Created by zhaopan on 2018/10/28.

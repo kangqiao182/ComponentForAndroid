@@ -61,8 +61,9 @@ object RouterPath {
         companion object {
             const val MAIN      = "/user/main"
             const val LOGIN     = "/user/login"
-            const val REGISTER     = "/user/register"
+            const val REGISTER  = "/user/register"
             const val SETTINGS  = "/user/settings"
+            const val COLLECT_LIST = "/user/collect_list"
         }
 
         interface PARAM {

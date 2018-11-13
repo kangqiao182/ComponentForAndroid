@@ -1,5 +1,6 @@
 package com.zp.android.user
 
+import android.text.Html
 import com.squareup.moshi.Json
 import java.io.Serializable
 
@@ -58,4 +59,7 @@ data class CollectionArticle(
     @Json(name = "userId") val userId: Int,
     @Json(name = "visible") val visible: Int,
     @Json(name = "zan") val zan: Int
-): Serializable
+): Serializable {
+    val titleHtml get() = Html.fromHtml(title)
+    val likeIcon get() = R.drawable.ic_like  // if (collect) R.drawable.ic_like else R.drawable.ic_like_not
+}

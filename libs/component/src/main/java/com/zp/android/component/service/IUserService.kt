@@ -13,6 +13,10 @@ interface IUserService: BaseService {
     fun getUserName(): String = ""
 
     fun logout() {}
+
+    fun addCollectArticle(id: Int) {}
+
+    fun cancelCollectArticle(id: Int) {}
 }
 
 class EmptyUserService: IUserService

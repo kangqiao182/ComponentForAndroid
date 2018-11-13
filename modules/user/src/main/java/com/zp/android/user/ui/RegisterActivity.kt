@@ -1,4 +1,4 @@
-package com.zp.android.user
+package com.zp.android.user.ui
 
 import android.arch.lifecycle.Observer
 import android.databinding.DataBindingUtil
@@ -8,13 +8,16 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zp.android.base.BaseActivity
+import com.zp.android.base.mvvm.ExceptionEvent
 import com.zp.android.base.mvvm.FailedEvent
 import com.zp.android.base.mvvm.LoadingEvent
 import com.zp.android.base.mvvm.SuccessEvent
+import com.zp.android.base.showToast
 import com.zp.android.component.RouterPath
+import com.zp.android.user.R
 import com.zp.android.user.databinding.UserActivityRegisterBinding
-import org.jetbrains.anko.toast
 import org.koin.android.viewmodel.ext.android.viewModel
+import timber.log.Timber
 
 /**
  * Created by zhaopan on 2018/11/8.
@@ -32,7 +35,7 @@ class RegisterActivity : BaseActivity() {
 
     private lateinit var binding: UserActivityRegisterBinding
     private val onClickListener by lazy { initClickListener() }
-    private val vm by viewModel<ViewModel>()
+    private val vm by viewModel<UserViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,16 +49,17 @@ class RegisterActivity : BaseActivity() {
         vm.events.observe(this, Observer { event ->
             when(event){
                 is LoadingEvent -> {
-                    toast(getString(R.string.register_ing))
+                    showToast(getString(R.string.register_ing))
                 }
                 is SuccessEvent -> {
-                    toast(getString(R.string.register_success))
+                    showToast(getString(R.string.register_success))
                     finish()
                 }
                 is FailedEvent -> {
-                    event.error.message?.also {
-                        toast(it)
-                    }
+                    showToast(event.errorMsg)
+                }
+                is ExceptionEvent -> {
+                    Timber.e(event.error)
                 }
             }
         })

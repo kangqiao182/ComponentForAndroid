@@ -21,11 +21,11 @@ import android.support.v4.app.ActivityCompat
 import android.widget.TextView
 import com.zp.android.base.RxBus
 import com.zp.android.base.utils.RxUtil
-import com.zp.android.base.utils.SPUtil
-import com.zp.android.component.ServiceFactory
+import com.zp.android.component.ServiceManager
 import com.zp.android.component.event.LoginSuccessEvent
-import com.zp.android.store.wanandroid.Constant
+import com.zp.android.component.event.LogoutSuccessEvent
 import org.jetbrains.anko.find
+import org.jetbrains.anko.sdk27.coroutines.onClick
 
 
 @Route(path = RouterPath.APP.MAIN, name = "App首页")
@@ -43,6 +43,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private val mFragments = arrayOfNulls<SupportFragment>(4)
     private var currentTab = FIRST
     private lateinit var tvNavUsername: TextView
+    private val userService by lazy { ServiceManager.getUserService() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (savedInstanceState != null) {
@@ -86,8 +87,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
         initView(savedInstanceState)
+        registerEvents()
     }
-
 
     private fun initView(savedInstanceState: Bundle?) {
         toolbar.run {
@@ -125,7 +126,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
 
         drawer_layout.run {
-            var toggle = ActionBarDrawerToggle(
+            val toggle = ActionBarDrawerToggle(
                 this@MainActivity,
                 this,
                 toolbar,
@@ -139,23 +140,32 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         nav_view.run {
             setNavigationItemSelectedListener(this@MainActivity)
             tvNavUsername = getHeaderView(0).find(R.id.tv_username)
-            menu.findItem(R.id.nav_logout).isVisible = ServiceFactory.userService.isLogin()
+            menu.findItem(R.id.nav_logout).isVisible = userService.isLogin()
         }
         tvNavUsername?.run {
-            text = if (ServiceFactory.userService.isLogin()) getString(R.string.login) else ServiceFactory.userService.getUserName()
-            setOnClickListener {
-                if (!ServiceFactory.userService.isLogin()) {
+            text = if (!userService.isLogin()) getString(R.string.login) else userService.getUserName()
+            onClick {
+                if (!userService.isLogin()) {
                     ARouter.getInstance().build(RouterPath.User.LOGIN).navigation()
                 } else {
                 }
             }
         }
 
+    }
+
+    private fun registerEvents() {
         RxBus.toObservableSticky(LoginSuccessEvent.javaClass)
             .compose(RxUtil.applySchedulersToObservable())
             .subscribe {
-                nav_view.menu.findItem(R.id.nav_logout).isVisible = ServiceFactory.userService.isLogin()
-                tvNavUsername.text = if (ServiceFactory.userService.isLogin()) getString(R.string.login) else ServiceFactory.userService.getUserName()
+                nav_view.menu.findItem(R.id.nav_logout).isVisible = userService.isLogin()
+                tvNavUsername.text = if (!userService.isLogin()) getString(R.string.login) else userService.getUserName()
+            }
+        RxBus.toObservable(LogoutSuccessEvent.javaClass)
+            .compose(RxUtil.applySchedulersToObservable())
+            .subscribe {
+                nav_view.menu.findItem(R.id.nav_logout).isVisible = userService.isLogin()
+                tvNavUsername.text = if (!userService.isLogin()) getString(R.string.login) else userService.getUserName()
             }
     }
 
@@ -199,7 +209,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
             }
             R.id.nav_logout -> {
-                ServiceFactory.userService.logout()
+                userService.logout()
             }
             R.id.nav_night_mode -> {
 

@@ -1,4 +1,4 @@
-package com.zp.android.knowledge
+package com.zp.android.knowledge.ui
 
 import android.content.Context
 import android.content.Intent
@@ -13,6 +13,8 @@ import com.zp.android.base.BaseActivity
 import com.zp.android.base.utils.ViewUtil
 import com.zp.android.common.CommonFragmentStatePageAdapter
 import com.zp.android.component.RouterPath
+import com.zp.android.knowledge.KnowledgeTreeBody
+import com.zp.android.knowledge.R
 import kotlinx.android.synthetic.main.knowledge_activity_detail.*
 
 /**

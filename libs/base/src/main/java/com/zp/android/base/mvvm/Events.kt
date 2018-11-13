@@ -22,4 +22,9 @@ object SuccessEvent : ViewModelEvent()
 /**
  * Generic Failed Event
  */
-data class FailedEvent(val error: Throwable) : ViewModelEvent()
+data class FailedEvent(val errorMsg: String) : ViewModelEvent()
+
+/**
+ * Generic Exception Event
+ */
+data class ExceptionEvent(val error: Throwable) : ViewModelEvent()

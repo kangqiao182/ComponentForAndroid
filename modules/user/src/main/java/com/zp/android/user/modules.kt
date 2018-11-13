@@ -3,6 +3,8 @@ package com.zp.android.user
 import com.zp.android.base.BaseApp
 import com.zp.android.base.utils.SPStorage
 import com.zp.android.net.RetrofitHelper
+import com.zp.android.user.ui.CollectViewModel
+import com.zp.android.user.ui.UserViewModel
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module
 
@@ -12,9 +14,10 @@ import org.koin.dsl.module.module
 
 
 val viewModule = module(path = "User") {
-    // ViewModel for ViewModel
-    viewModel { ViewModel(get(), get()) }
+    // UserViewModel for UserViewModel
+    viewModel { UserViewModel(get(), get()) }
 
+    viewModel { CollectViewModel(get()) }
 }
 
 val dataModule = module(path = "User", createOnStart = true) {

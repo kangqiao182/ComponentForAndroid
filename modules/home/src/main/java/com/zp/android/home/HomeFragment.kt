@@ -18,16 +18,20 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import com.zp.android.base.BaseFragment
+import com.zp.android.base.CtxUtil
 import com.zp.android.base.WebActivity
 import com.zp.android.base.mvvm.*
+import com.zp.android.base.showToast
 import com.zp.android.common.*
 import com.zp.android.common.widget.GlideImageLoader
 import com.zp.android.component.RouterPath
+import com.zp.android.component.ServiceManager
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
@@ -58,8 +62,10 @@ class HomeFragment : BaseFragment() {
                 is SuccessEvent -> { /*加载完成.*/
                 }
                 is FailedEvent -> {
+                    showToast(event.errorMsg)
+                }
+                is ExceptionEvent -> {
                     Timber.e(event.error)
-                    toast("加载失败")
                 }
             }
         })
@@ -72,12 +78,12 @@ class HomeFragment : BaseFragment() {
             }
         })
 
-        requestHomeData(true,0)
+        requestHomeData(true, 0)
     }
 
     fun requestHomeData(isRefresh: Boolean, num: Int) {
         viewModel.getArticleData(num)
-        if(isRefresh) viewModel.getBannerList()
+        if (isRefresh) viewModel.getBannerList()
     }
 
 }
@@ -138,7 +144,7 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
             setImageLoader(GlideImageLoader())
             setBannerAnimation(Transformer.Default)
             setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE)
-            setOnBannerListener{ position ->
+            setOnBannerListener { position ->
                 bannerList?.get(position)?.run {
                     WebActivity.open(url, title, id)
                 }
@@ -197,6 +203,20 @@ class ArticleAKItemViewUI : AKItemViewUI<Article> {
                 tvChapterName.visible()
             } else {
                 tvChapterName.invalidate()
+            }
+            ivLike.setOnClickListener {
+                if(ServiceManager.getUserService().isLogin()){
+                    val collect = item.collect
+                    item.collect = !collect
+                    if (collect) {
+                        ServiceManager.getUserService().addCollectArticle(item.id)
+                    } else {
+                        ServiceManager.getUserService().cancelCollectArticle(item.id)
+                    }
+                } else {
+                    ARouter.getInstance().build(RouterPath.User.LOGIN).navigation()
+                    CtxUtil.showTaost(R.string.login_tint)
+                }
             }
 
             if (envelopePic.isNotEmpty()) {
@@ -294,6 +314,7 @@ class ArticleAKItemViewUI : AKItemViewUI<Article> {
                 id = View.generateViewId()
                 orientation = LinearLayout.HORIZONTAL
                 ivLike = imageView(R.drawable.ic_like_not) {
+                    id = View.generateViewId()
                     contentDescription = "like article"
                 }.lparams(wrapContent, wrapContent)
             }.lparams(wrapContent, wrapContent) {

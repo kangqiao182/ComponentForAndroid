@@ -98,10 +98,11 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(':store:wanandroid')
     implementation project(':libs:base')
-    implementation project(':libs:lib_api')
+    //implementation project(':libs:lib_api')
     implementation project(':modules:test')
     implementation project(':modules:home')
     implementation project(':modules:knowledge')
+    //implementation project(':modules:user')
     kapt arouterCompilerKapt
     kapt databindingKapt
 

@@ -1,22 +1,21 @@
-package com.zp.android.user
+package com.zp.android.user.ui
 
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
 import com.zp.android.base.mvvm.*
 import com.zp.android.base.utils.RxUtil
 import com.zp.android.base.utils.SPStorage
+import com.zp.android.net.exception.ExceptionHandle
 import com.zp.android.store.wanandroid.Constant.Companion.LOGIN_KEY
 import com.zp.android.store.wanandroid.Constant.Companion.PASSWORD_KEY
 import com.zp.android.store.wanandroid.Constant.Companion.USERNAME_KEY
-import io.reactivex.Observable
-import io.reactivex.ObservableSource
-import java.lang.RuntimeException
+import com.zp.android.user.LoginData
+import com.zp.android.user.ServerAPI
 
 /**
  * Created by zhaopan on 2018/11/7.
  */
 
-class ViewModel(
+class UserViewModel(
     val server: ServerAPI,
     val spStorage: SPStorage
 ) : RxViewModel() {
@@ -46,7 +45,7 @@ class ViewModel(
     fun loginWanAndroid() {
         events.value = LoadingEvent
         if (username.value.isNullOrBlank() || password.value.isNullOrBlank()) {
-            events.value = FailedEvent(RuntimeException("用户名和密码不能为空!!!"))
+            events.value = FailedEvent("用户名和密码不能为空!!!")
             return
         }
         launch {
@@ -54,13 +53,13 @@ class ViewModel(
                 .compose(RxUtil.applySchedulersToObservable())
                 .subscribe({
                     if (it.isSuccess()) {
-                        events.value = SuccessEvent
                         updateUserData(it.data)
+                        events.value = SuccessEvent
                     } else {
-                        events.value = FailedEvent(RuntimeException(it.errorMsg))
+                        events.value = FailedEvent(it.errorMsg)
                     }
                 }, {
-                    events.value = FailedEvent(it)
+                    events.value = FailedEvent(ExceptionHandle.handleException(it))
                 })
         }
     }
@@ -72,13 +71,13 @@ class ViewModel(
                 .compose(RxUtil.applySchedulersToObservable())
                 .subscribe({
                     if(it.isSuccess()) {
-                        events.value = SuccessEvent
                         updateUserData(it.data)
+                        events.value = SuccessEvent
                     } else {
-                        events.value = FailedEvent(RuntimeException(it.errorMsg))
+                        events.value = FailedEvent(it.errorMsg)
                     }
                 }, {
-                    events.value = FailedEvent(it)
+                    events.value = FailedEvent(ExceptionHandle.handleException(it))
                 })
         }
     }
@@ -90,6 +89,7 @@ class ViewModel(
                 .subscribe({
                     if(it.isSuccess()){
                         updateUserData(LoginData())
+                        spStorage.clearPreference()
                     }
                 }, {
 

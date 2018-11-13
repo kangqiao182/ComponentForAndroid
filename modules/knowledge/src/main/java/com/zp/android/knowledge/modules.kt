@@ -1,5 +1,6 @@
 package com.zp.android.knowledge
 
+import com.zp.android.knowledge.ui.ViewModel
 import com.zp.android.net.RetrofitHelper
 import org.koin.android.viewmodel.ext.koin.viewModel
 import org.koin.dsl.module.module

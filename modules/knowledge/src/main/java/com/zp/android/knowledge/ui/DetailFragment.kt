@@ -1,4 +1,4 @@
-package com.zp.android.knowledge
+package com.zp.android.knowledge.ui
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
@@ -12,16 +12,21 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.zp.android.base.BaseFragment
 import com.zp.android.base.WebActivity
+import com.zp.android.base.mvvm.ExceptionEvent
 import com.zp.android.base.mvvm.FailedEvent
 import com.zp.android.base.mvvm.LoadingEvent
 import com.zp.android.base.mvvm.SuccessEvent
+import com.zp.android.base.showToast
 import com.zp.android.common.DBViewHolder
 import com.zp.android.common.widget.SpaceItemDecoration
 import com.zp.android.component.RouterPath
+import com.zp.android.knowledge.Article
+import com.zp.android.knowledge.ArticleResponseBody
+import com.zp.android.knowledge.BR
+import com.zp.android.knowledge.R
 import kotlinx.android.synthetic.main.knowledge_fragment_refresh_layout.*
 import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.support.v4.onRefresh
-import org.jetbrains.anko.support.v4.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -136,8 +141,10 @@ class DetailFragment : BaseFragment() {
                     is SuccessEvent -> { /*加载完成.*/
                     }
                     is FailedEvent -> {
+                        showToast(event.errorMsg)
+                    }
+                    is ExceptionEvent -> {
                         Timber.e(event.error)
-                        toast("加载失败")
                     }
                 }
             })

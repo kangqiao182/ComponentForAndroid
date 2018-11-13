@@ -2,7 +2,7 @@ package com.zp.android.user
 
 import android.app.Application
 import com.zp.android.base.ModuleApp
-import com.zp.android.component.ServiceFactory
+import com.zp.android.component.ServiceManager
 import org.koin.android.ext.android.inject
 import org.koin.standalone.StandAloneContext
 
@@ -12,8 +12,7 @@ import org.koin.standalone.StandAloneContext
 
 class UserApp : ModuleApp() {
 
-    //@Deprecated("采用ARouter的@Autowired方式注入到ServiceFactory中. 暂不在ModuleApp中手动注入到ServiceFactory.")
-    // 通过Koin单例注入userService, 并在initModuleData中设置到ServiceFactory中.
+    // 通过Koin单例注入userService, 并在initModuleData中手动设置到ServiceFactory中.
     private val userService: UserService by inject()
 
     override fun onCreate() {
@@ -29,6 +28,6 @@ class UserApp : ModuleApp() {
     }
 
     override fun initModuleData(application: Application) {
-        ServiceFactory.userService = userService
+        ServiceManager.userService1 = userService
     }
 }

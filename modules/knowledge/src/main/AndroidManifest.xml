@@ -3,7 +3,7 @@
     package="com.zp.android.knowledge">
 
     <application>
-        <activity android:name=".DetailListActivity" />
+        <activity android:name=".ui.DetailListActivity" />
     </application>
 
 </manifest>

@@ -1,8 +1,11 @@
-package com.zp.android.knowledge
+package com.zp.android.knowledge.ui
 
 import android.arch.lifecycle.MutableLiveData
 import com.zp.android.base.mvvm.*
 import com.zp.android.base.utils.RxUtil
+import com.zp.android.knowledge.ArticleResponseBody
+import com.zp.android.knowledge.KnowledgeTreeBody
+import com.zp.android.knowledge.ServerAPI
 
 /**
  * Created by zhaopan on 2018/10/28.
@@ -22,10 +25,14 @@ class ViewModel(
             server.getKnowledgeTree()
                 .compose(RxUtil.applySchedulersToObservable())
                 .subscribe({
-                    events.value = SuccessEvent
-                    knowledgeTreeList.value = it.data
+                    if(it.isSuccess()) {
+                        knowledgeTreeList.value = it.data
+                        events.value = SuccessEvent
+                    } else {
+                        events.value = FailedEvent(it.errorMsg)
+                    }
                 }, {
-                    events.value = FailedEvent(it)
+                    events.value = ExceptionEvent(it)
                 })
         }
     }
@@ -36,10 +43,14 @@ class ViewModel(
             server.getKnowledgeList(page, cid)
                 .compose(RxUtil.applySchedulersToObservable())
                 .subscribe({
-                    events.value = SuccessEvent
-                    articleData.value = it.data
+                    if(it.isSuccess()){
+                        articleData.value = it.data
+                        events.value = SuccessEvent
+                    } else {
+                        events.value = FailedEvent(it.errorMsg)
+                    }
                 }, {
-                    events.value = FailedEvent(it)
+                    events.value = ExceptionEvent(it)
                 })
         }
     }

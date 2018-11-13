@@ -3,6 +3,7 @@ package com.zp.android.home
 import android.arch.lifecycle.MutableLiveData
 import com.zp.android.base.mvvm.*
 import com.zp.android.base.utils.RxUtil
+import java.lang.Exception
 
 /**
  * Created by zhaopan on 2018/10/21.
@@ -22,10 +23,14 @@ class HomeViewModel(
             homeApi.getArticles(num)
                 .compose(RxUtil.applySchedulersToObservable())
                 .subscribe({
-                    events.value = SuccessEvent
-                    articleData.value = it.data
+                    if(it.isSuccess()){
+                        events.value = SuccessEvent
+                        articleData.value = it.data
+                    } else {
+                        events.value = FailedEvent(it.errorMsg)
+                    }
                 }, {
-                    events.value = FailedEvent(it)
+                    events.value = ExceptionEvent(it)
                 })
         }
     }
@@ -37,9 +42,11 @@ class HomeViewModel(
                 //.retryWhen(RxUtil.retryAndDelay())
                 .compose(RxUtil.applySchedulersToObservable())
                 .subscribe({
-                    bannerList.value = it.data
+                    if(it.isSuccess()){
+                        bannerList.value = it.data
+                    }
                 }, {
-                    events.value = FailedEvent(it)
+                    events.value = ExceptionEvent(it)
                 })
         }
     }
