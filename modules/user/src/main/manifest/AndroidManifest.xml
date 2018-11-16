@@ -8,7 +8,7 @@
         android:label="@string/user_module_name"
         android:supportsRtl="true"
         android:name=".UserApp"
-        android:theme="@style/base_AppTheme">
+        android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

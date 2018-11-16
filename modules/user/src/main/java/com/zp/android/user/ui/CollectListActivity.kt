@@ -52,6 +52,14 @@ class CollectListActivity: BaseActivity() {
     }
 
     private fun initView() {
+        toolbar.run {
+            title = getString(R.string.nav_my_collect)
+            setSupportActionBar(this)
+            supportActionBar?.setHomeButtonEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            setNavigationOnClickListener{ finish() }
+        }
+
         swipeRefreshLayout.run {
             isRefreshing = true
             onRefresh {

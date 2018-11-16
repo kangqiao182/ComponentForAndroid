@@ -24,7 +24,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setSwipeBackEnable(false)
         verticalLayout {
-
+            backgroundColorResource = R.color.viewBackground
             button("登录") {
                 onClick { LoginActivity.open() }
             }.lparams(matchParent, wrapContent)

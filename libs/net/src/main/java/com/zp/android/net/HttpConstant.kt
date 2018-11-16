@@ -44,13 +44,9 @@ object HttpConstant {
 
     fun saveCookie(url: String?, domain: String?, cookies: String) {
         url ?: return
-        var spUrl: String = NetUtils.getConfig(url!!, cookies)
-        @Suppress("UNUSED_VALUE")
-        spUrl = cookies
+        NetUtils.setConfig(url, cookies)
         domain ?: return
-        var spDomain: String = NetUtils.getConfig(domain!!, cookies)
-        @Suppress("UNUSED_VALUE")
-        spDomain = cookies
+        NetUtils.setConfig(domain, cookies)
     }
 
 }

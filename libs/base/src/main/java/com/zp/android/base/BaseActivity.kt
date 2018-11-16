@@ -2,6 +2,7 @@ package com.zp.android.base
 
 import android.content.Context
 import android.os.Bundle
+import android.os.PersistableBundle
 import com.zp.android.base.utils.I18NUtil
 import me.yokeyword.fragmentation_swipeback.SwipeBackActivity
 
@@ -18,5 +19,9 @@ open abstract class BaseActivity: SwipeBackActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onPostCreate(savedInstanceState, persistentState)
     }
 }
