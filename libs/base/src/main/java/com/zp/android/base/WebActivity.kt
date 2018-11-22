@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
 import android.support.design.widget.AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+import android.support.design.widget.CoordinatorLayout
 import android.support.v7.widget.Toolbar
 import android.view.*
 import android.webkit.WebChromeClient
@@ -88,7 +89,9 @@ class WebActivity : BaseActivity() {
             setNavigationOnClickListener{ finish() }
         }
         agentWeb = AgentWeb.with(this)//传入Activity or Fragment
-            .setAgentWebParent(ui.webContainer, 1, LinearLayout.LayoutParams(-1, -1))//传入AgentWeb 的父控件
+            .setAgentWebParent(ui.webContainer, 1, CoordinatorLayout.LayoutParams(-1, -1).apply {
+                behavior = AppBarLayout.ScrollingViewBehavior()
+            })//传入AgentWeb 的父控件
             .useDefaultIndicator()// 使用默认进度条
             .setWebView(NestedScrollAgentWebView(this))
             .setWebChromeClient(webChromeClient)
