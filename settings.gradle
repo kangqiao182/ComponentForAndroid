@@ -7,4 +7,4 @@ include ':libs:lib_api', ':libs:lib_picker', ':libs:net'
 // 基础包
 include ':libs:common', ':libs:component', ':libs:base'
 // 模块包
-include ':modules:test', ':modules:home', ':modules:knowledge',  ':modules:user'
+include ':modules:test', ':modules:home', ':modules:knowledge',  ':modules:user', ':modules:project'

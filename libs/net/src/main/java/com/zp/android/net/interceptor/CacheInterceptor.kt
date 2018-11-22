@@ -6,7 +6,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 
 /**
- * @author zhaopan
+ * @author chenxz
  * @date 2018/9/26
  * @desc CacheInterceptor: 设置缓存
  */

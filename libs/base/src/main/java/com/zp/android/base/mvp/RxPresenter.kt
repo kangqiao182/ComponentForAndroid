@@ -10,6 +10,7 @@ import io.reactivex.disposables.Disposable
 
 abstract class RxPresenter<V> : BasePresenter<V> {
 
+    override var view: V? = null
     private val disposables = CompositeDisposable()
 
     fun launch(job: () -> Disposable) {

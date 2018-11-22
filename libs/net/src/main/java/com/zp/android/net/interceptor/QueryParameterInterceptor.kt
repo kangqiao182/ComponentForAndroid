@@ -1,11 +1,11 @@
-package com.zp.android.http.interceptor
+package com.zp.android.net.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 
 /**
- * @author zhaopan
+ * @author chenxz
  * @date 2018/9/26
  * @desc QueryParameterInterceptor 设置公共参数
  */

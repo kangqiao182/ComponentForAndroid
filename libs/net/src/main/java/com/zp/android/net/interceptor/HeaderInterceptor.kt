@@ -1,4 +1,4 @@
-package com.zp.android.http.interceptor
+package com.zp.android.net.interceptor
 
 import com.zp.android.net.HttpConstant
 import com.zp.android.net.KEY_TOKEN
@@ -7,7 +7,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 
 /**
- * @author zhaopan
+ * @author chenxz
  * @date 2018/9/26
  * @desc HeaderInterceptor: 设置请求头
  */

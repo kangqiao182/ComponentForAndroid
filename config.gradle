@@ -92,6 +92,7 @@ ext {
             "ankoRecyclerviewV7Coroutines": "org.jetbrains.anko:anko-recyclerview-v7-coroutines:${dependVersion.anko}",
             "ankoConstraintLayout"  : "org.jetbrains.anko:anko-constraint-layout:${dependVersion.anko}",
 
+            "koinJava"              : "org.koin:koin-java:${dependVersion.koin}",
             "koinAndroid"           : "org.koin:koin-android:${dependVersion.koin}",
             "koinAndroidScope"      : "org.koin:koin-android-scope:${dependVersion.koin}",
             "koinAndroidViewmodel"  : "org.koin:koin-android-viewmodel:${dependVersion.koin}",

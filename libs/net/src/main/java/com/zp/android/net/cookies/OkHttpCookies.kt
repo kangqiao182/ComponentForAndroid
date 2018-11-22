@@ -7,7 +7,7 @@ import java.io.ObjectOutputStream
 import java.io.Serializable
 
 /**
- * Created by zhaopan on 2018/6/6.
+ * Created by chenxz on 2018/6/6.
  */
 class OkHttpCookies : Serializable {
 

@@ -1,8 +1,8 @@
 package com.zp.android.net
 
-import com.zp.android.http.interceptor.HeaderInterceptor
-import com.zp.android.http.interceptor.SaveCookieInterceptor
 import com.zp.android.net.interceptor.CacheInterceptor
+import com.zp.android.net.interceptor.HeaderInterceptor
+import com.zp.android.net.interceptor.SaveCookieInterceptor
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
  */
 object RetrofitHelper {
 
-    private var retrofit: Retrofit? = null
+    private lateinit var retrofit: Retrofit
 
     init {
         getRetrofit()
@@ -25,7 +25,7 @@ object RetrofitHelper {
 
     //val service: ApiService by lazy { getRetrofit()!!.create(ApiService::class.java) }
 
-    private fun getRetrofit(): Retrofit? {
+    private fun getRetrofit(): Retrofit {
         if (retrofit == null) {
             synchronized(RetrofitHelper::class.java) {
                 if (retrofit == null) {
@@ -43,7 +43,7 @@ object RetrofitHelper {
     }
 
     fun <T> createService(clazz: Class<T>): T{
-        return getRetrofit()!!.create(clazz)
+        return getRetrofit().create(clazz)
     }
 
     /**

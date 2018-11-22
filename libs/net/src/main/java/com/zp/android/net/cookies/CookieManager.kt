@@ -5,7 +5,7 @@ import okhttp3.CookieJar
 import okhttp3.HttpUrl
 
 /**
- * Created by zhaopan on 2018/6/6.
+ * Created by chenxz on 2018/6/6.
  */
 class CookieManager : CookieJar {
 

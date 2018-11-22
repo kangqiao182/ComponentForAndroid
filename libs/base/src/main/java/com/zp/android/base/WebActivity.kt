@@ -19,6 +19,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.just.agentweb.AgentWeb
 import com.just.agentweb.DefaultWebClient
+import com.just.agentweb.NestedScrollAgentWebView
 import com.zp.android.common.argument
 import com.zp.android.common.attrDimen
 import com.zp.android.common.toolbarV7
@@ -87,8 +88,9 @@ class WebActivity : BaseActivity() {
             setNavigationOnClickListener{ finish() }
         }
         agentWeb = AgentWeb.with(this)//传入Activity or Fragment
-            .setAgentWebParent(ui.webContainer, LinearLayout.LayoutParams(-1, -1))//传入AgentWeb 的父控件
+            .setAgentWebParent(ui.webContainer, 1, LinearLayout.LayoutParams(-1, -1))//传入AgentWeb 的父控件
             .useDefaultIndicator()// 使用默认进度条
+            .setWebView(NestedScrollAgentWebView(this))
             .setWebChromeClient(webChromeClient)
             .setWebViewClient(webViewClient)
             .setMainFrameErrorView(R.layout.agentweb_error_page, -1)

@@ -200,7 +200,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_collect -> {
-
+                ARouter.getInstance().build(RouterPath.User.COLLECT_LIST).navigation()
             }
             R.id.nav_setting -> {
 

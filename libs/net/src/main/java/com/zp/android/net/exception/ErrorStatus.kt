@@ -1,7 +1,7 @@
 package com.zp.android.net.exception
 
 /**
- * Created by zhaopan on 2018/4/21.
+ * Created by chenxz on 2018/4/21.
  */
 object ErrorStatus {
     /**
