@@ -22,11 +22,11 @@ val viewModule = module(path = "User") {
 
 val dataModule = module(path = "User", createOnStart = true) {
     // User 模块专属ShardPreferences配置.
-    single<SPStorage> { SPStorage(BaseApp.application, "User") }
+    single { SPStorage(BaseApp.application, "User") }
     // HomeApi 网络请求
-    single<ServerAPI> { RetrofitHelper.createService(ServerAPI::class.java) }
+    single { RetrofitHelper.createService(ServerAPI::class.java) }
     // UserService
-    single<UserService> { UserService(get(), get())}
+    single { UserService(get(), get())}
 
 }
 

@@ -6,7 +6,7 @@ package com.zp.android.base.mvp
 
 interface BaseView<out T : BasePresenter<*>> {
 
-    fun showError(error: Throwable)
+    fun showError(error: Throwable) {}
 
     val presenter: T
 }

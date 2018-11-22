@@ -102,7 +102,7 @@ dependencies {
     implementation project(':modules:test')
     implementation project(':modules:home')
     implementation project(':modules:knowledge')
-    //implementation project(':modules:user')
+    implementation project(':modules:user')
     kapt arouterCompilerKapt
     kapt databindingKapt
 

@@ -81,6 +81,13 @@ object RouterPath {
         }
     }
 
+    interface Project {
+        companion object {
+            const val MAIN          = "/project/main"
+            const val CATEGORY_LIST = "/project/category_list"
+        }
+    }
+
 }
 
 interface RouterExtras {

@@ -9,14 +9,14 @@ import org.koin.dsl.module.module
  */
 
 
-val viewModule = module(path = "User") {
+val viewModule = module(path = "Test") {
     // ViewModel for ViewModel
     viewModel { ViewModel(get()) }
 
 }
 
-val dataModule = module(path = "User", createOnStart = true) {
-    // HomeApi 网络请求
+val dataModule = module(path = "Test", createOnStart = true) {
+    // Test 网络请求
     single<ServerAPI> { RetrofitHelper.createService(ServerAPI::class.java) }
 
 }

@@ -20,4 +20,4 @@ val dataModule = module(createOnStart = true) {
 
 }
 
-val homeModules = listOf(homeModule, dataModule)
+val moduleList = listOf(homeModule, dataModule)

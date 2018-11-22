@@ -14,7 +14,9 @@ import com.zp.android.net.exception.ExceptionHandle
 import com.zp.android.store.wanandroid.Constant.Companion.LOGIN_KEY
 import com.zp.android.store.wanandroid.Constant.Companion.USERNAME_KEY
 import org.koin.core.KoinContext
+import org.koin.standalone.KoinComponent
 import org.koin.standalone.StandAloneContext
+import org.koin.standalone.inject
 import timber.log.Timber
 
 /**
@@ -22,15 +24,11 @@ import timber.log.Timber
  */
 
 @Route(path = RouterPath.Service.USER)
-open class UserService2: IUserService {
+open class UserService2: IUserService, KoinComponent {
 
     //手动注入需要的spStorage和server
-    private val spStorage by lazy {
-        (StandAloneContext.koinContext as KoinContext).get<SPStorage>()
-    }
-    private val server by lazy {
-        (StandAloneContext.koinContext as KoinContext).get<ServerAPI>()
-    }
+    private val spStorage: SPStorage by inject()
+    private val server: ServerAPI by inject()
 
     override fun init(context: Context) {
         Log.w("UserService", "spStorage=${spStorage}")

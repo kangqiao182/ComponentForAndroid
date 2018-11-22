@@ -2,7 +2,6 @@ package com.zp.android.home
 
 import android.app.Application
 import com.zp.android.base.ModuleApp
-import org.koin.android.ext.android.startKoin
 import org.koin.standalone.StandAloneContext
 
 /**
@@ -19,8 +18,8 @@ class HomeApp : ModuleApp() {
     }
 
     override fun initModuleApp(application: Application) {
-        //startKoin(application.applicationContext, homeModules)
-        StandAloneContext.loadKoinModules(homeModules)
+        //startKoin(application.applicationContext, moduleList)
+        StandAloneContext.loadKoinModules(moduleList)
     }
 
     override fun initModuleData(application: Application) {

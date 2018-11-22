@@ -17,11 +17,4 @@ open abstract class BaseActivity: SwipeBackActivity() {
         super.attachBaseContext(I18NUtil.attachBaseContext(newBase))
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onPostCreate(savedInstanceState, persistentState)
-    }
 }
