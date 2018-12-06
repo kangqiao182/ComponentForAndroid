@@ -7,7 +7,6 @@ import com.zp.android.base.utils.SPStorage
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.StandAloneContext
 import org.koin.standalone.inject
-//import org.koin.android.ext.android.inject
 
 /**
  * Created by zhaopan on 2018/11/07.
@@ -15,8 +14,8 @@ import org.koin.standalone.inject
 
 class ProjectApp : ModuleApp(), KoinComponent {
 
-    //private val serverApi: ServerAPI by inject()
-    //private val spStorage: SPStorage by inject()
+    private val serverApi: ServerAPI by inject()
+    private val spStorage: SPStorage by inject()
 
     override fun onCreate() {
         super.onCreate()
@@ -32,7 +31,7 @@ class ProjectApp : ModuleApp(), KoinComponent {
     }
 
     override fun initModuleData(application: Application) {
-        /*serverApi.getProjectTree()
+        serverApi.getProjectTree()
             .compose(RxUtil.applySchedulersToObservable())
             .subscribe({
                 if(it.isSuccess()) {
@@ -42,6 +41,6 @@ class ProjectApp : ModuleApp(), KoinComponent {
                 }
             }, { error ->
                 //view?.showError(error)
-            })*/
+            })
     }
 }
