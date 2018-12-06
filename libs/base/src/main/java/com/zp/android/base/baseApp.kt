@@ -80,7 +80,7 @@ open abstract class BaseApp: MultiDexApplication() {
                 .install()
 
         //初始化语言设置
-        I18NUtil.changeAppLanguage(this)
+        //I18NUtil.changeAppLanguage(this)
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {

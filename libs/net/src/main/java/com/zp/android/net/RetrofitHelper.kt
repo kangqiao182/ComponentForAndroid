@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit
  */
 object RetrofitHelper {
 
-    private lateinit var retrofit: Retrofit
+    private var retrofit: Retrofit? = null
 
     init {
         getRetrofit()
@@ -39,7 +39,7 @@ object RetrofitHelper {
                 }
             }
         }
-        return retrofit
+        return retrofit!!
     }
 
     fun <T> createService(clazz: Class<T>): T{
