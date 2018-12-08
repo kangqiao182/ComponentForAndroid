@@ -3,8 +3,11 @@ package com.zp.android.project.ui;
 import com.zp.android.base.mvp.BasePresenter;
 import com.zp.android.base.mvp.BaseView;
 import com.zp.android.project.Article;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+
+import static com.sun.tools.internal.xjc.reader.Ring.get;
 
 /**
  * Created by zhaopan on 2018/11/17.
@@ -12,7 +15,6 @@ import java.util.List;
 public interface ProjectListContract {
 
     interface View extends BaseView<Presenter> {
-        void showIsLoading();
         void showProjectList(List<Article> list);
     }
 

@@ -1,5 +1,6 @@
 package com.zp.android.base.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Build
@@ -133,6 +134,7 @@ object I18NUtil {
         return SupportLanguage.valueOF(SPUtil.getInt(APP_LOCALE_LANGUAGE, -1))
     }
 
+    @SuppressLint("WrongConstant")
     fun restartMainActvity(context: Context) {
         /*
         val intent = Intent(context, MainActivity::class.java)

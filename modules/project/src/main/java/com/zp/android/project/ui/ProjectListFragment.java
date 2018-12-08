@@ -59,11 +59,6 @@ public class ProjectListFragment extends BaseFragment implements ProjectListCont
     }
 
     @Override
-    public void showIsLoading() {
-
-    }
-
-    @Override
     public void showProjectList(List<Article> list) {
 
     }

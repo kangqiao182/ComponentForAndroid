@@ -183,7 +183,6 @@ public class IdcardValidatorUtil {
     /**
      * 将和值与11取模得到余数进行校验码判断
      *
-     * @param checkCode
      * @param sum17
      * @return 校验位
      */

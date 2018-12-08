@@ -61,7 +61,7 @@ class CategoryListFragment: BaseFragment(), CategoryListContract.View {
             viewPager.adapter = CommonFragmentStatePageAdapter(fragmentManager!!, tabList, fragmentList)
             tabLayout.setupWithViewPager(viewPager)
         } else {
-            viewStub.inflate()
+            //viewStub.inflate()
         }
     }
 }
