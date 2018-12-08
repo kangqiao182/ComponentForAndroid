@@ -2,12 +2,7 @@ package com.zp.android.project.ui;
 
 import com.zp.android.base.mvp.BasePresenter;
 import com.zp.android.base.mvp.BaseView;
-import com.zp.android.project.Article;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
-
-import static com.sun.tools.internal.xjc.reader.Ring.get;
+import com.zp.android.project.ArticleResponseBody;
 
 /**
  * Created by zhaopan on 2018/11/17.
@@ -15,7 +10,7 @@ import static com.sun.tools.internal.xjc.reader.Ring.get;
 public interface ProjectListContract {
 
     interface View extends BaseView<Presenter> {
-        void showProjectList(List<Article> list);
+        void showProjectList(ArticleResponseBody body);
     }
 
     interface Presenter extends BasePresenter<View> {

@@ -2,16 +2,15 @@ package com.zp.android.project.ui
 
 import com.zp.android.base.mvp.RxPresenter
 import com.zp.android.base.utils.RxUtil
-import com.zp.android.net.RetrofitHelper
 import com.zp.android.project.ServerAPI
 
 /**
  * Created by zhaopan on 2018/11/17.
  */
 
-class CategoryListPresenter(
+class CategoryTabPresenter(
     val serverAPI: ServerAPI
-) : RxPresenter<CategoryListContract.View>(), CategoryListContract.Presenter {
+) : RxPresenter<CategoryTabContract.View>(), CategoryTabContract.Presenter {
 
     override fun getCategoryList() {
         launch {

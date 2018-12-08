@@ -32,11 +32,13 @@ import com.zp.android.common.*
 import com.zp.android.common.widget.GlideImageLoader
 import com.zp.android.component.RouterPath
 import com.zp.android.component.ServiceManager
+import com.zp.android.component.service.BackResult
+import com.zp.android.component.service.HandleCallBack
+import com.zp.android.net.NetUtils
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
-import org.jetbrains.anko.support.v4.toast
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -54,7 +56,7 @@ class HomeFragment : BaseFragment() {
         return ui.createView(AnkoContext.create(_mActivity, this))
     }
 
-    override fun initView() {
+    override fun initView(view: View) {
         viewModel.events.observe(this, Observer { event ->
             when (event) {
                 is LoadingEvent -> { /*显示加载中...*/
@@ -91,7 +93,7 @@ class HomeFragment : BaseFragment() {
 class HomeFragmentUI : AnkoComponent<HomeFragment> {
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
     lateinit var recycleView: RecyclerView
-    lateinit var akAdapter: AKBaseQuickAdapter<Article, AKItemViewUI<Article>>
+    lateinit var akAdapter: AKBaseQuickAdapter<Article>
     val bannerView: Banner by lazy { initAndAddBannerView() }
     private var bannerList: List<BannerItem>? = null
     private var isRefresh = true
@@ -114,13 +116,38 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
                 })
             }
 
-            akAdapter = object : AKBaseQuickAdapter<Article, AKItemViewUI<Article>>() {
+            akAdapter = object : AKBaseQuickAdapter<Article>() {
                 override fun onCreateItemView() = ArticleAKItemViewUI()
             }.apply {
                 setOnItemClickListener { adapter, view, position ->
                     (adapter.getItem(position) as? Article)?.run {
                         // 打开文章链接.
                         WebActivity.open(link, title, id)
+                    }
+                }
+
+                setOnItemChildClickListener { adapter, view, position ->
+                    (adapter.getItem(position) as? Article)?.run {
+                        if(view.getTag() == ArticleAKItemViewUI.CLICK_LICK) {
+                            if (ServiceManager.getUserService().isLogin()) {
+                                if (!NetUtils.isNetworkAvailable(CtxUtil.context())) {
+                                    snackBarToast(recycleView, CtxUtil.getString(R.string.no_network))
+                                    return@setOnItemChildClickListener
+                                }
+                                val collect = this.collect
+                                this.collect = !collect
+                                adapter.setData(position, this) //刷新当前ItemView.
+                                ServiceManager.getUserService()
+                                    .collectOrCancelArticle(this.id, collect, object : HandleCallBack<String> {
+                                        override fun onResult(result: BackResult<String>) {
+                                            result.data?.let { CtxUtil.showToast(it) }
+                                        }
+                                    })
+                            } else {
+                                ARouter.getInstance().build(RouterPath.User.LOGIN).navigation()
+                                CtxUtil.showToast(R.string.login_tint)
+                            }
+                        }
                     }
                 }
 
@@ -183,6 +210,10 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
 }
 
 class ArticleAKItemViewUI : AKItemViewUI<Article> {
+    companion object {
+        const val CLICK_LICK = "ivLike"
+    }
+
     lateinit var tvTop: TextView
     lateinit var tvFresh: TextView
     lateinit var tvAuthor: TextView
@@ -192,7 +223,7 @@ class ArticleAKItemViewUI : AKItemViewUI<Article> {
     lateinit var ivThumbnail: ImageView
     lateinit var ivLike: ImageView
 
-    override fun bind(item: Article) {
+    override fun bind(akViewHolder: AKViewHolder<Article>, item: Article) {
         item.run {
             tvTitle.text = Html.fromHtml(title)
             tvAuthor.text = author
@@ -204,20 +235,8 @@ class ArticleAKItemViewUI : AKItemViewUI<Article> {
             } else {
                 tvChapterName.invalidate()
             }
-            ivLike.setOnClickListener {
-                if(ServiceManager.getUserService().isLogin()){
-                    val collect = item.collect
-                    item.collect = !collect
-                    if (collect) {
-                        ServiceManager.getUserService().addCollectArticle(item.id)
-                    } else {
-                        ServiceManager.getUserService().cancelCollectArticle(item.id)
-                    }
-                } else {
-                    ARouter.getInstance().build(RouterPath.User.LOGIN).navigation()
-                    CtxUtil.showTaost(R.string.login_tint)
-                }
-            }
+
+            akViewHolder.addChildClickListener(ivLike, CLICK_LICK)
 
             if (envelopePic.isNotEmpty()) {
                 ivThumbnail.visible()

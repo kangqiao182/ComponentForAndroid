@@ -9,13 +9,13 @@ import com.zp.android.base.utils.RxUtil
 import com.zp.android.base.utils.SPStorage
 import com.zp.android.component.RouterPath
 import com.zp.android.component.event.LogoutSuccessEvent
+import com.zp.android.component.service.BackResult
+import com.zp.android.component.service.HandleCallBack
 import com.zp.android.component.service.IUserService
 import com.zp.android.net.exception.ExceptionHandle
 import com.zp.android.store.wanandroid.Constant.Companion.LOGIN_KEY
 import com.zp.android.store.wanandroid.Constant.Companion.USERNAME_KEY
-import org.koin.core.KoinContext
 import org.koin.standalone.KoinComponent
-import org.koin.standalone.StandAloneContext
 import org.koin.standalone.inject
 import timber.log.Timber
 
@@ -24,7 +24,7 @@ import timber.log.Timber
  */
 
 @Route(path = RouterPath.Service.USER)
-open class UserService2: IUserService, KoinComponent {
+class UserService2 : IUserService, KoinComponent {
 
     //手动注入需要的spStorage和server
     private val spStorage: SPStorage by inject()
@@ -38,51 +38,40 @@ open class UserService2: IUserService, KoinComponent {
 
     override fun getUserName() = spStorage.get(USERNAME_KEY, "")
 
-    override fun logout() {
+    override fun logout(callBack: HandleCallBack<Boolean>) {
         server.logout()
             .compose(RxUtil.applySchedulersToObservable())
             .subscribe({
-                if(it.isSuccess()){
+                if (it.isSuccess()) {
                     spStorage.clearPreference()
                     RxBus.post(LogoutSuccessEvent)
                 } else {
                 }
+                callBack.onResult(BackResult(it.errorCode, it.errorMsg, it.isSuccess()))
             }, {
                 Timber.e(it)
             })
     }
 
-    override fun addCollectArticle(id: Int) {
-        server.addCollectArticle(id)
+    //收藏或取消指定的文章
+    override fun collectOrCancelArticle(id: Int, collect: Boolean, callBack: HandleCallBack<String>) {
+        if(collect) server.addCollectArticle(id) else server.cancelCollectArticle(id)
             .compose(RxUtil.applySchedulersToObservable())
             .subscribe({
-                if(it.isSuccess()){
-                    CtxUtil.showTaost(R.string.collect_success)
+                val result = if (it.isSuccess()) {
+                    CtxUtil.getString(R.string.collect_success)
                 } else {
-                    CtxUtil.showTaost(it.errorMsg)
+                    CtxUtil.getString(R.string.cancel_collect_success)
                 }
+                callBack.onResult(BackResult(it.errorCode, it.errorMsg, result))
             }, {
-                CtxUtil.showTaost(ExceptionHandle.handleException(it))
-            })
-    }
-
-    override fun cancelCollectArticle(id: Int) {
-        server.cancelCollectArticle(id)
-            .compose(RxUtil.applySchedulersToObservable())
-            .subscribe({
-                if(it.isSuccess()){
-                    CtxUtil.showTaost(R.string.cancel_collect_success)
-                } else {
-                    CtxUtil.showTaost(it.errorMsg)
-                }
-            }, {
-                CtxUtil.showTaost(ExceptionHandle.handleException(it))
+                CtxUtil.showToast(ExceptionHandle.handleException(it))
             })
     }
 }
 
 // 采用Koin的single方式自动注入spStorage和server单实例
-class UserService(val spStorage: SPStorage, val server: ServerAPI): IUserService {
+class UserService(val spStorage: SPStorage, val server: ServerAPI) : IUserService {
 
     override fun init(context: Context) {
         Log.w("UserService", "spStorage=${spStorage}")
@@ -92,11 +81,11 @@ class UserService(val spStorage: SPStorage, val server: ServerAPI): IUserService
 
     override fun getUserName() = spStorage.get(USERNAME_KEY, "")
 
-    override fun logout() {
+    override fun logout(callBack: HandleCallBack<Boolean>) {
         server.logout()
             .compose(RxUtil.applySchedulersToObservable())
             .subscribe({
-                if(it.isSuccess()){
+                if (it.isSuccess()) {
                     spStorage.clearPreference()
                     RxBus.post(LogoutSuccessEvent)
                 } else {

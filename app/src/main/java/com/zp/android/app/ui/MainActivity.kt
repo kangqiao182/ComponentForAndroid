@@ -24,6 +24,8 @@ import com.zp.android.base.utils.RxUtil
 import com.zp.android.component.ServiceManager
 import com.zp.android.component.event.LoginSuccessEvent
 import com.zp.android.component.event.LogoutSuccessEvent
+import com.zp.android.component.service.BackResult
+import com.zp.android.component.service.HandleCallBack
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
@@ -209,7 +211,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
             }
             R.id.nav_logout -> {
-                userService.logout()
+                userService.logout(object: HandleCallBack<Boolean>{
+                    override fun onResult(result: BackResult<Boolean>) {
+
+                    }
+                })
             }
             R.id.nav_night_mode -> {
 

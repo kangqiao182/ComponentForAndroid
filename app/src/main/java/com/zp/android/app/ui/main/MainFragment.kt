@@ -69,7 +69,7 @@ class MainFragment : BaseFragment() {
         }
     }
 
-    override fun initView() {
+    override fun initView(view: View) {
         toolbar.run {
             title = getString(R.string.app_name)
             //setSupportActionBar(this)

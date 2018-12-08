@@ -12,11 +12,9 @@ interface IUserService: BaseService {
 
     fun getUserName(): String = ""
 
-    fun logout() {}
+    fun logout(callBack: HandleCallBack<Boolean>) {}
 
-    fun addCollectArticle(id: Int) {}
-
-    fun cancelCollectArticle(id: Int) {}
+    fun collectOrCancelArticle(id: Int, isCollect: Boolean, callBack: HandleCallBack<String>) {}
 }
 
 class EmptyUserService: IUserService

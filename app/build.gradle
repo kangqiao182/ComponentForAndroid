@@ -16,14 +16,15 @@ android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
+        applicationId "com.zp.android.app"
+        multiDexEnabled true
+
         minSdkVersion rootProject.ext.android.minSdkVersion
         targetSdkVersion rootProject.ext.android.targetSdkVersion
-        applicationId "com.zp.android.app"
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         renderscriptTargetApi 21
         renderscriptSupportModeEnabled true
@@ -98,7 +99,6 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation project(':store:wanandroid')
     implementation project(':libs:base')
-    //implementation project(':libs:lib_api')
     implementation project(':modules:test')
     implementation project(':modules:home')
     implementation project(':modules:knowledge')

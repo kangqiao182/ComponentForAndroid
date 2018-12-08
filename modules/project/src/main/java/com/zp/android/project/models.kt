@@ -1,5 +1,6 @@
 package com.zp.android.project
 
+import android.text.Html
 import com.squareup.moshi.Json
 import java.io.Serializable
 
@@ -55,7 +56,11 @@ data class Article(
     @Json(name = "visible") val visible: Int,
     @Json(name = "zan") val zan: Int,
     @Json(name = "top") var top: String
-): Serializable
+): Serializable {
+    val titleHtml get() = Html.fromHtml(title)
+    val descHtml get() = Html.fromHtml(desc)
+    val likeIcon get() = if (collect) R.drawable.ic_like else R.drawable.ic_like_not
+}
 
 data class Tag(
     @Json(name = "name") val name: String,

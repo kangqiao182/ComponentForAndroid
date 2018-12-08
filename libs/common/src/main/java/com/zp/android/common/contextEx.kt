@@ -19,6 +19,7 @@ import org.jetbrains.anko.toast
  * Created by zhaopan on 2018/8/20.
  */
 
+@JvmOverloads
 inline fun snackBarToast(view: View, content: String, duration: Int = TSnackbar.LENGTH_SHORT): TSnackbar {
     var snackbar = TSnackbar.make(view, content, duration)
     var snackbarView = snackbar.view

@@ -1,7 +1,6 @@
 package com.zp.android.project.ui
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import com.zp.android.common.CommonFragmentStatePageAdapter
 import com.zp.android.component.RouterPath
 import com.zp.android.project.ProjectTreeBean
 import com.zp.android.project.R
-import kotlinx.android.synthetic.main.project_fragment_category_list.*
+import kotlinx.android.synthetic.main.project_fragment_category_tab.*
 import me.yokeyword.fragmentation.SupportFragment
 import org.koin.android.ext.android.inject
 
@@ -22,31 +21,28 @@ import org.koin.android.ext.android.inject
  */
 
 @Route(path = RouterPath.Project.CATEGORY_LIST, name = "项目模块分类列表")
-class CategoryListFragment: BaseFragment(), CategoryListContract.View {
+class CategoryTabFragment: BaseFragment(), CategoryTabContract.View {
 
     companion object {
         fun getInstance(): SupportFragment {
-            return ARouter.getInstance().build(RouterPath.Project.CATEGORY_LIST)
-                .navigation() as SupportFragment
+            return ARouter.getInstance().build(RouterPath.Project.CATEGORY_LIST).navigation() as SupportFragment
         }
     }
 
-    override val presenter: CategoryListContract.Presenter by inject()
+    override val presenter: CategoryTabContract.Presenter by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return  inflater.inflate(R.layout.project_fragment_category_list, container, false)
+        return  inflater.inflate(R.layout.project_fragment_category_tab, container, false)
     }
 
-    override fun initView() {
+    override fun initView(view: View) {
         ViewUtil.reflex(tabLayout)
         presenter.getCategoryList()
     }
 
     override fun onStart() {
         super.onStart()
-        // Bind View
-        presenter.subscribe(this)
-        //presenter.getCategoryList()
+        presenter.subscribe(this)  // Bind View
     }
 
     override fun onStop() {

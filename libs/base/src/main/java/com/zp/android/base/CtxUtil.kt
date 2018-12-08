@@ -11,21 +11,28 @@ import com.zp.android.base.widget.CustomToast
  */
 object CtxUtil {
 
+    @JvmStatic
     fun context(): Context = BaseApp.application
 
+    @JvmStatic
     fun getString(id: Int): String = context().getString(id)
 
+    @JvmStatic
     fun getString(id: Int, vararg args: String) = context().getString(id, *args)
 
+    @JvmStatic
     fun getDrawable(id: Int): Drawable? = ContextCompat.getDrawable(context(), id)
 
+    @JvmStatic
     fun getColor(id: Int) = ContextCompat.getColor(context(), id)
 
-    fun showTaost(content: String) {
+    @JvmStatic
+    fun showToast(content: String) {
         CustomToast(context(), content).show()
     }
 
-    fun showTaost(strResId: Int) {
+    @JvmStatic
+    fun showToast(strResId: Int) {
         CustomToast(context(), getString(strResId)).show()
     }
 

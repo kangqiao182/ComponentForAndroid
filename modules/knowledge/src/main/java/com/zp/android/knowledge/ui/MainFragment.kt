@@ -50,7 +50,7 @@ class MainFragment : BaseFragment() {
         return inflater.inflate(R.layout.knowledge_fragment_refresh_layout, container, false)
     }
 
-    override fun initView() {
+    override fun initView(view: View) {
         swipeRefreshLayout.onRefresh {
             onSupportVisible()
         }

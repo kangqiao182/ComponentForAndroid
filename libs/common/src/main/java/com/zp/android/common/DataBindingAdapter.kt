@@ -5,7 +5,7 @@ import android.support.annotation.DrawableRes
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 
-object ImageBindingAdapter {
+object DataBindingAdapter {
     @JvmStatic
     @BindingAdapter("android:src")
     fun setImageUrl(view: ImageView, url: String) {

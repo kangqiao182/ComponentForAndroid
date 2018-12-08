@@ -18,7 +18,7 @@ data class ArticleResponseBody(
     @Json(name = "pageCount") val pageCount: Int,
     @Json(name = "size") val size: Int,
     @Json(name = "total") val total: Int
-)
+) : Serializable
 
 //文章
 data class Article(
@@ -54,7 +54,7 @@ data class Article(
 data class Tag(
     @Json(name = "name") val name: String,
     @Json(name = "url") val url: String
-)
+) : Serializable
 
 //知识体系
 data class KnowledgeTreeBody(

@@ -17,7 +17,7 @@ data class ArticleResponseBody(
     @Json(name = "pageCount") val pageCount: Int,
     @Json(name = "size") val size: Int,
     @Json(name = "total") val total: Int
-)
+) : Serializable
 
 //文章
 data class Article(
@@ -45,12 +45,12 @@ data class Article(
     @Json(name = "visible") val visible: Int,
     @Json(name = "zan") val zan: Int,
     @Json(name = "top") var top: String
-)
+) : Serializable
 
 data class Tag(
     @Json(name = "name") val name: String,
     @Json(name = "url") val url: String
-)
+) : Serializable
 
 //轮播图
 data class BannerItem(
@@ -62,7 +62,7 @@ data class BannerItem(
     @Json(name = "title") val title: String,
     @Json(name = "type") val type: Int,
     @Json(name = "url") val url: String
-): GlideImageLoader.GetImageUrl{
+) : GlideImageLoader.GetImageUrl, Serializable {
     override fun getImageUrl() = imagePath
 }
 
@@ -72,7 +72,7 @@ data class HotKey(
     @Json(name = "name") val name: String,
     @Json(name = "order") val order: Int,
     @Json(name = "visible") val visible: Int
-)
+) : Serializable
 
 //常用网站
 data class Friend(
@@ -82,4 +82,4 @@ data class Friend(
     @Json(name = "name") val name: String,
     @Json(name = "order") val order: Int,
     @Json(name = "visible") val visible: Int
-)
+) : Serializable

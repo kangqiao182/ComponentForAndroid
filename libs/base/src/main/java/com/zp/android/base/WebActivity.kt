@@ -43,6 +43,8 @@ class WebActivity : BaseActivity() {
         val KEY_TITLE = "title"
         val KEY_IS_SHOW_TITLE = "isShowTitle"
 
+        @JvmOverloads
+        @JvmStatic
         fun open(context: Context, url: String, title: String, id: Int = 0, isShowTitle: Boolean = true) {
             context.startActivity(Intent(context, WebActivity::class.java).apply {
                 putExtra(KEY_ID, id)
@@ -52,6 +54,8 @@ class WebActivity : BaseActivity() {
             })
         }
 
+        @JvmOverloads
+        @JvmStatic
         fun open(url: String, title: String, id: Int = 0, isShowTitle: Boolean = true) {
             ARouter.getInstance().build(RouterPath.Base.WEB)
                 .withInt(KEY_ID, id)
@@ -63,13 +67,17 @@ class WebActivity : BaseActivity() {
     }
 
     @Autowired
-    @JvmField var id = 0
+    @JvmField
+    var id = 0
     @Autowired
-    @JvmField var title = ""
+    @JvmField
+    var title = ""
     @Autowired
-    @JvmField var url = ""
+    @JvmField
+    var url = ""
     @Autowired
-    @JvmField var isShowTitle = true
+    @JvmField
+    var isShowTitle = true
 
     private val ui: WebActivityUI by lazy { WebActivityUI() }
     private lateinit var agentWeb: AgentWeb
@@ -86,11 +94,11 @@ class WebActivity : BaseActivity() {
             setSupportActionBar(ui.toolbar)
             supportActionBar?.setHomeButtonEnabled(true)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            setNavigationOnClickListener{ finish() }
+            setNavigationOnClickListener { finish() }
         }
         agentWeb = AgentWeb.with(this)//传入Activity or Fragment
             .setAgentWebParent(ui.webContainer, 1, CoordinatorLayout.LayoutParams(-1, -1).apply {
-                behavior = AppBarLayout.ScrollingViewBehavior()
+                //behavior = AppBarLayout.ScrollingViewBehavior()
             })//传入AgentWeb 的父控件
             .useDefaultIndicator()// 使用默认进度条
             .setWebView(NestedScrollAgentWebView(this))

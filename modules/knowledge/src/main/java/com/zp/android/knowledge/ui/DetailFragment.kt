@@ -2,6 +2,7 @@ package com.zp.android.knowledge.ui
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -65,7 +66,7 @@ class DetailFragment : BaseFragment() {
         return inflater.inflate(R.layout.knowledge_fragment_refresh_layout, container, false)
     }
 
-    override fun initView() {
+    override fun initView(view: View) {
         swipeRefreshLayout.run {
             isRefreshing = true
             onRefresh {
@@ -82,9 +83,9 @@ class DetailFragment : BaseFragment() {
         }
 
         recyclerView.apply {
-            layoutManager = LinearLayoutManager(_mActivity)
+            //layoutManager = LinearLayoutManager(_mActivity)
             addItemDecoration(SpaceItemDecoration(_mActivity))
-            //itemAnimator = DefaultItemAnimator()
+            itemAnimator = DefaultItemAnimator()
         }.adapter = adapter.apply {
             setOnItemClickListener { adapter, view, position ->
                 (adapter.getItem(position) as? Article)?.run {
@@ -111,7 +112,7 @@ class DetailFragment : BaseFragment() {
                                 if (collect) {
                                     mPresenter.cancelCollectArticle(data.id)
                                 } else {
-                                    mPresenter.addCollectArticle(data.id)
+                                    mPresenter.collectOrCancelArticle(data.id)
                                 }
                             } else {
                                 Intent(activity, LoginActivity::class.java).run {

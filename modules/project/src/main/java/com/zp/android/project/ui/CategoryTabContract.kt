@@ -8,7 +8,7 @@ import com.zp.android.project.ProjectTreeBean
  * Created by zhaopan on 2018/11/17.
  */
 
-interface CategoryListContract{
+interface CategoryTabContract{
 
     interface View : BaseView<Presenter> {
         fun setCategoryList(list: List<ProjectTreeBean>?)

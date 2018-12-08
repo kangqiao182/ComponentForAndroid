@@ -15,9 +15,6 @@ public class ProjectListPresenter extends JavaPresenter<ProjectListContract.View
 
     Lazy<ServerAPI> serverAPI = KoinJavaComponent.inject(ServerAPI.class);
 
-    public ProjectListPresenter() {
-    }
-
     @Override
     public void getProjectList(int page, int cid) {
         launch(serverAPI.getValue().getProjectList(page, cid)
@@ -26,9 +23,9 @@ public class ProjectListPresenter extends JavaPresenter<ProjectListContract.View
                 .subscribe(result -> {
                     if (null != getView()) {
                         if (result.isSuccess()) {
-                            getView().showProjectList(result.getData().getDatas());
+                            getView().showProjectList(result.getData());
                         } else {
-                            getView().showProjectList(null);
+                            getView().showError(null);
                         }
                     }
                 }, throwable -> {
