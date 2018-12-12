@@ -1,7 +1,5 @@
-package com.zp.android.home
+package com.zp.android.home.ui
 
-import android.arch.lifecycle.Observer
-import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.DividerItemDecoration
@@ -17,78 +15,32 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.Glide
 import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
-import com.zp.android.base.BaseFragment
 import com.zp.android.base.CtxUtil
 import com.zp.android.base.WebActivity
-import com.zp.android.base.mvvm.*
-import com.zp.android.base.showToast
 import com.zp.android.common.*
 import com.zp.android.common.widget.GlideImageLoader
 import com.zp.android.component.RouterPath
 import com.zp.android.component.ServiceManager
 import com.zp.android.component.service.BackResult
 import com.zp.android.component.service.HandleCallBack
+import com.zp.android.home.Article
+import com.zp.android.home.ArticleResponseBody
+import com.zp.android.home.BannerItem
+import com.zp.android.home.R
 import com.zp.android.net.NetUtils
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 import org.jetbrains.anko.support.v4.onRefresh
 import org.jetbrains.anko.support.v4.swipeRefreshLayout
-import org.koin.android.viewmodel.ext.android.viewModel
-import timber.log.Timber
 
 /**
- * Created by zhaopan on 2018/10/17.
+ * Created by zhaopan on 2018/12/12.
  */
-
-@Route(path = RouterPath.Home.HOME, name = "Home模块首页入口")
-class HomeFragment : BaseFragment() {
-
-    private val ui by lazy { HomeFragmentUI() }
-    private val viewModel by viewModel<HomeViewModel>()
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return ui.createView(AnkoContext.create(_mActivity, this))
-    }
-
-    override fun initView(view: View) {
-        viewModel.events.observe(this, Observer { event ->
-            when (event) {
-                is LoadingEvent -> { /*显示加载中...*/
-                }
-                is SuccessEvent -> { /*加载完成.*/
-                }
-                is FailedEvent -> {
-                    showToast(event.errorMsg)
-                }
-                is ExceptionEvent -> {
-                    Timber.e(event.error)
-                }
-            }
-        })
-        viewModel.articleData.observe(this, Observer {
-            it?.let { ui.updateArticleData(it) }
-        })
-        viewModel.bannerList.observe(this, Observer {
-            it?.let {
-                ui.updateBannerList(it)
-            }
-        })
-
-        requestHomeData(true, 0)
-    }
-
-    fun requestHomeData(isRefresh: Boolean, num: Int) {
-        viewModel.getArticleData(num)
-        if (isRefresh) viewModel.getBannerList()
-    }
-
-}
 
 class HomeFragmentUI : AnkoComponent<HomeFragment> {
     lateinit var swipeRefreshLayout: SwipeRefreshLayout

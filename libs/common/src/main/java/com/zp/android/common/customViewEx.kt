@@ -1,6 +1,7 @@
 package com.zp.android.common
 
 import android.view.ViewManager
+import com.just.agentweb.NestedScrollAgentWebView
 import com.rengwuxian.materialedittext.MaterialEditText
 import com.youth.banner.Banner
 import org.jetbrains.anko.AnkoViewDslMarker
@@ -29,5 +30,10 @@ inline fun ViewManager.toolbarV7(init: (android.support.v7.widget.Toolbar).() ->
     return ankoView({android.support.v7.widget.Toolbar(it)}, theme = 0) { init() }
 }
 
+
+inline fun ViewManager.nestedScrollAgentWebView(): NestedScrollAgentWebView = nestedScrollAgentWebView() {}
+inline fun ViewManager.nestedScrollAgentWebView(init: (NestedScrollAgentWebView).() -> Unit): NestedScrollAgentWebView {
+    return ankoView({NestedScrollAgentWebView(it)}, theme = 0) { init() }
+}
 
 

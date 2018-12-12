@@ -13,6 +13,9 @@ import com.zp.android.component.RouterPath
 
 /**
  * Created by zhaopan on 2018/6/25.
+ * 参考文档:
+ * https://blog.csdn.net/xiaoyu_93/article/details/79767042
+ * https://www.jianshu.com/p/9316346782e7
  */
 
 enum class SupportLanguage(val id: Int, val desc: String, val locale: Locale) {
@@ -43,16 +46,13 @@ object I18NUtil {
     const val TAG = "I18NUtil"
     const val APP_LOCALE_LANGUAGE = "locale_language"
 
-    fun changeAppLanguage(context: Context, newLanguage: SupportLanguage, isReset: Boolean = false) {
+    @JvmOverloads
+    fun changeAppLanguage(context: Context, newLanguage: SupportLanguage = getSupportLanguage(), isReset: Boolean = false) {
         if (!isChange(context, newLanguage)) {
             setLocale(context, newLanguage.locale)
             saveSettingLanguage(newLanguage)
             if(isReset)restartMainActvity(context)
         }
-    }
-
-    fun changeAppLanguage(context: Context) {
-        changeAppLanguage(context, getSupportLanguage())
     }
 
     fun attachBaseContext(context: Context): Context {
@@ -109,6 +109,7 @@ object I18NUtil {
         //由于API仅支持7.0，需要判断，否则程序会crash(解决7.0以上系统不能跟随系统语言问题)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             return LocaleList.getDefault()[0]
+            //https://www.jianshu.com/p/9316346782e7
         } else {
             return Locale.getDefault()
         }

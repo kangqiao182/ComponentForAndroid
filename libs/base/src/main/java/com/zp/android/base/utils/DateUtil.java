@@ -841,6 +841,8 @@ public class DateUtil {
         MM_DD_HH_MM_EN("MM/dd HH:mm", true),
         MM_DD_HH_MM_SS_EN("MM/dd HH:mm:ss", true),
 
+        HH_mm_MM_DD("HH:mm MM/dd", true),
+
         MM_DD_CN("MM月dd日", true),
         MM_DD_HH_MM_CN("MM月dd日 HH:mm", true),
         MM_DD_HH_MM_SS_CN("MM月dd日 HH:mm:ss", true);

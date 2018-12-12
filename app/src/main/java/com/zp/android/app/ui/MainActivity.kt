@@ -28,6 +28,7 @@ import com.zp.android.component.service.BackResult
 import com.zp.android.component.service.HandleCallBack
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk27.coroutines.onClick
+import org.jetbrains.anko.toast
 
 
 @Route(path = RouterPath.APP.MAIN, name = "App首页")
@@ -61,6 +62,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         val homeFragment = ARouter.getInstance().build(RouterPath.Home.HOME).navigation() as SupportFragment
         val knowledgeFragment = ARouter.getInstance().build(RouterPath.Knowledge.HOME).navigation() as SupportFragment
+        val projectFragment = ARouter.getInstance().build(RouterPath.Project.MAIN).navigation() as SupportFragment
         val firstFragment: SupportFragment? = findFragment(homeFragment.javaClass)
         Log.d(
             "zp:::",
@@ -69,7 +71,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         if (firstFragment == null) {
             mFragments[FIRST] = homeFragment
             mFragments[SECOND] = knowledgeFragment
-            mFragments[THIRD] = ProjectFragment.newInstance()
+            mFragments[THIRD] = projectFragment
             mFragments[FOURTH] = MineFragment.newInstance()
 
             loadMultipleRootFragment(
@@ -84,7 +86,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             // 这里我们需要拿到mFragments的引用
             mFragments[FIRST] = firstFragment
             mFragments[SECOND] = findFragment(knowledgeFragment.javaClass)
-            mFragments[THIRD] = findFragment(ProjectFragment::class.java)
+            mFragments[THIRD] = findFragment(projectFragment.javaClass)
             mFragments[FOURTH] = findFragment(MineFragment::class.java)
         }
 
@@ -213,7 +215,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             R.id.nav_logout -> {
                 userService.logout(object: HandleCallBack<Boolean>{
                     override fun onResult(result: BackResult<Boolean>) {
-
+                        //toast(result.message)
                     }
                 })
             }

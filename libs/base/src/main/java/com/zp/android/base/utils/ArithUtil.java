@@ -113,6 +113,20 @@ public final class ArithUtil {
     }
 
     /**
+     * 提供精确的小数位四舍五入处理。
+     *
+     * @param v     需要四舍五入的数字
+     * @param scale 小数点后保留几位
+     * @return 四舍五入后的结果
+     */
+    public static double round(double v, int scale, int roundingMode) {
+        //ObjectUtil.assertExpression(scale > 0, "this scale is required; it must be gt zero");
+        BigDecimal b = new BigDecimal(Double.toString(v));
+        BigDecimal one = new BigDecimal("1");
+        return b.divide(one, scale, roundingMode).doubleValue();
+    }
+
+    /**
      * 提供精确的类型转换(Float)
      *
      * @param v 需要被转换的数字
@@ -410,7 +424,7 @@ public final class ArithUtil {
 //    }
 
 
-    private static final NavigableMap<Long, String> suffixes = new TreeMap<> ();
+    private static final NavigableMap<Long, String> suffixes = new TreeMap<>();
     static {
         suffixes.put(1_000L, "k");
         suffixes.put(1_000_000L, "M");
@@ -434,4 +448,27 @@ public final class ArithUtil {
         boolean hasDecimal = truncated < 100 && (truncated / 10d) != (truncated / 10);
         return hasDecimal ? (truncated / 10d) + suffix : (truncated / 10) + suffix;
     }
+
+    public static String formatEnNum(double value, int scale) {
+        return formatEnNum(value, scale, BigDecimal.ROUND_HALF_UP);
+    }
+
+    public static String formatEnNum(double value, int scale, int mode) {
+        //Long.MIN_VALUE == -Long.MIN_VALUE so we need an adjustment here
+        if (value == Double.MIN_VALUE) return "";
+        if (value < 0) return "-" + formatEnNum(-value, scale, mode);
+
+        BigDecimal data = new BigDecimal(value).setScale(scale, mode);
+        if (value < 1000) return data.stripTrailingZeros().toPlainString(); //deal with easy case
+
+        Map.Entry<Long, String> e = suffixes.floorEntry(data.longValue());
+        Long divideBy = e.getKey();
+        String suffix = e.getValue();
+
+        return data.divide(new BigDecimal(divideBy))
+                .setScale(scale, mode)
+                .stripTrailingZeros()
+                .toPlainString() + suffix;
+    }
+
 }

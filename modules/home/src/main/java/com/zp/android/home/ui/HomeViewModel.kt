@@ -1,9 +1,11 @@
-package com.zp.android.home
+package com.zp.android.home.ui
 
 import android.arch.lifecycle.MutableLiveData
 import com.zp.android.base.mvvm.*
 import com.zp.android.base.utils.RxUtil
-import java.lang.Exception
+import com.zp.android.home.ArticleResponseBody
+import com.zp.android.home.BannerItem
+import com.zp.android.home.HomeApi
 
 /**
  * Created by zhaopan on 2018/10/21.
