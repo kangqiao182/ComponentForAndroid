@@ -16,9 +16,9 @@ class APP : MainApp() {
         super.onCreate()
         //com.zp.android.api.initOkGoRequestApi(this/*, net.idik.lib.cipher.so.CipherClient.signkey()*/)
         Log.e(TAG, BuildConfig.APPLICATION_ID)
-        Log.e(TAG, com.zp.android.home.BuildConfig.APPLICATION_ID)
-        Log.e(TAG, com.zp.android.user.BuildConfig.APPLICATION_ID)
-        Log.e(TAG, com.zp.android.knowledge.BuildConfig.APPLICATION_ID)
-        Log.e(TAG, com.zp.android.project.BuildConfig.APPLICATION_ID)
+//        Log.e(TAG, com.zp.android.home.BuildConfig.APPLICATION_ID)
+//        Log.e(TAG, com.zp.android.user.BuildConfig.APPLICATION_ID)
+//        Log.e(TAG, com.zp.android.knowledge.BuildConfig.APPLICATION_ID)
+//        Log.e(TAG, com.zp.android.project.BuildConfig.APPLICATION_ID)
     }
 }
