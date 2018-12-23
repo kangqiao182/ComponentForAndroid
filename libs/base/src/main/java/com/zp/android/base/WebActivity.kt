@@ -96,32 +96,31 @@ class WebActivity : BaseActivity() {
         ui.toolbar.run {
             //setTitle(R.string.loading)
             setSupportActionBar(ui.toolbar)
-            //supportActionBar?.setHomeButtonEnabled(true)
+            supportActionBar?.setHomeButtonEnabled(true)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             setNavigationOnClickListener { finish() }
         }
         ui.tvTitle.apply {
             setText(R.string.loading)
             visible()
-            postDelayed({
+            postDelayed ({
                 ui.tvTitle.isSelected = true
             }, 2000)
         }
 
-        val webView = NestedScrollAgentWebView(this)
         val layoutParams = CoordinatorLayout.LayoutParams(-1, -1)
         layoutParams.behavior = AppBarLayout.ScrollingViewBehavior()
 
         agentWeb = AgentWeb.with(this)//传入Activity or Fragment
-            .setAgentWebParent(ui.rootView, 1, layoutParams)//传入AgentWeb 的父控件
+            .setAgentWebParent(ui.webContainer, -1, layoutParams)//传入AgentWeb 的父控件
             .useDefaultIndicator()// 使用默认进度条
-            .setWebView(webView)
+            .setWebView(NestedScrollAgentWebView(this))
             .setWebChromeClient(webChromeClient)
             .setWebViewClient(webViewClient)
             .setMainFrameErrorView(R.layout.agentweb_error_page, -1)
             .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)//打开其他应用时，弹窗咨询用户是否前往其他应用
             .createAgentWeb()
-            //.ready()
+            .ready()
             .go(url)
 
         agentWeb?.webCreator?.webView?.let {
@@ -225,13 +224,12 @@ class WebActivityUI : AnkoComponent<WebActivity> {
     lateinit var appBarLayout: AppBarLayout
     lateinit var toolbar: Toolbar
     lateinit var tvTitle: TextView
+    lateinit var webContainer: FrameLayout
 
     override fun createView(ui: AnkoContext<WebActivity>) = with(ui) {
         constraintLayout {
             id = View.generateViewId()
             this@WebActivityUI.rootView = this
-            backgroundColorResource = R.color.base_bg_white
-            layoutParams = ConstraintLayout.LayoutParams(matchParent, wrapContent)
 
             appBarLayout = themedAppBarLayout(R.style.base_AppTheme_AppBarOverlay) {
                 id = View.generateViewId()
@@ -251,12 +249,18 @@ class WebActivityUI : AnkoComponent<WebActivity> {
                         gone()
                     }.lparams(matchParent, wrapContent)
                 }.lparams(matchParent, attrDimen(android.R.attr.actionBarSize)) {
-//                    scrollFlags = AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL or
-//                            AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS
+                    scrollFlags = SCROLL_FLAG_SCROLL or SCROLL_FLAG_ENTER_ALWAYS
                 }
             }.lparams(matchParent, wrapContent) {
-                //fitsSystemWindows = true
-                //elevation = dip(0).toFloat()
+            }
+
+            webContainer = frameLayout {
+                id = View.generateViewId()
+                fitsSystemWindows = true
+                backgroundColorResource = R.color.base_bg_white
+            }.lparams(matchParent, matchParent) {
+                topMargin = attrDimen(android.R.attr.actionBarSize)
+                //topToBottom = appBarLayout.id
             }
 
             /*nestedScrollAgentWebView {

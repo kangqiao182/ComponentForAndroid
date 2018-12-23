@@ -1,13 +1,5 @@
 <resources>
 
- <!--   <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        &lt;!&ndash; Customize your theme here. &ndash;&gt;
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:windowIsTranslucent">true</item>
-    </style>-->
-
     <!-- Base application theme. -->
     <style name="BaseAppTheme" parent="@style/Theme.AppCompat.DayNight">
         <item name="colorPrimary">@color/colorPrimary</item>
@@ -41,7 +33,9 @@
     </style>
 
     <style name="BaseAppTheme.NoActionBar.Slidable" parent="BaseAppTheme.NoActionBar">
+        <!--切换activity时屏幕不变暗-->
         <item name="android:windowIsTranslucent">true</item>
+        <!--窗口的背景设置成透明 ,这样的话在我们每个界面的根布局都要设置background,要不然就是透明的-->
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
