@@ -84,7 +84,7 @@ object RouterPath {
     interface Project {
         companion object {
             const val MAIN          = "/project/main"
-            const val CATEGORY_LIST = "/project/category_list"
+            const val HOME          = "/project/category_list"
             const val PROJECT_LIST  = "/project/project_list"
         }
 

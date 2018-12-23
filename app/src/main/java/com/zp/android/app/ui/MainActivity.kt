@@ -62,7 +62,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
         val homeFragment = ARouter.getInstance().build(RouterPath.Home.HOME).navigation() as SupportFragment
         val knowledgeFragment = ARouter.getInstance().build(RouterPath.Knowledge.HOME).navigation() as SupportFragment
-        val projectFragment = ARouter.getInstance().build(RouterPath.Project.MAIN).navigation() as SupportFragment
+        val projectFragment = ARouter.getInstance().build(RouterPath.Project.HOME).navigation() as SupportFragment
         val firstFragment: SupportFragment? = findFragment(homeFragment.javaClass)
         Log.d(
             "zp:::",

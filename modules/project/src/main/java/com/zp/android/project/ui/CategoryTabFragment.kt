@@ -20,12 +20,12 @@ import org.koin.android.ext.android.inject
  * Created by zhaopan on 2018/11/17.
  */
 
-@Route(path = RouterPath.Project.CATEGORY_LIST, name = "项目模块分类列表")
+@Route(path = RouterPath.Project.HOME, name = "项目模块分类列表")
 class CategoryTabFragment: BaseFragment(), CategoryTabContract.View {
 
     companion object {
         fun getInstance(): SupportFragment {
-            return ARouter.getInstance().build(RouterPath.Project.CATEGORY_LIST).navigation() as SupportFragment
+            return ARouter.getInstance().build(RouterPath.Project.HOME).navigation() as SupportFragment
         }
     }
 

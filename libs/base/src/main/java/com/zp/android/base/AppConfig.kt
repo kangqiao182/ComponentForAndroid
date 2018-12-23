@@ -11,9 +11,10 @@ object AppConfig{
     const val HOME = "com.zp.android.home.HomeApp"
     const val KNOWLEDGE = "com.zp.android.knowledge.KnowledgeApp"
     const val USER = "com.zp.android.user.UserApp"
+    const val PROJECT = "com.zp.android.project.ProjectApp"
 
     val MAIN_APP_CONFIG = arrayOf(
-            TEST, HOME, KNOWLEDGE, USER
+            TEST, HOME, KNOWLEDGE, USER, PROJECT
     )
 
     fun prepareModules() = MAIN_APP_CONFIG

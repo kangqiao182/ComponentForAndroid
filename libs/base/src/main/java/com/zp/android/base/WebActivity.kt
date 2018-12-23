@@ -230,6 +230,7 @@ class WebActivityUI : AnkoComponent<WebActivity> {
         constraintLayout {
             id = View.generateViewId()
             this@WebActivityUI.rootView = this
+            backgroundColorResource = R.color.base_bg_white
 
             appBarLayout = themedAppBarLayout(R.style.base_AppTheme_AppBarOverlay) {
                 id = View.generateViewId()

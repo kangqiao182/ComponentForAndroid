@@ -19,6 +19,6 @@ class APP : MainApp() {
         Log.e(TAG, com.zp.android.home.BuildConfig.APPLICATION_ID)
         Log.e(TAG, com.zp.android.user.BuildConfig.APPLICATION_ID)
         Log.e(TAG, com.zp.android.knowledge.BuildConfig.APPLICATION_ID)
-        Log.e(TAG, com.zp.android.test.BuildConfig.APPLICATION_ID)
+        Log.e(TAG, com.zp.android.project.BuildConfig.APPLICATION_ID)
     }
 }
