@@ -26,7 +26,13 @@ public final class ArithUtil {
     static DecimalFormat SCALE_3_FORMAT = new DecimalFormat("0.000");
     static DecimalFormat SCALE_4_FORMAT = new DecimalFormat("0.0000");
 
+    static int defaultRoundMode = BigDecimal.ROUND_DOWN;
+
     private ArithUtil() {
+    }
+
+    public static void setDefaultRoundMode(int mode) {
+        defaultRoundMode = mode;
     }
 
     public static boolean isInvalidDouble(double d) {
@@ -205,26 +211,10 @@ public final class ArithUtil {
      * @return 小数位数
      */
     public static int getDecimals(double number) {
-        DecimalFormat decimalFormat = new DecimalFormat("#.####");
-        String numberString = decimalFormat.format(number);
-        if (numberString.indexOf(".") > 0) {
-            return numberString.length() - String.valueOf(number).indexOf(".") - 1;
-        } else {
-            return 0;
-        }
-    }
-
-    /**
-     * 获取数字小数位数
-     *
-     * @param number 数字.
-     * @return 小数位数
-     */
-    public static int getDecimals(float number) {
-        DecimalFormat decimalFormat = new DecimalFormat(DEF_ARITH_FORMAT);
-        String numberString = decimalFormat.format(number);
-        if (numberString.indexOf(".") > 0) {
-            return numberString.length() - String.valueOf(number).indexOf(".") - 1;
+        String numStr = Double.toString(number);//new BigDecimal(number).toPlainString();
+        int dotIndex = numStr.indexOf(".");
+        if (dotIndex > 0) {
+            return numStr.length() - dotIndex - 1;
         } else {
             return 0;
         }
@@ -250,6 +240,8 @@ public final class ArithUtil {
         BigDecimal bigDecimal = new BigDecimal(num);
         if(null != mode){
             bigDecimal.setScale(x, mode);
+        } else {
+            bigDecimal.setScale(x, defaultRoundMode);
         }
         return new DecimalFormat(formatStr).format(bigDecimal);
     }
@@ -423,6 +415,37 @@ public final class ArithUtil {
 ////        }
 //    }
 
+    public static String formatNumber(double value) {
+        return formatNumber(value, getDecimals(value), defaultRoundMode);
+    }
+
+    public static String formatNumber(Double value, int scale) {
+        return formatNumber(value, scale, defaultRoundMode);
+    }
+
+    public static String formatNumber(Double value, int scale, int mode) {
+        if(null == value) value = 0d;
+        if (value < 0) return "-" + formatNumber(-value, scale, mode);
+
+        StringBuilder formatStr = new StringBuilder();
+        if (scale > 0) {
+            formatStr.append(".");
+            int x = scale;
+            while (x-- > 0) {
+                formatStr.append("0");
+            }
+        }
+
+        if (isInvalidDouble(value) || value == 0) {
+            return "0" + formatStr.toString();
+        }
+
+        BigDecimal bigDecimal = BigDecimal.valueOf(value);
+        bigDecimal.setScale(scale, mode);
+        DecimalFormat format = new DecimalFormat(",##0" + formatStr.toString());
+        format.setRoundingMode(RoundingMode.valueOf(mode));
+        return format.format(bigDecimal);
+    }
 
     private static final NavigableMap<Long, String> suffixes = new TreeMap<>();
     static {
@@ -450,7 +473,7 @@ public final class ArithUtil {
     }
 
     public static String formatEnNum(double value, int scale) {
-        return formatEnNum(value, scale, BigDecimal.ROUND_HALF_UP);
+        return formatEnNum(value, scale, defaultRoundMode);
     }
 
     public static String formatEnNum(double value, int scale, int mode) {
@@ -458,15 +481,14 @@ public final class ArithUtil {
         if (value == Double.MIN_VALUE) return "";
         if (value < 0) return "-" + formatEnNum(-value, scale, mode);
 
-        BigDecimal data = new BigDecimal(value).setScale(scale, mode);
+        BigDecimal data = BigDecimal.valueOf(value).setScale(scale, mode);
         if (value < 1000) return data.stripTrailingZeros().toPlainString(); //deal with easy case
 
         Map.Entry<Long, String> e = suffixes.floorEntry(data.longValue());
         Long divideBy = e.getKey();
         String suffix = e.getValue();
 
-        return data.divide(new BigDecimal(divideBy))
-                .setScale(scale, mode)
+        return data.divide(new BigDecimal(divideBy), scale, mode)
                 .stripTrailingZeros()
                 .toPlainString() + suffix;
     }
