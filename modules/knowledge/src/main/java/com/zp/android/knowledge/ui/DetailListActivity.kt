@@ -74,7 +74,7 @@ class DetailListActivity : BaseActivity() {
             // addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
             offscreenPageLimit = viewPagerAdapter.count
         }
-        ViewUtil.reflex(tabLayout)
+        //ViewUtil.reflex(tabLayout)
         tabLayout.run {
             setupWithViewPager(viewPager)
             // TabLayoutHelper.setUpIndicatorWidth(tabLayout)

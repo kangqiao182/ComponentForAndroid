@@ -13,7 +13,7 @@ import com.zp.android.component.service.IUserService
 object ServiceManager {
 
     init {
-        ARouter.getInstance().inject(this)
+        //ARouter.getInstance().inject(this)
     }
 
     @Autowired
@@ -30,7 +30,7 @@ object ServiceManager {
 
     //通过ARouter注入UserService, 由ARouter来创建并管理. 注: 首次使用时ARouter创建.
     @JvmField
-    @Autowired
+    @Autowired(name = RouterPath.Service.USER)
     var userService2: IUserService? = null
 
     //通过AppConfig配置启动的方式, 在ModuleApp初始化时创建UserService并赋值到ServiceManger中.

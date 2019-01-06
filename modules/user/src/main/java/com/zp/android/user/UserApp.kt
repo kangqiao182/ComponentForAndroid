@@ -1,6 +1,7 @@
 package com.zp.android.user
 
 import android.app.Application
+import com.alibaba.android.arouter.launcher.ARouter
 import com.zp.android.base.ModuleApp
 import com.zp.android.component.ServiceManager
 import org.koin.android.ext.android.inject
@@ -28,6 +29,7 @@ class UserApp : ModuleApp() {
     }
 
     override fun initModuleData(application: Application) {
+        ARouter.getInstance().inject(ServiceManager)
         ServiceManager.userService1 = userService
     }
 }

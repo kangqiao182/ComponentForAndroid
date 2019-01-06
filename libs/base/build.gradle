@@ -6,6 +6,7 @@ apply plugin: 'kotlin-kapt'
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
+        arg("AROUTER_GENERATE_DOC", "enable")
     }
 }
 
@@ -47,5 +48,6 @@ dependencies {
     api project(":libs:component")
     api project(":libs:common")
     api project(":libs:net")
+    api project(":libs:lib_statusview")
     kapt arouterCompilerKapt
 }

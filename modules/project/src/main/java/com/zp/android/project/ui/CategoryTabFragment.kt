@@ -36,7 +36,7 @@ class CategoryTabFragment: BaseFragment(), CategoryTabContract.View {
     }
 
     override fun initView(view: View) {
-        ViewUtil.reflex(tabLayout)
+        //ViewUtil.reflex(tabLayout)
         presenter.getCategoryList()
     }
 

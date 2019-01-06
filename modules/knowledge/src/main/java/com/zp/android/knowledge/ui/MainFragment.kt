@@ -21,6 +21,9 @@ import com.zp.android.component.RouterPath
 import com.zp.android.knowledge.BR
 import com.zp.android.knowledge.KnowledgeTreeBody
 import com.zp.android.knowledge.R
+import com.zp.android.lib.statusview.StatusView
+import com.zp.android.lib.statusview.StatusViewBuilder
+import com.zp.android.lib.statusview.initStatusView
 import kotlinx.android.synthetic.main.knowledge_fragment_refresh_layout.*
 import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.support.v4.onRefresh
@@ -45,12 +48,23 @@ class MainFragment : BaseFragment() {
 
     private val viewModel by viewModel<ViewModel>()
     private lateinit var adapter: BaseQuickAdapter<KnowledgeTreeBody, DBViewHolder>
+    private lateinit var statusView: StatusView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.knowledge_fragment_refresh_layout, container, false)
     }
 
     override fun initView(view: View) {
+        statusView = initStatusView(R.id.recyclerView)
+        statusView.config(StatusViewBuilder.Builder()
+            .setOnEmptyRetryClickListener {
+                viewModel.loadKnowledgeTree()
+            }
+            .setOnErrorRetryClickListener {
+                viewModel.loadKnowledgeTree()
+            }
+            .build())
+
         swipeRefreshLayout.onRefresh {
             onSupportVisible()
         }
@@ -79,14 +93,18 @@ class MainFragment : BaseFragment() {
             events.observe(this@MainFragment, Observer { event ->
                 when (event) {
                     is LoadingEvent -> { /*显示加载中...*/
+                        statusView.showLoadingView()
                     }
                     is SuccessEvent -> { /*加载完成.*/
+                        statusView.showContentView()
                     }
                     is FailedEvent -> {
                         showToast(event.errorMsg)
+                        statusView.showErrorView()
                     }
                     is ExceptionEvent -> {
                         Timber.e(event.error)
+                        statusView.showErrorView()
                     }
                 }
             })

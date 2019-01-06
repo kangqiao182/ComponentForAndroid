@@ -6,7 +6,7 @@ import android.graphics.Bitmap
 import android.view.View
 import android.view.animation.*
 //import org.jetbrains.anko.sdk25.coroutines.onClick
-import razerdp.basepopup.BasePopupWindow
+//import razerdp.basepopup.BasePopupWindow
 import timber.log.Timber
 //import cn.sharesdk.framework.Platform
 //import cn.sharesdk.framework.ShareSDK

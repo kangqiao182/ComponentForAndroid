@@ -23,7 +23,7 @@ import timber.log.Timber
  * Created by zhaopan on 2018/11/8.
  */
 
-@Route(path = RouterPath.Service.USER)
+@Route(path = RouterPath.Service.USER, name = "用户服务类")
 class UserService2 : IUserService, KoinComponent {
 
     //手动注入需要的spStorage和server
@@ -55,14 +55,14 @@ class UserService2 : IUserService, KoinComponent {
 
     //收藏或取消指定的文章
     override fun collectOrCancelArticle(id: Int, collect: Boolean, callBack: HandleCallBack<String>) {
-        if(collect) server.addCollectArticle(id) else server.cancelCollectArticle(id)
+        val observable = if(collect) server.addCollectArticle(id) else server.cancelCollectArticle(id)
+        val resultMsg by lazy {
+            if (collect) CtxUtil.getString(R.string.collect_success) else CtxUtil.getString(R.string.cancel_collect_success)
+        }
+        observable
             .compose(RxUtil.applySchedulersToObservable())
             .subscribe({
-                val result = if (it.isSuccess()) {
-                    CtxUtil.getString(R.string.collect_success)
-                } else {
-                    CtxUtil.getString(R.string.cancel_collect_success)
-                }
+                val result = if (it.isSuccess()) resultMsg else it.errorMsg
                 callBack.onResult(BackResult(it.errorCode, it.errorMsg, result))
             }, {
                 CtxUtil.showToast(ExceptionHandle.handleException(it))
@@ -90,9 +90,25 @@ class UserService(val spStorage: SPStorage, val server: ServerAPI) : IUserServic
                     RxBus.post(LogoutSuccessEvent)
                 } else {
                 }
+                callBack.onResult(BackResult(it.errorCode, it.errorMsg, it.isSuccess()))
             }, {
                 Timber.e(it)
             })
     }
 
+    //收藏或取消指定的文章
+    override fun collectOrCancelArticle(id: Int, collect: Boolean, callBack: HandleCallBack<String>) {
+        val observable = if(collect) server.addCollectArticle(id) else server.cancelCollectArticle(id)
+        val resultMsg by lazy {
+            if (collect) CtxUtil.getString(R.string.collect_success) else CtxUtil.getString(R.string.cancel_collect_success)
+        }
+        observable
+            .compose(RxUtil.applySchedulersToObservable())
+            .subscribe({
+                val result = if (it.isSuccess()) resultMsg else it.errorMsg
+                callBack.onResult(BackResult(it.errorCode, it.errorMsg, result))
+            }, {
+                CtxUtil.showToast(ExceptionHandle.handleException(it))
+            })
+    }
 }

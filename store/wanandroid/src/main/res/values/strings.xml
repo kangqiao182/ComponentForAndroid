@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_wan_ame">玩Android</string>
+    <string name="app_wan_name">玩Android</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="home">首页</string>

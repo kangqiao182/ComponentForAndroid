@@ -10,6 +10,7 @@ object RouterPath {
 
     interface Service {
         companion object {
+            const val JSON = "/service/JsonSerializationService"
             const val TEST = "/service/test"
             const val USER = "/service/user"
         }

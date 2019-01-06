@@ -127,7 +127,7 @@ public class StatusView extends FrameLayout {
     /**
      * 用 StatusView 替换要使用多状态布局的 View
      */
-    private static StatusView init(View contentView) {
+    static StatusView init(View contentView) {
         if (contentView == null) {
             throw new RuntimeException("ContentView can not be null!");
         }

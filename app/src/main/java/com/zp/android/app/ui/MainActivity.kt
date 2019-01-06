@@ -10,7 +10,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zp.android.app.R
 import com.zp.android.app.ui.main.MineFragment
-import com.zp.android.app.ui.main.ProjectFragment
 import com.zp.android.app.ui.search.SearchActivity
 import com.zp.android.base.BaseActivity
 import com.zp.android.component.RouterPath
@@ -28,7 +27,6 @@ import com.zp.android.component.service.BackResult
 import com.zp.android.component.service.HandleCallBack
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk27.coroutines.onClick
-import org.jetbrains.anko.toast
 
 
 @Route(path = RouterPath.APP.MAIN, name = "App首页")
@@ -96,7 +94,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun initView(savedInstanceState: Bundle?) {
         toolbar.run {
-            title = getString(R.string.app_name)
+            title = getString(R.string.app_wan_name)
             setSupportActionBar(this)
         }
 

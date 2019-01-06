@@ -38,7 +38,7 @@ class ViewModel(
     }
 
     fun requestArticleData(page: Int, cid: Int){
-        events.value = LoadingEvent
+        if (0 == page) events.value = LoadingEvent
         launch {
             server.getKnowledgeList(page, cid)
                 .compose(RxUtil.applySchedulersToObservable())

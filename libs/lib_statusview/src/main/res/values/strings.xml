@@ -1,2 +1,8 @@
 <resources>
+
+    <string name="sv_loading_view_hint">加载中</string>
+    <string name="sv_empty_view_hint">暂无数据</string>
+    <string name="sv_error_view_hint">加载失败</string>
+    <string name="sv_no_network_view_hint">网络异常</string>
+    <string name="sv_click_retry_hint">点我重试</string>
 </resources>

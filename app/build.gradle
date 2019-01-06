@@ -100,10 +100,10 @@ dependencies {
     implementation project(':store:wanandroid')
     implementation project(':libs:base')
     //implementation project(':modules:test')
-    runtimeOnly project(':modules:home')
-    runtimeOnly project(':modules:knowledge')
-    runtimeOnly project(':modules:user')
-    runtimeOnly project(':modules:project')
+    implementation project(':modules:home')
+    implementation project(':modules:knowledge')
+    implementation project(':modules:user')
+    implementation project(':modules:project')
     kapt arouterCompilerKapt
     kapt databindingKapt
 

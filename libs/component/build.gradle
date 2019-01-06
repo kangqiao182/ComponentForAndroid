@@ -6,6 +6,7 @@ apply plugin: 'kotlin-kapt'
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
+        arg("AROUTER_GENERATE_DOC", "enable")
     }
 }
 
@@ -39,8 +40,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api rootProject.ext.supportDeps["appcompatv7"]
-    api rootProject.ext.componentLibs
+    api supportDeps["appcompatv7"]
+    api componentLibs
+    api jacksonLibs
     kapt arouterCompilerKapt
 
 }

@@ -98,10 +98,12 @@ public class ProjectListFragment extends BaseFragment implements ProjectListCont
                             ContextExKt.snackBarToast(recyclerView, CtxUtil.getString(R.string.no_network));
                             return;
                         }
-                        boolean collect = item.getCollect();
-                        item.setCollect(!collect);
-                        adapter.setData(position, item); //刷新当前ItemView.
+                        boolean collect = !item.getCollect();
                         ServiceManager.getUserService().collectOrCancelArticle(item.getId(), collect, result -> {
+                            if (result.isOk()) {
+                                item.setCollect(collect);
+                                adapter.setData(position, item); //刷新当前ItemView.
+                            }
                             CtxUtil.showToast(result.getData());
                         });
                     } else {

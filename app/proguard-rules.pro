@@ -228,18 +228,20 @@
 
 # ARouter
 -keep public class com.alibaba.android.arouter.routes.**{*;}
+-keep public class com.alibaba.android.arouter.facade.**{*;}
 -keep class * implements com.alibaba.android.arouter.facade.template.ISyringe{*;}
 
-# If you use the byType method to obtain Service, add the following rules to protect the interface:
+# 如果使用了 byType 的方式获取 Service，需添加下面规则，保护接口
 -keep interface * implements com.alibaba.android.arouter.facade.template.IProvider
 
-# If single-type injection is used, that is, no interface is defined to implement IProvider, the following rules need to be added to protect the implementation
+# 如果使用了 单类注入，即不定义接口实现 IProvider，需添加下面规则，保护实现
 -keep class * implements com.alibaba.android.arouter.facade.template.IProvider
 
 # If @Autowired is used for injection in non-Activity classes, add the following rules to prevent injection failures
 -keepnames class * {
     @com.alibaba.android.arouter.facade.annotation.Autowired <fields>;
 }
+
 
 # VirtualApk
 -keep class com.didi.virtualapk.internal.VAInstrumentation { *; }
@@ -251,3 +253,12 @@
 -keep class com.android.** { *; }
 -keep class com.google.** { *; }
 -keep class com.bumptech.** { *; }
+
+-keep class com.chad.library.adapter.** {
+*;
+}
+-keep public class * extends com.chad.library.adapter.base.BaseQuickAdapter
+-keep public class * extends com.chad.library.adapter.base.BaseViewHolder
+-keepclassmembers public class * extends com.chad.library.adapter.base.BaseViewHolder {
+           <init>(android.view.View);
+}

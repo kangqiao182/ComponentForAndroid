@@ -18,7 +18,7 @@
         android:layout_below="@+id/sv_empty_icon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:text="暂无数据"
+        android:text="@string/sv_empty_view_hint"
         android:textColor="#2c2c2c"
         android:textSize="14sp" />
 

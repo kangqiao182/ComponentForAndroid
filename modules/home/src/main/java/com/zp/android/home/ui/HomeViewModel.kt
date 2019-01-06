@@ -20,7 +20,7 @@ class HomeViewModel(
     val bannerList = MutableLiveData<List<BannerItem>>()
 
     fun getArticleData(num: Int){
-        events.value = LoadingEvent
+        if (0 == num) events.value = LoadingEvent
         launch {
             homeApi.getArticles(num)
                 .compose(RxUtil.applySchedulersToObservable())
@@ -38,7 +38,6 @@ class HomeViewModel(
     }
 
     fun getBannerList(){
-        events.value = LoadingEvent
         launch {
             homeApi.getBanners()
                 //.retryWhen(RxUtil.retryAndDelay())

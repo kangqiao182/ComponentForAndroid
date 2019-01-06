@@ -76,7 +76,7 @@ ext {
     ]
 
     componentDeps = [
-            "arouterApi"       : "com.alibaba:arouter-api:1.4.0",
+            "arouterApi"       : "com.alibaba:arouter-api:1.4.1",
             //"arouterCompiler"  : "com.alibaba:arouter-compiler:1.2.1",
             "virtualapk"       : "com.didi.virtualapk:core:0.9.6"
     ]
@@ -127,11 +127,14 @@ ext {
             "litepal"               : 'org.litepal.android:core:2.0.0',
             "fab"                   : 'com.github.clans:fab:1.6.4',
             "materialdatetimepicker": 'com.wdullaer:materialdatetimepicker:3.6.4',
-            "androidAutosize"      : 'me.jessyan:autosize:0.9.5',
+            "androidAutosize"       : 'me.jessyan:autosize:0.9.5',
 
             "zxing"                 : "com.google.zxing:core:3.3.0",
             "swipeback"             : "me.yokeyword:fragmentation-swipeback:1.3.4",
-            "basePopup"             : "com.github.razerdp:BasePopup_Candy:2.0.0-alpha2",
+
+            //https://github.com/razerdp/BasePopup
+            //"basePopup"             : "com.github.razerdp:BasePopup:2.1.4",
+            //"basePopup_Candy"       : "com.github.razerdp:BasePopup_Candy:2.1.4",
 
             "editText"              : "com.rengwuxian.materialedittext:library:2.1.4",
             "rangebar"              : "com.github.warkiz.widget:indicatorseekbar:1.2.9",
@@ -173,7 +176,7 @@ ext {
     databindingKapt = "androidx.databinding:databinding-compiler:3.2.1"
     //https://github.com/laszlo-galosi/ankodemo/blob/f8df3da79684580d422ef2f417268a47fd5a78c3/app/build.gradle
 
-    arouterCompilerKapt = "com.alibaba:arouter-compiler:1.2.1"
+    arouterCompilerKapt = "com.alibaba:arouter-compiler:1.2.2"
     glideCompilerKapt = "com.github.bumptech.glide:compiler:${dependVersion.glideSdkVersion}"
     annotationProcessorLibs = [
             //archLibs["roomCompiler"],

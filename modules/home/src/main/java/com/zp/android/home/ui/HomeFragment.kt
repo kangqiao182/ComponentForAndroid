@@ -10,6 +10,7 @@ import com.zp.android.base.BaseFragment
 import com.zp.android.base.mvvm.*
 import com.zp.android.base.showToast
 import com.zp.android.component.RouterPath
+import com.zp.android.lib.statusview.*
 import org.jetbrains.anko.*
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
@@ -23,20 +24,33 @@ class HomeFragment : BaseFragment() {
 
     private val ui by lazy { HomeFragmentUI() }
     private val viewModel by viewModel<HomeViewModel>()
+    private lateinit var statusView: StatusView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return ui.createView(AnkoContext.create(_mActivity, this))
     }
 
     override fun initView(view: View) {
+        statusView = initStatusView(ui.recyclerView)
+        statusView.config(StatusViewBuilder.Builder()
+            .setOnEmptyRetryClickListener {
+                requestHomeData(true, 0)
+            }
+            .setOnErrorRetryClickListener {
+                requestHomeData(true, 0)
+            }
+            .build())
         viewModel.events.observe(this, Observer { event ->
             when (event) {
                 is LoadingEvent -> { /*显示加载中...*/
+                    statusView.showLoadingView()
                 }
                 is SuccessEvent -> { /*加载完成.*/
+                    statusView.showContentView()
                 }
                 is FailedEvent -> {
                     showToast(event.errorMsg)
+                    statusView.showErrorView()
                 }
                 is ExceptionEvent -> {
                     Timber.e(event.error)

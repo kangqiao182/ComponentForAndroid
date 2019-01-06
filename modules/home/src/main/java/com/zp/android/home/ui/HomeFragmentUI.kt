@@ -44,7 +44,7 @@ import org.jetbrains.anko.support.v4.swipeRefreshLayout
 
 class HomeFragmentUI : AnkoComponent<HomeFragment> {
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
-    lateinit var recycleView: RecyclerView
+    lateinit var recyclerView: RecyclerView
     lateinit var akAdapter: AKBaseQuickAdapter<Article>
     val bannerView: Banner by lazy { initAndAddBannerView() }
     private var bannerList: List<BannerItem>? = null
@@ -60,7 +60,7 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
                 ui.owner.requestHomeData(isRefresh, 0)
             }
 
-            recycleView = recyclerView {
+            recyclerView = recyclerView {
                 layoutParams = RelativeLayout.LayoutParams(matchParent, matchParent)
                 layoutManager = LinearLayoutManager(ctx)
                 addItemDecoration(DividerItemDecoration(ctx, DividerItemDecoration.VERTICAL).apply {
@@ -80,18 +80,20 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
 
                 setOnItemChildClickListener { adapter, view, position ->
                     (adapter.getItem(position) as? Article)?.run {
-                        if(view.getTag() == ArticleAKItemViewUI.CLICK_LICK) {
+                        if(ArticleAKItemViewUI.CLICK_LICK.equals(view.getTag())) {
                             if (ServiceManager.getUserService().isLogin()) {
                                 if (!NetUtils.isNetworkAvailable(CtxUtil.context())) {
-                                    snackBarToast(recycleView, CtxUtil.getString(R.string.no_network))
+                                    snackBarToast(recyclerView, CtxUtil.getString(R.string.no_network))
                                     return@setOnItemChildClickListener
                                 }
-                                val collect = this.collect
-                                this.collect = !collect
-                                adapter.setData(position, this) //刷新当前ItemView.
+                                val collect = !this.collect
                                 ServiceManager.getUserService()
                                     .collectOrCancelArticle(this.id, collect, object : HandleCallBack<String> {
                                         override fun onResult(result: BackResult<String>) {
+                                            if (result.isOk()) {
+                                                this@run.collect = collect
+                                                adapter.setData(position, this@run) //刷新当前ItemView.
+                                            }
                                             result.data?.let { CtxUtil.showToast(it) }
                                         }
                                     })
@@ -108,16 +110,15 @@ class HomeFragmentUI : AnkoComponent<HomeFragment> {
                     swipeRefreshLayout.isRefreshing = false
                     val page = akAdapter.data.size / 20
                     ui.owner.requestHomeData(isRefresh, page)
-                }, recycleView)
-
+                }, recyclerView)
             }
-            recycleView.adapter = akAdapter
-            //akAdapter.bindToRecyclerView(recycleView)
+            recyclerView.adapter = akAdapter
+            //akAdapter.bindToRecyclerView(recyclerView)
         }
     }
 
     private fun initAndAddBannerView(): Banner {
-        val bannerLayout = LayoutInflater.from(recycleView.context).inflate(R.layout.home_view_banner, null, false)
+        val bannerLayout = LayoutInflater.from(recyclerView.context).inflate(R.layout.home_view_banner, null, false)
         val banner: Banner = bannerLayout.find(R.id.banner)
         banner.run {
             setImageLoader(GlideImageLoader())

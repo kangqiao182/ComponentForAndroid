@@ -20,7 +20,7 @@
         android:layout_below="@+id/sv_loading_progressbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:text="加载中"
+        android:text="@string/sv_loading_view_hint"
         android:textColor="#2c2c2c"
         android:textSize="16sp" />
 
