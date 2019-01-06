@@ -52,7 +52,7 @@ dependencies {
     //kapt rootProject.ext.annotationProcessorLibs
     kapt glideCompilerKapt
     //GlideOkHttp
-    api(rootProject.ext.otherDeps["glideOkhttp"]) {
+    api(rootProject.ext.commonDeps["glideOkhttp"]) {
         exclude group: 'glide-parent'
     }
 

@@ -69,11 +69,17 @@ class MainFragment : BaseFragment() {
             onSupportVisible()
         }
 
-        adapter = object : BaseQuickAdapter<KnowledgeTreeBody, DBViewHolder>(R.layout.knowledge_item_tree_list) {
+        recyclerView.apply {
+            //layoutManager = LinearLayoutManager(_mActivity)
+            addItemDecoration(DividerItemDecoration(_mActivity, DividerItemDecoration.VERTICAL).apply {
+                ContextCompat.getDrawable(_mActivity, R.drawable.base_divider_line)?.let { setDrawable(it) }
+            })
+        }.adapter = object : BaseQuickAdapter<KnowledgeTreeBody, DBViewHolder>(R.layout.knowledge_item_tree_list) {
             override fun convert(holder: DBViewHolder, item: KnowledgeTreeBody) {
                 holder.bindTo(BR.item, item)
             }
         }.apply {
+            adapter = this
             setOnItemClickListener { adapter, view, position ->
                 (adapter.getItem(position) as? KnowledgeTreeBody)?.run {
                     // 打开知识体系
@@ -81,13 +87,6 @@ class MainFragment : BaseFragment() {
                 }
             }
         }
-
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(_mActivity)
-            addItemDecoration(DividerItemDecoration(_mActivity, DividerItemDecoration.VERTICAL).apply {
-                ContextCompat.getDrawable(_mActivity, R.drawable.base_divider_line)?.let { setDrawable(it) }
-            })
-        }.adapter = adapter
 
         viewModel.run {
             events.observe(this@MainFragment, Observer { event ->

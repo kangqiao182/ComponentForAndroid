@@ -1,4 +1,4 @@
-package com.zp.android.base
+package com.zp.android.common
 
 import android.content.Context
 import com.bumptech.glide.Glide
@@ -11,6 +11,8 @@ import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.integration.okhttp3.OkHttpLibraryGlideModule
 import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader
+import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
+import com.bumptech.glide.load.engine.cache.LruResourceCache
 import com.bumptech.glide.load.model.GlideUrl
 import okhttp3.OkHttpClient
 import java.io.InputStream
@@ -23,7 +25,7 @@ import java.io.InputStream
 
 @GlideModule
 //@Excludes(OkHttpLibraryGlideModule::class) // initialize OkHttp manually
-class MyGlideModule : AppGlideModule() {
+class MyAppGlideModule : AppGlideModule() {
 
     /*override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         super.registerComponents(context, glide, registry)
@@ -38,5 +40,40 @@ class MyGlideModule : AppGlideModule() {
         // Increase memory usage for quality with:
 
         builder.setDefaultRequestOptions(RequestOptions().format(DecodeFormat.PREFER_ARGB_8888))
+            .setDiskCache(
+                InternalCacheDiskCacheFactory(
+                    context, diskCacheFolderName(context), diskCacheSizeBytes()
+                )
+            )
+            .setMemoryCache(LruResourceCache(memoryCacheSizeBytes().toLong()))
+    }
+
+    /**
+     * Implementations should return `false` after they and their dependencies have migrated
+     * to Glide's annotation processor.
+     */
+    override fun isManifestParsingEnabled(): Boolean {
+        return false
+    }
+
+    /**
+     * set the memory cache size, unit is the [Byte].
+     */
+    private fun memoryCacheSizeBytes(): Int {
+        return 1024 * 1024 * 20 // 20 MB
+    }
+
+    /**
+     * set the disk cache size, unit is the [Byte].
+     */
+    private fun diskCacheSizeBytes(): Long {
+        return 1024 * 1024 * 512 // 512 MB
+    }
+
+    /**
+     * set the disk cache folder's name.
+     */
+    private fun diskCacheFolderName(context: Context): String {
+        return "android-zp"
     }
 }

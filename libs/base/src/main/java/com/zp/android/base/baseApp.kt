@@ -40,7 +40,6 @@ open abstract class MainApp: BaseApp(){
     }
 }
 
-@GlideModule
 open abstract class BaseApp: MultiDexApplication() {
     companion object {
         open lateinit var application: Application private set

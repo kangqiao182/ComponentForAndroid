@@ -289,7 +289,7 @@ class ArticleAKItemViewUI : AKItemViewUI<Article> {
                     id = View.generateViewId()
                     contentDescription = "like article"
                 }.lparams(wrapContent, wrapContent)
-            }.lparams(wrapContent, wrapContent) {
+            }.lparams(dimen(R.dimen.dp_26), dimen(R.dimen.dp_26)) {
                 alignParentRight()
                 alignParentBottom()
             }

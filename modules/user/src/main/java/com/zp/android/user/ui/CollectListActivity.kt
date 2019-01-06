@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.zp.android.base.BaseActivity
+import com.zp.android.base.CtxUtil
 import com.zp.android.base.WebActivity
 import com.zp.android.base.mvvm.ExceptionEvent
 import com.zp.android.base.mvvm.FailedEvent
@@ -14,8 +15,13 @@ import com.zp.android.base.mvvm.LoadingEvent
 import com.zp.android.base.mvvm.SuccessEvent
 import com.zp.android.base.showToast
 import com.zp.android.common.DBViewHolder
+import com.zp.android.common.snackBarToast
 import com.zp.android.common.widget.SpaceItemDecoration
 import com.zp.android.component.RouterPath
+import com.zp.android.component.ServiceManager
+import com.zp.android.component.service.BackResult
+import com.zp.android.component.service.HandleCallBack
+import com.zp.android.net.NetUtils
 import com.zp.android.user.CollectionArticle
 import com.zp.android.user.R
 import com.zp.android.user.BR
@@ -68,23 +74,49 @@ class CollectListActivity: BaseActivity() {
             }
         }
 
-        adapter = object : BaseQuickAdapter<CollectionArticle, DBViewHolder>(R.layout.user_item_collect_article) {
+        recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@CollectListActivity)
+            addItemDecoration(SpaceItemDecoration(this@CollectListActivity))
+        }.adapter = object : BaseQuickAdapter<CollectionArticle, DBViewHolder>(R.layout.user_item_collect_article) {
             override fun convert(holder: DBViewHolder, item: CollectionArticle) {
                 holder.bindTo(BR.item, item)
                 holder.addOnClickListener(R.id.iv_like)
             }
-        }
+        }.apply {
+            adapter = this
 
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(this@CollectListActivity)
-            addItemDecoration(SpaceItemDecoration(this@CollectListActivity))
-        }.adapter = adapter.apply {
             setOnItemClickListener { adapter, view, position ->
                 (adapter.getItem(position) as? CollectionArticle)?.run {
                     // 打开某知识信息页面
                     WebActivity.open(link, title, id)
                 }
             }
+
+            setOnItemChildClickListener { adapter, view, position ->
+                (adapter.getItem(position) as? CollectionArticle)?.run {
+                    if(view.id == R.id.iv_like) {
+                        if (ServiceManager.getUserService().isLogin()) {
+                            if (!NetUtils.isNetworkAvailable(CtxUtil.context())) {
+                                snackBarToast(recyclerView, CtxUtil.getString(R.string.no_network))
+                                return@setOnItemChildClickListener
+                            }
+                            ServiceManager.getUserService()
+                                .collectOrCancelArticle(this.id, false, object : HandleCallBack<String> {
+                                    override fun onResult(result: BackResult<String>) {
+                                        if (result.isOk()) {
+                                            adapter.remove(position)
+                                        }
+                                        result.data?.let { CtxUtil.showToast(it) }
+                                    }
+                                })
+                        } else {
+                            ARouter.getInstance().build(RouterPath.User.LOGIN).navigation()
+                            CtxUtil.showToast(R.string.login_tint)
+                        }
+                    }
+                }
+            }
+
         }
 
         vm.run {
