@@ -29,9 +29,9 @@ object ServiceManager {
     }
 
     //通过ARouter注入UserService, 由ARouter来创建并管理. 注: 首次使用时ARouter创建.
-    @JvmField
-    @Autowired(name = RouterPath.Service.USER)
-    var userService2: IUserService? = null
+    private val userService2: IUserService? by lazy {
+        ARouter.getInstance().build(RouterPath.User.SERVICE).navigation() as? IUserService
+    }
 
     //通过AppConfig配置启动的方式, 在ModuleApp初始化时创建UserService并赋值到ServiceManger中.
     // user模块内部使用koin注入单实例的UserService.

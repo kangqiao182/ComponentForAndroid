@@ -97,8 +97,8 @@ configurations.all {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation project(':store:wanandroid')
-    implementation project(':libs:base')
+    api project(':store:wanandroid')
+    api project(':libs:base')
     //implementation project(':modules:test')
     implementation project(':modules:home')
     implementation project(':modules:knowledge')

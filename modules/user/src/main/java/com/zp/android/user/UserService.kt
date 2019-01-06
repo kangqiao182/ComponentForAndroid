@@ -23,11 +23,11 @@ import timber.log.Timber
  * Created by zhaopan on 2018/11/8.
  */
 
-@Route(path = RouterPath.Service.USER, name = "用户服务类")
+@Route(path = RouterPath.User.SERVICE, name = "用户服务类")
 class UserService2 : IUserService, KoinComponent {
 
     //手动注入需要的spStorage和server
-    private val spStorage: SPStorage by inject()
+    private val spStorage: SPStorage by inject(name = "User")
     private val server: ServerAPI by inject()
 
     override fun init(context: Context) {

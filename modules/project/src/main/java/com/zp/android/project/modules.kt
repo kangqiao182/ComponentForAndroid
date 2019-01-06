@@ -34,7 +34,7 @@ val dataModule = module(path = "Project", createOnStart = true) {
     // provided serverAPI
     single { RetrofitHelper.createService(ServerAPI::class.java) }
     // User 模块专属ShardPreferences配置.
-    single { SPStorage(BaseApp.application, "Project") }
+    single(name = "Project") { SPStorage(BaseApp.application, "Project") }
 }
 
 @JvmField

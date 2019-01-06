@@ -11,15 +11,13 @@ object RouterPath {
     interface Service {
         companion object {
             const val JSON = "/service/JsonSerializationService"
-            const val TEST = "/service/test"
-            const val USER = "/service/user"
         }
     }
 
     interface Base {
         companion object {
-            const val WEB   = "/base/web"
-            const val WEB3  = "/base/web3"
+            const val WEB       = "/base/web"
+            const val WEB3      = "/base/web3"
         }
     }
 
@@ -36,8 +34,8 @@ object RouterPath {
 
     interface Home {
         companion object {
-            const val MAIN = "/home/mian"
-            const val HOME = "/home/home"
+            const val MAIN      = "/home/mian"
+            const val HOME      = "/home/home"
         }
     }
 
@@ -60,11 +58,12 @@ object RouterPath {
 
     interface User {
         companion object {
-            const val MAIN      = "/user/main"
-            const val LOGIN     = "/user/login"
-            const val REGISTER  = "/user/register"
-            const val SETTINGS  = "/user/settings"
-            const val COLLECT_LIST = "/user/collect_list"
+            const val SERVICE       = "/user/service"
+            const val MAIN          = "/user/main"
+            const val LOGIN         = "/user/login"
+            const val REGISTER      = "/user/register"
+            const val SETTINGS      = "/user/settings"
+            const val COLLECT_LIST  = "/user/collect_list"
         }
 
         interface PARAM {
