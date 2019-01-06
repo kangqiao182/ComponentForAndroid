@@ -25,7 +25,11 @@ object ServiceManager {
      */
     @JvmStatic
     fun getUserService(): IUserService {
-        return userService2 ?: userService1 ?: EmptyUserService()
+        return userService3 /*?: userService2*/ ?: userService1 ?: EmptyUserService()
+    }
+
+    private val userService3 : IUserService by lazy {
+        ARouter.getInstance().build(RouterPath.Service.USER).navigation() as IUserService
     }
 
     //通过ARouter注入UserService, 由ARouter来创建并管理. 注: 首次使用时ARouter创建.

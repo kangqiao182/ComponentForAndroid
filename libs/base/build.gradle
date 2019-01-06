@@ -49,5 +49,6 @@ dependencies {
     api project(":libs:common")
     api project(":libs:net")
     api project(":libs:lib_statusview")
+    api rootProject.ext.jimu["componentLib"]
     kapt arouterCompilerKapt
 }

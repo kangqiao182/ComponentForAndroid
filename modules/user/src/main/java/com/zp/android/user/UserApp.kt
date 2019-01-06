@@ -29,7 +29,7 @@ class UserApp : ModuleApp() {
     }
 
     override fun initModuleData(application: Application) {
-        ARouter.getInstance().inject(ServiceManager)
+        //ARouter.getInstance().inject(ServiceManager)
         ServiceManager.userService1 = userService
     }
 }

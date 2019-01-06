@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.alibaba.arouter'
 apply plugin: 'com.didi.virtualapk.host'
+apply plugin: 'com.dd.comgradle'
 
 kapt {
     arguments {
@@ -100,10 +101,10 @@ dependencies {
     implementation project(':store:wanandroid')
     implementation project(':libs:base')
     //implementation project(':modules:test')
-    implementation project(':modules:home')
-    implementation project(':modules:knowledge')
-    implementation project(':modules:user')
-    implementation project(':modules:project')
+//    implementation project(':modules:home')
+//    implementation project(':modules:knowledge')
+//    implementation project(':modules:user')
+//    implementation project(':modules:project')
     kapt arouterCompilerKapt
     kapt databindingKapt
 
@@ -113,6 +114,11 @@ dependencies {
     // //leakCanary
     // debugImplementation rootProject.ext.testDeps["leakcanary-debug"]
     // releaseImplementation rootProject.ext.testDeps["leakcanary-release"]
+}
+
+combuild {
+    applicationName = 'com.zp.android.app.APP'
+    isRegisterCompoAuto = true
 }
 
 //https://github.com/MEiDIK/Cipher.so
