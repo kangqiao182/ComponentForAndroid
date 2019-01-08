@@ -3,7 +3,6 @@ package com.zp.android.knowledge.ui
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.zp.android.base.BaseFragment
 import com.zp.android.base.CtxUtil
-import com.zp.android.base.WebActivity
+import com.zp.android.base.ui.WebActivity
 import com.zp.android.base.mvvm.ExceptionEvent
 import com.zp.android.base.mvvm.FailedEvent
 import com.zp.android.base.mvvm.LoadingEvent
@@ -30,9 +29,6 @@ import com.zp.android.knowledge.Article
 import com.zp.android.knowledge.ArticleResponseBody
 import com.zp.android.knowledge.BR
 import com.zp.android.knowledge.R
-import com.zp.android.lib.statusview.StatusView
-import com.zp.android.lib.statusview.StatusViewBuilder
-import com.zp.android.lib.statusview.initStatusView
 import com.zp.android.net.NetUtils
 import kotlinx.android.synthetic.main.knowledge_fragment_refresh_layout.*
 import me.yokeyword.fragmentation.SupportFragment

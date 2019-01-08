@@ -66,4 +66,39 @@
 
     <string name="base_currency_unit_cny">RMB</string>
     <string name="base_currency_unit_usd">USD</string>
+    
+    <!--指纹识别-->
+    <string name="base_auth_pls_verify_finger">Please verify your fingerprint</string>
+    <string name="base_auth_fingerprint">Recognizing fingerprint</string>
+    <string name="base_auth_fingerprint_failed">Recognizing fingerprint</string><!--指纹验证失败-->
+    <string name="base_auth_fingerprint_set_succeed">Fingerprint verification succeeded</string>
+    <string name="base_auth_fingerprint_set_failed">Setting of fingerprint recognition failed</string>
+    <string name="base_auth_fingerprint_closed">Fingerprint recognition closed</string>
+    <string name="base_auth_fingerprint_password_failed">Password verification failed</string>
+    <string name="base_auth_fingerprint_no_support">Do not support fingerprint verification at present</string>
+    <string name="base_auth_dialog_set_finger">Set up fingerprint recognition, and open the password-free login</string>
+    <string name="base_auth_tip_passwd_verify">Enter your password to complete the ID verification</string>
+    <string name="base_auth_fingerprint_init_failed">The fingerprint device failed to be initialized; please use the password!</string>
+    <string name="base_auth_fingerprint_acquired_good">The image of the acquired fingerprint is good</string>
+    <string name="base_auth_fingerprint_acquired_imager_dirty">it is doubted that the sensor is clean</string>
+    <string name="base_auth_fingerprint_acquired_insufficient">The finger moves too fast; please try again </string>
+    <string name="base_auth_fingerprint_acquired_partial">The finger does not fully cover the device</string>
+    <string name="base_auth_fingerprint_acquired_too_fast">The finger moves too fast</string>
+    <string name="base_auth_fingerprint_acquired_too_slow">It is not felt like a finger</string>
+    <string name="base_auth_fingerprint_error_canceled">Fingerprint recognition is not available</string>
+    <string name="base_auth_fingerprint_error_hw_unavailable">The hardware is not available, try again later</string>
+    <string name="base_auth_fingerprint_error_lockout">Fingerprint recognition is tried too many times and temporarily locked; please use the password to unlock!</string>
+    <string name="base_auth_fingerprint_error_no_space">Return an error status for operations such as registration</string>
+    <string name="base_auth_fingerprint_error_timeout">Request time is too long</string>
+    <string name="base_auth_fingerprint_error_unable_to_process">Returns an error status when the sensor is unable to process the current image </string>
+    <string name="base_auth_fingerprint_succeeded">Fingerprint recognition succeeded</string>
+    <string name="base_auth_fingerprint_failed_tips">Fingerprint recognition failed; try again</string>
+    <string name="base_auth_fingerprint_to_setting">You fingerprint has yet be recorded; go to the SYSTEM SETTINGS and set it up.</string>
+    <string name="base_auth_fingerprint_no_device">The cell phone does not support fingerprint recognition</string>
+    <string name="base_auth_identity_verify">ID Verification</string>
+    <string name="base_auth_unlock_passwd_failed">Wrong password; unlock failed</string>
+    <string name="base_auth_identity_verify_failed">verification failed</string>
+    <string name="base_auth_password_unlock_times_limit">Wrong password; you are left with %s time(s) to try</string>
+    <string name="base_auth_password_lock_until_timer_finished">Due to Multiple tries with wrong passwords, the application is locked; please try again after %s second(s)</string>
+
 </resources>

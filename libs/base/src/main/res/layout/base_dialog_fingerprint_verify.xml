@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.zp.android.base.utils.StringUtil" />
+
+        <variable
+            name="info"
+            type="com.zp.android.base.widget.dialog.BaseDialogInfo" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_gravity="center"
+        android:background="@drawable/base_bg_white_radius5">
+
+        <ImageView
+            android:id="@+id/iv_fingerprint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:src="@mipmap/base_ic_fingerprint" />
+
+        <TextView
+            android:id="@+id/tv_fingerprint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_fingerprint"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_marginTop="20dp"
+            android:text="@{info.title}"
+            android:textColor="#FF000000"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_prompt_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_below="@+id/tv_fingerprint"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="@{StringUtil.notTrimEmpty(info.error) ? info.error: info.content}"
+            android:textColor="@{StringUtil.notTrimEmpty(info.error) ? @color/base_text_red: @color/base_text_black}"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/line_divler"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/tv_cancel"
+            android:background="@drawable/base_divider_line" />
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:gravity="center"
+            android:onClick="@{info.cancelListener}"
+            android:text="@string/base_cancel"
+            android:textColor="#FF007AFF"
+            android:textSize="16sp" />
+    </RelativeLayout>
+    </FrameLayout>
+</layout>

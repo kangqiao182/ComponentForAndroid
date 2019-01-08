@@ -8,12 +8,12 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.zp.android.base.BaseActivity
 import com.zp.android.base.CtxUtil
-import com.zp.android.base.WebActivity
 import com.zp.android.base.mvvm.ExceptionEvent
 import com.zp.android.base.mvvm.FailedEvent
 import com.zp.android.base.mvvm.LoadingEvent
 import com.zp.android.base.mvvm.SuccessEvent
 import com.zp.android.base.showToast
+import com.zp.android.base.ui.WebActivity
 import com.zp.android.common.DBViewHolder
 import com.zp.android.common.snackBarToast
 import com.zp.android.common.widget.SpaceItemDecoration

@@ -146,7 +146,7 @@ ext {
             "rangebar"              : "com.github.warkiz.widget:indicatorseekbar:1.2.9",
             "sanckbar"              : "com.androidadvance:topsnackbar:1.1.1",
             "statusbar"             : "com.jaeger.statusbarutil:library:1.5.1",
-            "timber"                : "com.jakewharton.timber:timber:4.6.0"
+            "timber"                : "com.jakewharton.timber:timber:4.7.1"
 
     ]
 

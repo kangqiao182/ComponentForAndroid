@@ -18,6 +18,16 @@ object RouterPath {
         companion object {
             const val WEB       = "/base/web"
             const val WEB3      = "/base/web3"
+            const val AUTH      = "/base/auth"
+        }
+
+        interface Param {
+            companion object {
+                const val AUTH_REQUEST_CODE = 110
+                const val AUTH_RESPONSE_RESULT = "response_result"
+                const val AUTH_MODE = "auth_mode"
+                const val AUTH_TYPE = "auth_type"
+            }
         }
     }
 
@@ -66,7 +76,7 @@ object RouterPath {
             const val COLLECT_LIST  = "/user/collect_list"
         }
 
-        interface PARAM {
+        interface Param {
             companion object {
 
             }

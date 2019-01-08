@@ -6,6 +6,8 @@ import android.content.res.Configuration
 import android.support.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bumptech.glide.annotation.GlideModule
+import com.zp.android.base.common.initLogger
+import com.zp.android.base.utils.CrashHandler
 import com.zp.android.base.utils.I18NUtil
 import com.zp.android.base.utils.SPUtil
 import me.yokeyword.fragmentation.Fragmentation
@@ -67,6 +69,11 @@ open abstract class BaseApp: MultiDexApplication() {
         // 初始化 ARouter
         ARouter.init(this)
 
+        AppManager.initActivityLifecycle()
+
+        //初始化timber的Log打印.
+        CrashHandler.initlize()
+        initLogger(BuildConfig.DEBUG)
 
         // Fragmentation 初始设置(optional)
         Fragmentation.builder()

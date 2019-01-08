@@ -1,5 +1,6 @@
 package com.zp.android.base.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.NameNotFoundException
@@ -7,6 +8,7 @@ import android.os.Build
 import android.os.Environment
 import android.os.Looper
 import android.text.TextUtils
+import com.zp.android.base.BaseApp
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -22,33 +24,23 @@ import java.util.concurrent.Executors
 /**
  * Created by zhaopan on 2018/6/20.
  */
-class CrashHandler private constructor() : Thread.UncaughtExceptionHandler {
+@SuppressLint("StaticFieldLeak")
+object CrashHandler : Thread.UncaughtExceptionHandler {
 
-    private lateinit var mContext: Context
-    private var defaultUncaughtExceptionHandler: UncaughtExceptionHandler? = null
+    private val mContext: Context by lazy { BaseApp.application }
+    private var defaultUncaughtExceptionHandler: Thread.UncaughtExceptionHandler? = null
     private val executors = Executors.newSingleThreadExecutor()
     private val mInfo = HashMap<String, String>()
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd-hh-mm-ss")
 
-    companion object {
-        val instance: CrashHandler by lazy { CrashHandler() }
-    }
-
-    /**
-     * 初始化
-     */
-    fun init(context: Context) {
-        mContext = context
+    init {
         defaultUncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler()
         Thread.setDefaultUncaughtExceptionHandler(this)
     }
 
-    /**
-     * 1. 收集错误信息
-     * 2. 保存错误信息
-     * 3. 上传到服务器
-     */
-    override fun uncaughtException(t: Thread, e: Throwable?) {
+    fun initlize() {}
+
+    override fun uncaughtException(t: Thread?, e: Throwable?) {
         if (e == null) {
             // 未处理，调用系统默认的处理器处理
             if (defaultUncaughtExceptionHandler != null) {
@@ -61,8 +53,8 @@ class CrashHandler private constructor() : Thread.UncaughtExceptionHandler {
                 //Toast.makeText(mContext, "UnCrashException", Toast.LENGTH_SHORT).show()
                 Looper.loop()
             }
-//            collectErrorInfo()
-//            saveErrorInfo(e)
+            collectErrorInfo()
+            saveErrorInfo(e)
             try {
                 Thread.sleep(1000)
             } catch (e1: InterruptedException) {
@@ -75,6 +67,7 @@ class CrashHandler private constructor() : Thread.UncaughtExceptionHandler {
             //System.exit(1)
         }
     }
+
 
     private fun saveErrorInfo(e: Throwable) {
         val sbf = StringBuffer()
@@ -142,11 +135,11 @@ class CrashHandler private constructor() : Thread.UncaughtExceptionHandler {
                     mInfo.put(field.name, field.get(null).toString())
                 }
             }
-        } catch (e: NameNotFoundException) {
+        } catch (e: PackageManager.NameNotFoundException) {
             e.printStackTrace()
         } catch (e: IllegalAccessException) {
             e.printStackTrace()
         }
-
     }
+
 }

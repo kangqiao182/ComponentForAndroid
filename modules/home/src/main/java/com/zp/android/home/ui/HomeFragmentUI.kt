@@ -21,7 +21,7 @@ import com.youth.banner.Banner
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import com.zp.android.base.CtxUtil
-import com.zp.android.base.WebActivity
+import com.zp.android.base.ui.WebActivity
 import com.zp.android.common.*
 import com.zp.android.common.widget.GlideImageLoader
 import com.zp.android.component.RouterPath
