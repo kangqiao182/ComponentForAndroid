@@ -28,6 +28,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.FlutterModuleActivity"/>
+
         <activity android:name=".ui.search.SearchActivity"/>
         <activity android:name=".ui.DebugActivity"/>
     </application>

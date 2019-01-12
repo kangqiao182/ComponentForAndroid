@@ -8,3 +8,10 @@ include ':libs:lib_api', ':libs:lib_picker',  'libs:lib_statusview'
 include ':libs:common', ':libs:component', ':libs:base', ':libs:net'
 // 模块包
 include ':modules:test', ':modules:home', ':modules:knowledge',  ':modules:user', ':modules:project'
+
+include ':app'                                     // assumed existing content
+setBinding(new Binding([gradle: this]))                                 // new
+evaluate(new File(                                                      // new
+        settingsDir,                                               // new
+        'flutter_modules/.android/include_flutter.groovy'                          // new
+))
