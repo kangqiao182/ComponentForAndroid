@@ -1,6 +1,37 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  // 修改系统顶部导航栏颜色
+  //https://github.com/tuozhaobing/NativeFlutter/blob/e5162f2a4568880fd218a91acb7eddedccf7dc89/my_flutter/lib/main.dart
+  SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.white, //top bar color
+        statusBarIconBrightness: Brightness.dark, //top bar icons
+        systemNavigationBarColor: Colors.white, //bottom bar color
+        systemNavigationBarIconBrightness: Brightness.dark, //bottom bar icons
+      )
+  );
+
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
+      .then((_) => runApp(_widgetForRoute(window.defaultRouteName)));
+}
+
+Widget _widgetForRoute(String route) {
+  switch (route) {
+    case 'main':
+      return MyApp();
+    case 'kyc1':
+      return MyApp();
+    default:
+      return Center(
+        child: Text('Unknown route: $route', textDirection: TextDirection.ltr),
+      );
+  }
+}
+
+//void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

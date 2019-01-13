@@ -26,7 +26,7 @@ class FlutterModuleActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_flutter)
         // 创建FlutterView，router地址为Page，此处很重要
-        val content = Flutter.createView(this, lifecycle, "KYC")
+        val content = Flutter.createView(this, lifecycle, "main")
         // 设置FlutterView宽高
         val layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
         // 添加FlutterView到Activity
