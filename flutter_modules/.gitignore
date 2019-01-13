@@ -36,6 +36,10 @@ Icon?
 .tags*
 
 build/
-.android/
-.ios/
+#.android/
+#.ios/
 .flutter-plugins
+.idea
+.vscode
+.android/app/build/
+.android/Flutter/build
