@@ -1,6 +1,6 @@
 package com.zp.android.base.rx
 
-import kotlinx.coroutines.experimental.CoroutineDispatcher
+import kotlinx.coroutines.CoroutineDispatcher
 
 /**
  * Created by zhaopan on 2018/10/21.

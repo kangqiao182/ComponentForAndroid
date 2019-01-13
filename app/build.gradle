@@ -94,7 +94,7 @@ configurations.all {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':flutter')
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api project(':store:wanandroid')
     api project(':libs:base')
     //implementation project(':modules:test')
