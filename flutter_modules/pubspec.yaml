@@ -14,7 +14,7 @@ description: A new flutter module project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.1.0-dev.9.4 <3.0.0"
 
 dependencies:
   flutter:
@@ -29,6 +29,7 @@ dependencies:
   image_picker: ^0.4.12
   event_bus: ^1.0.1
   flutter_redux: ^0.5.3
+  fluro: ^1.4.0
 
 dev_dependencies:
   flutter_test:
@@ -83,5 +84,5 @@ flutter:
   # They also do not have any bearing on your native host application's
   # identifiers, which may be completely independent or the same as these.
   module:
-    androidPackage: com.huobi.us
-    iosBundleIdentifier: com.huobi.us
+    androidPackage: com.huobi.flutter
+    iosBundleIdentifier: com.huobi.flutter

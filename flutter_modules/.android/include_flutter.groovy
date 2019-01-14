@@ -1,6 +1,6 @@
 // Generated file. Do not edit.
 
-def scriptFile = getClass().protectionDomain.codeSource.location.toURI()
+def scriptFile = getClass().protectionDomain.codeSource.location.path
 def flutterProjectRoot = new File(scriptFile).parentFile.parentFile
 
 gradle.include ':flutter'

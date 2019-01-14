@@ -4,14 +4,8 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
-
     defaultConfig {
-        applicationId "com.huobi.us.host"
+        applicationId "com.huobi.flutter.host"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1

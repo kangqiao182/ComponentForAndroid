@@ -1,5 +1,5 @@
 <!-- Generated file. Do not edit. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.huobi.us">
+    package="com.huobi.flutter">
   <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
