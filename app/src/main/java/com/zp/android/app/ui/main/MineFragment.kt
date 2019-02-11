@@ -5,12 +5,9 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import com.zp.android.app.R
-import com.zp.android.app.ui.FlutterModuleActivity
 import com.zp.android.base.BaseFragment
-import io.flutter.facade.Flutter
-import kotlinx.android.synthetic.main.base_popup_share_wechat.view.*
+import com.zp.android.base.flutter.FlutterContainerActivity
 import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
@@ -39,7 +36,7 @@ class MineFragment: BaseFragment() {
                     gravity = Gravity.CENTER
                     textColorResource = R.color.base_text_white
                     onClick {
-                        FlutterModuleActivity.open(_mActivity)
+                        FlutterContainerActivity.open(_mActivity, "")
                     }
                 }.lparams(matchParent, wrapContent)
             }

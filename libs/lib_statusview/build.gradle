@@ -13,8 +13,6 @@ android {
         versionName "1.0"
     }
 
-    //resourcePrefix "sv_"
-
     buildTypes {
         release {
             minifyEnabled false
@@ -22,11 +20,14 @@ android {
         }
         debug {
         }
-        pre {
-            initWith release
-        }
     }
 
+    //resourcePrefix "sv_"
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {

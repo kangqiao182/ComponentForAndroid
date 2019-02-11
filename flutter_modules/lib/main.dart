@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_modules/config/KycRouter.dart';
-import 'package:flutter_modules/pages/kyc/KycLevel2Page.dart' show KycLevel2Page;
 import 'package:flutter_modules/pages/kyc/KycLevel3Page.dart' show KycLevel3Page;
 
 /*void main() {
@@ -55,7 +54,6 @@ class MyApp extends StatelessWidget {
       home: KycLevel3Page(title: "Level3 Page"),
       //initialRoute: KycRouter.LEVEL3,
       routes: <String, WidgetBuilder>{
-        KycRouter.LEVEL2: (BuildContext context) => KycLevel2Page(title: "Level2 ^_^"),
         KycRouter.LEVEL3: (BuildContext context) => KycLevel3Page(title: "Level3 ^_^"),
       },
     );

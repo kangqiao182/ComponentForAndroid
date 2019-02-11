@@ -20,9 +20,6 @@ android {
         }
         debug {
         }
-        pre {
-            initWith release
-        }
     }
 
     compileOptions {

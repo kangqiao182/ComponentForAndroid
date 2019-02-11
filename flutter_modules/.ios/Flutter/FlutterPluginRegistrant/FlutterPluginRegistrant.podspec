@@ -18,6 +18,5 @@ Depends on all your plugins, and provides a function to register them.
   s.public_header_files = './Classes/**/*.h'
   s.dependency 'Flutter'
   s.dependency 'flutter_webview_plugin'
-  s.dependency 'image_picker'
   s.dependency 'shared_preferences'
 end

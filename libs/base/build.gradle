@@ -28,9 +28,6 @@ android {
         }
         debug {
         }
-        pre {
-            initWith release
-        }
     }
 
     resourcePrefix "base_"
@@ -45,6 +42,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':flutter')
     api project(":libs:component")
     api project(":libs:common")
     api project(":libs:net")
