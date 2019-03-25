@@ -105,6 +105,25 @@ object RouterPath {
         }
     }
 
+    interface Flutter {
+        companion object {
+            const val VIEW          = "/flutter/view"
+            const val FRAGMENT      = "/flutter/fragment"
+        }
+
+        interface PARAM {
+            companion object {
+                const val ROUTE     = "route"
+            }
+        }
+
+        interface Router {
+            companion object {
+                const val MAIN      = "flutter.router.main"
+                const val WeChat    = "wechat"
+            }
+        }
+    }
 }
 
 interface RouterExtras {

@@ -17,7 +17,7 @@ android {
 
     buildTypes {
         release {
-            resValue "string", "api_host", "http://www.wanandroid.com/"
+            resValue "string", "api_host", "https://www.wanandroid.com/"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             manifestPlaceholders = [
@@ -25,7 +25,7 @@ android {
             ]
         }
         debug {
-            resValue "string", "api_host", "http://www.wanandroid.com/"
+            resValue "string", "api_host", "https://www.wanandroid.com/"
             manifestPlaceholders = [
                     COMPANY_ID: "1",
             ]

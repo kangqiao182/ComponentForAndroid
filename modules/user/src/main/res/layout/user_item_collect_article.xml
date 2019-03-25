@@ -50,7 +50,7 @@
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_marginTop="@dimen/dp_8"
                     android:contentDescription="article thumbnail"
-                    android:src="@{item.envelopePic}"
+                    android:url="@{item.envelopePic}"
                     android:visibility="@{TextUtils.isEmpty(item.envelopePic) ? View.GONE : View.VISIBLE}"
                     android:scaleType="centerCrop"/>
 

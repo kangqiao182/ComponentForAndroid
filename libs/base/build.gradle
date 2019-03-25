@@ -42,7 +42,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':flutter')
+    api(project(':flutter'), {
+        exclude group: 'com.android.support'
+    })
     api project(":libs:component")
     api project(":libs:common")
     api project(":libs:net")

@@ -25,6 +25,7 @@ object RxUtil {
      * Applies standard Schedulers to an {@link Observable}, ie IO for subscription, Main Thread for
      * onNext/onComplete/onError
      */
+    @JvmStatic
     fun <T> applySchedulersToObservable(): ObservableTransformer<T, T> {
         return ObservableTransformer { observable ->
             observable.subscribeOn(Schedulers.io())
@@ -37,6 +38,7 @@ object RxUtil {
      * Applies standard Schedulers to a [Single], ie IO for subscription, Main Thread for
      * onNext/onComplete/onError
      */
+    @JvmStatic
     fun <T> applySchedulersToSingle(): SingleTransformer<T, T> {
         return SingleTransformer { observable ->
             observable.subscribeOn(Schedulers.io())
@@ -49,6 +51,7 @@ object RxUtil {
      * Applies standard Schedulers to a [io.reactivex.Completable], ie IO for subscription,
      * Main Thread for onNext/onComplete/onError
      */
+    @JvmStatic
     fun applySchedulersToCompletable(): CompletableTransformer {
         return CompletableTransformer { observable ->
             observable.subscribeOn(Schedulers.io())
@@ -60,6 +63,7 @@ object RxUtil {
     /**
      * Allows you to call two different [Observable] objects based on result of a predicate.
      */
+    @JvmStatic
     fun <T, R> ternary(
         predicate: Function<T, Boolean>,
         ifTrue: Function<in T, out Observable<out R>>,
@@ -76,12 +80,14 @@ object RxUtil {
     /**
      * 延时delay秒后重复执行.
      */
+    @JvmStatic
     fun repeatWhenDelay(delay: Int): Function<Observable<Any>, ObservableSource<*>> {
         return Function { objectObservable ->
             objectObservable.delay(delay.toLong(), TimeUnit.SECONDS)
         }
     }
 
+    @JvmStatic
     fun <T> takeUntil(isFinished: Boolean): Predicate<T> {
         return Predicate {
             isFinished
@@ -90,6 +96,7 @@ object RxUtil {
 
     private class Wrapper(val index: Int, val throwable: Throwable)
 
+    @JvmStatic
     fun retryAndDelay(retry: Int = 3, delay: Int = 5000): Function<Observable<out Throwable>, ObservableSource<*>> {
         return Function {
             it.zipWith(Observable.range(1, retry + 1), BiFunction<Throwable, Int, Wrapper> { t1, t2 -> Wrapper(t2, t1) })

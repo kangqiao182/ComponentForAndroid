@@ -9,7 +9,6 @@ import android.view.MenuItem
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zp.android.app.R
-import com.zp.android.app.ui.main.MineFragment
 import com.zp.android.app.ui.search.SearchActivity
 import com.zp.android.base.BaseActivity
 import com.zp.android.component.RouterPath
@@ -19,12 +18,14 @@ import me.yokeyword.fragmentation.SupportFragment
 import android.support.v4.app.ActivityCompat
 import android.widget.TextView
 import com.zp.android.base.RxBus
+import com.zp.android.base.flutter.ZPFlutterFragment
 import com.zp.android.base.utils.RxUtil
 import com.zp.android.component.ServiceManager
 import com.zp.android.component.event.LoginSuccessEvent
 import com.zp.android.component.event.LogoutSuccessEvent
 import com.zp.android.component.service.BackResult
 import com.zp.android.component.service.HandleCallBack
+import me.yokeyword.fragmentation.ISupportFragment
 import org.jetbrains.anko.find
 import org.jetbrains.anko.sdk27.coroutines.onClick
 
@@ -41,7 +42,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         const val FOURTH = 3
     }
 
-    private val mFragments = arrayOfNulls<SupportFragment>(4)
+    private val mFragments = arrayOfNulls<ISupportFragment>(4)
     private var currentTab = FIRST
     private lateinit var tvNavUsername: TextView
     private val userService by lazy { ServiceManager.getUserService() }
@@ -61,6 +62,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         val homeFragment = ARouter.getInstance().build(RouterPath.Home.HOME).navigation() as SupportFragment
         val knowledgeFragment = ARouter.getInstance().build(RouterPath.Knowledge.HOME).navigation() as SupportFragment
         val projectFragment = ARouter.getInstance().build(RouterPath.Project.HOME).navigation() as SupportFragment
+        val wechatFragment = ZPFlutterFragment.newInstance(RouterPath.Flutter.Router.WeChat)
         val firstFragment: SupportFragment? = findFragment(homeFragment.javaClass)
         Log.d(
             "zp:::",
@@ -70,7 +72,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             mFragments[FIRST] = homeFragment
             mFragments[SECOND] = knowledgeFragment
             mFragments[THIRD] = projectFragment
-            mFragments[FOURTH] = MineFragment.newInstance()
+            mFragments[FOURTH] = wechatFragment//MineFragment.newInstance()
 
             loadMultipleRootFragment(
                 R.id.container, currentTab,
@@ -85,7 +87,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             mFragments[FIRST] = firstFragment
             mFragments[SECOND] = findFragment(knowledgeFragment.javaClass)
             mFragments[THIRD] = findFragment(projectFragment.javaClass)
-            mFragments[FOURTH] = findFragment(MineFragment::class.java)
+            //mFragments[FOURTH] = findFragment(MineFragment::class.java)
+            mFragments[FOURTH] = findFragment(wechatFragment.javaClass)
         }
 
         initView(savedInstanceState)
@@ -98,7 +101,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             setSupportActionBar(this)
         }
 
-        val tabIdArray = arrayOf(R.id.action_home, R.id.action_knowledge_system, R.id.action_project, R.id.action_mine)
+        val tabIdArray = arrayOf(R.id.action_home, R.id.action_knowledge_system, R.id.action_project, R.id.action_wechat)
         bottom_navigation.run {
             // 以前使用 BottomNavigationViewHelper.disableShiftMode(this) 方法来设置底部图标和字体都显示并去掉点击动画
             // 升级到 28.0.0 之后，官方重构了 BottomNavigationView ，目前可以使用 labelVisibilityMode = 1 来替代
@@ -113,7 +116,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                         currentTab = selectTab
                     } else { //重复选择当前Tab, TabReselected.
                         mFragments[selectTab]?.run {
-                            if (childFragmentManager.backStackEntryCount > 1) { //说明当前Tab非引模块首页, fragment回退栈数量大于1
+                            if (supportFragmentManager.backStackEntryCount > 1) { //说明当前Tab非引模块首页, fragment回退栈数量大于1
                                 // todo Do what you can do
                             }
                         }

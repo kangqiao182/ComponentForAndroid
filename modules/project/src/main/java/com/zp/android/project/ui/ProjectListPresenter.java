@@ -19,7 +19,7 @@ public class ProjectListPresenter extends JavaPresenter<ProjectListContract.View
     public void getProjectList(int page, int cid) {
         launch(serverAPI.getValue().getProjectList(page, cid)
                 //.doOnSubscribe(disposable -> launch(disposable))
-                .compose(RxUtil.INSTANCE.applySchedulersToObservable())
+                .compose(RxUtil.applySchedulersToObservable())
                 .subscribe(result -> {
                     if (null != getView()) {
                         if (result.isSuccess()) {

@@ -40,10 +40,10 @@ import org.jetbrains.anko.design.themedAppBarLayout
 class WebActivity : BaseActivity() {
 
     companion object {
-        val KEY_ID = "id"
-        val KEY_URL = "url"
-        val KEY_TITLE = "title"
-        val KEY_IS_SHOW_TITLE = "isShowTitle"
+        const val KEY_ID = "id"
+        const val KEY_URL = "url"
+        const val KEY_TITLE = "title"
+        const val KEY_IS_SHOW_TITLE = "isShowTitle"
 
         @JvmOverloads
         @JvmStatic
@@ -68,24 +68,21 @@ class WebActivity : BaseActivity() {
         }
     }
 
-    @Autowired
-    @JvmField
-    var id = 0
-    @Autowired
-    @JvmField
-    var title = ""
-    @Autowired
-    @JvmField
-    var url = ""
-    @Autowired
-    @JvmField
-    var isShowTitle = true
+    @Autowired(name = KEY_ID)
+    @JvmField var id = 0
+    @Autowired(name = KEY_TITLE)
+    @JvmField var title = ""
+    @Autowired(name = KEY_URL)
+    @JvmField var url = ""
+    @Autowired(name = KEY_IS_SHOW_TITLE)
+    @JvmField var isShowTitle = true
 
     private val ui: WebActivityUI by lazy { WebActivityUI() }
     private lateinit var agentWeb: AgentWeb
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        ARouter.getInstance().inject(this)
         id = argument(KEY_ID, 0)
         url = argument(KEY_URL, "")
         title = argument(KEY_TITLE, "")

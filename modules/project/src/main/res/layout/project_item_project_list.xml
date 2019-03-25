@@ -33,7 +33,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="2"
                     android:contentDescription="@null"
-                    android:src="@{item.envelopePic}"
+                    android:url="@{item.envelopePic}"
                     android:visibility="@{TextUtils.isEmpty(item.envelopePic) ? View.GONE : View.VISIBLE}"
                     android:scaleType="centerCrop"/>
 

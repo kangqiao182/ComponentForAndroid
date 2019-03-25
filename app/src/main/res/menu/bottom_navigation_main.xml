@@ -19,11 +19,21 @@
         android:icon="@drawable/ic_project"
         android:title="@string/project"
         app:showAsAction="ifRoom"/>
+
+    <!--
     <item
         android:id="@+id/action_mine"
         android:enabled="true"
         android:icon="@drawable/ic_mine"
         android:title="@string/mine"
         app:showAsAction="ifRoom"/>
+    -->
+
+    <item
+        android:id="@+id/action_wechat"
+        android:enabled="true"
+        android:icon="@drawable/ic_wechat_black_24dp"
+        android:title="@string/wechat"
+        app:showAsAction="ifRoom" />
 
 </menu>

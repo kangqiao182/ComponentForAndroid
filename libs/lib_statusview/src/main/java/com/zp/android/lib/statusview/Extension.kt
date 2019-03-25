@@ -23,69 +23,69 @@ fun Fragment.initStatusView(view: View) = StatusView.init(view)
 
 
 //自定义状态页面配置
-inline fun showStatusView(statusView: StatusView, index: Int, @LayoutRes layoutId: Int, listener: StatusViewConvertListener) {
+fun showStatusView(statusView: StatusView, index: Int, @LayoutRes layoutId: Int, listener: StatusViewConvertListener) {
     statusView.setStatusView(index, layoutId)
     statusView.setOnStatusViewConvertListener(index, listener)
     statusView.showStatusView(index)
 }
 
-inline fun Activity.showStatusView(index: Int, @LayoutRes layoutId: Int,  @IdRes id: Int? = null, listener: StatusViewConvertListener) {
+fun Activity.showStatusView(index: Int, @LayoutRes layoutId: Int,  @IdRes id: Int? = null, listener: StatusViewConvertListener) {
     val statusView: StatusView = if(null == id) StatusView.init(this) else StatusView.init(this, id)
     showStatusView(statusView, index, layoutId, listener)
 }
 
-inline fun Fragment.showStatusView(index: Int, @LayoutRes layoutId: Int, @IdRes id: Int, listener: StatusViewConvertListener) {
+fun Fragment.showStatusView(index: Int, @LayoutRes layoutId: Int, @IdRes id: Int, listener: StatusViewConvertListener) {
     val statusView: StatusView = StatusView.init(this, id)
     showStatusView(statusView, index, layoutId, listener)
 }
 
 //显示加载中页面
-inline fun showLoadingView(statusView: StatusView, @LayoutRes layoutId: Int? = R.layout.sv_empty_layout, listener: StatusViewConvertListener? = null){
+fun showLoadingView(statusView: StatusView, @LayoutRes layoutId: Int? = R.layout.sv_empty_layout, listener: StatusViewConvertListener? = null){
     if (null != layoutId) statusView.setLoadingView(layoutId)
     statusView.setOnLoadingViewConvertListener(listener)
     statusView.showLoadingView()
 }
 
-inline fun Activity.showLoadingView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
+fun Activity.showLoadingView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
     val statusView = StatusView.init(this, id)
     showLoadingView(statusView, layoutId, listener)
 }
 
-inline fun Fragment.showLoadingView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
+fun Fragment.showLoadingView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
     val statusView = StatusView.init(this, id)
     showLoadingView(statusView, layoutId, listener)
 }
 
 //显示空页面
-inline fun showEmptyView(statusView: StatusView, @LayoutRes layoutId: Int? = R.layout.sv_empty_layout, listener: StatusViewConvertListener? = null){
+fun showEmptyView(statusView: StatusView, @LayoutRes layoutId: Int? = R.layout.sv_empty_layout, listener: StatusViewConvertListener? = null){
     if (null != layoutId) statusView.setEmptyView(layoutId)
     statusView.setOnEmptyViewConvertListener(listener)
     statusView.showEmptyView()
 }
 
-inline fun Activity.showEmptyView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
+fun Activity.showEmptyView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
     val statusView = StatusView.init(this, id)
     showEmptyView(statusView, layoutId, listener)
 }
 
-inline fun Fragment.showEmptyView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
+fun Fragment.showEmptyView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
     val statusView = StatusView.init(this, id)
     showEmptyView(statusView, layoutId, listener)
 }
 
 //显示错误页面
-inline fun showErrorView(statusView: StatusView, @LayoutRes layoutId: Int? = R.layout.sv_empty_layout, listener: StatusViewConvertListener? = null){
+fun showErrorView(statusView: StatusView, @LayoutRes layoutId: Int? = R.layout.sv_empty_layout, listener: StatusViewConvertListener? = null){
     if (null != layoutId) statusView.setErrorView(layoutId)
     statusView.setOnErrorViewConvertListener(listener)
     statusView.showErrorView()
 }
 
-inline fun Activity.showErrorView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
+fun Activity.showErrorView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
     val statusView = StatusView.init(this, id)
     showErrorView(statusView, layoutId, listener)
 }
 
-inline fun Fragment.showErrorView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
+fun Fragment.showErrorView(@IdRes id: Int, @LayoutRes layoutId: Int? = null, listener: StatusViewConvertListener? = null ) {
     val statusView = StatusView.init(this, id)
     showErrorView(statusView, layoutId, listener)
 }

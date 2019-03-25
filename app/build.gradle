@@ -13,7 +13,7 @@ kapt {
 }
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "com.zp.android.app"
@@ -92,7 +92,7 @@ configurations.all {
 */
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     //implementation project(':flutter')
     api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api project(':store:wanandroid')
@@ -104,7 +104,6 @@ dependencies {
     implementation project(':modules:project')
     kapt arouterCompilerKapt
     kapt databindingKapt
-
     // testImplementation rootProject.ext.testDeps["junit"]
     // androidTestImplementation rootProject.ext.testDeps["runner"]
     // androidTestImplementation rootProject.ext.testDeps["espresso-core"]

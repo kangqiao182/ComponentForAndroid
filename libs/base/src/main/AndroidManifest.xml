@@ -7,6 +7,6 @@
     <application>
         <activity android:name=".ui.WebActivity"/>
         <activity android:name=".ui.AuthorizationActivity"/>
-        <activity android:name=".flutter.FlutterContainerActivity"/>
+        <activity android:name=".flutter.ZPFlutterActivity"/>
     </application>
 </manifest>

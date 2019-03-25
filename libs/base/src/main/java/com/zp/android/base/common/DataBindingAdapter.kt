@@ -9,9 +9,9 @@ import com.zp.android.common.GlideApp
 
 object DataBindingAdapter {
     @JvmStatic
-    @BindingAdapter("android:src")
+    @BindingAdapter("android:url")
     fun setImageUrl(view: ImageView, url: String) {
-        Glide.with(view.context).load(url).into(view)
+        Glide.with(view).load(url).into(view)
         /*GlideApp.with(view.context)
             .load(url)
             .into(view)*/
