@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_modules/config/WeChatRouter.dart';
 import 'package:flutter_modules/core/AppProvider.dart';
 import 'package:flutter_modules/core/Env.dart';
 import 'package:flutter_modules/core/ZPApplication.dart';
@@ -30,6 +31,7 @@ class AppComponentState extends State<AppComponent> {
     final app = new MaterialApp(
       title: Env.value.appName,
       theme: new ThemeData(
+        canvasColor: Colors.white,
         splashColor: Color.fromRGBO(255, 255, 255, 0),
         highlightColor: Color.fromRGBO(255, 255, 255, 0),
         textTheme: new TextTheme(
@@ -41,9 +43,9 @@ class AppComponentState extends State<AppComponent> {
             body1: new TextStyle(fontFamily: 'HanSansRegular')),
         primaryTextTheme: new TextTheme(title: new TextStyle(fontFamily: 'HanSansRegular')),
         accentTextTheme: new TextTheme(title: new TextStyle(fontFamily: 'HanSansRegular')),
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      initialRoute: window.defaultRouteName,
+      initialRoute: WeChatRouter.WECHAT,//window.defaultRouteName,
       onGenerateRoute: _application.router.generator,
     );
 

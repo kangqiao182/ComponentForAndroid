@@ -27,9 +27,12 @@ class WXChapter {
   int visible;
 
   @JsonKey(name: "children")
-  List<Object> children;
+  List<String> children;
 
   WXChapter();
+
+  static List<WXChapter> fromJsonArr(dynamic jsonArr) =>
+      (jsonArr as List)?.map((e) => e == null ? null : WXChapter.fromJson(e as Map<String, dynamic>))?.toList();
 
   factory WXChapter.fromJson(Map<String, dynamic> json) => _$WXChapterFromJson(json);
 

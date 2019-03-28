@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter_modules/config/ZPFlutterPlugin.dart';
 import 'package:flutter_modules/core/Env.dart';
-import 'package:flutter_modules/net/exceptions/ResponseException.dart';
 import 'package:flutter_modules/net/exceptions/HttpException.dart';
+import 'package:flutter_modules/utils/ToastUtil.dart';
 import 'package:flutter_modules/utils/log/DioLogger.dart';
 import 'package:flutter_modules/utils/log/Log.dart';
 import 'package:sprintf/sprintf.dart';
@@ -15,8 +15,8 @@ abstract class BaseApi implements Interceptor {
   Dio _dio;
   final String baseUrl;
 
-  BaseApi(
-    this.baseUrl, {
+  BaseApi({
+    this.baseUrl, 
     int connectTimeout: 5000,
     int receiveTimeout: 3000,
     Iterable<Cookie> cookies,

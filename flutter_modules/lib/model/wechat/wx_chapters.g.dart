@@ -15,7 +15,7 @@ WXChapter _$WXChapterFromJson(Map<String, dynamic> json) {
     ..parentChapterId = json['parentChapterId'] as int
     ..userControlSetTop = json['userControlSetTop'] as bool
     ..visible = json['visible'] as int
-    ..children = json['children'] as List;
+    ..children = (json['children'] as List)?.map((e) => e as String)?.toList();
 }
 
 Map<String, dynamic> _$WXChapterToJson(WXChapter instance) => <String, dynamic>{

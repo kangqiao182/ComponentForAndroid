@@ -1,10 +1,18 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:flutter_modules/utils/Log.dart';
+import 'package:flutter_modules/config/NativeRouter.dart';
+import 'package:flutter_modules/core/Env.dart';
+import 'package:flutter_modules/utils/log/Log.dart';
 
 
 class ZPFlutterPlugin {
-  static const MethodChannel _channel = MethodChannel('plugins.flutter.io/zp_container');
+  static const MethodChannel _channel = MethodChannel('plugins.flutter.io.zp_container');
+  static const METHOD_BASE_URL      = "baseUrl";
+  static const METHOD_HTTP_HEADER   = "httpHeader";
+  static const METHOD_TOKEN         = "token";
+  static const METHOD_COOKIE        = "cookie";
+  static const METHOD_ROUTE         = "route";
 
   static ZPFlutterPlugin get instance => _getInstance();
   static ZPFlutterPlugin _instance;
@@ -26,17 +34,17 @@ class ZPFlutterPlugin {
   // Flutter调用原生 ///////////////////////////
   ////////////////////////////////////////////
 
-  Map<String, dynamic> _cachedRequestHttpHeader;
-  String _cachedBaseUrl;
+  Map<String, dynamic> _cachedRequestHttpHeader = {"Content-type": "application/json; charset=utf-8",};
+  String _cachedBaseUrl = "https://www.wanandroid.com/";
 
-  Future<String> get baseUrl async => _cachedBaseUrl ??= await _channel.invokeMethod('authBaseUrl');
+  Future<String> get baseUrl async => _cachedBaseUrl ??= await _channel.invokeMethod('baseUrl');
 
   Future<Map> get httpHeader async {
     if (null == _cachedRequestHttpHeader || _cachedRequestHttpHeader.isEmpty) {
       var map = await _channel.invokeMethod('httpHeader');
-      Log.d("Header>>>${map}");
+      Log.info("Header>>>${map}");
       _cachedRequestHttpHeader = {};
-      map.forEach((key, val) {
+      map?.forEach((key, val) {
         _cachedRequestHttpHeader[key] = val;
       });
     }
@@ -47,15 +55,21 @@ class ZPFlutterPlugin {
 
   Future<String> get cookie async => await _channel.invokeMethod('cookie');
 
-  Future<dynamic> route({bool isBack, String goto}) async {
-    return _channel.invokeMethod("route", {'exit': isBack, 'goto': goto});
+  Future<dynamic> route(bool exit, String goto, String param) async {
+    return _channel.invokeMethod("route", {'exit': exit, 'goto': goto, 'param': param});
   }
 
   //goto 默认不退出当前Native所在页面, 仅跳转.
-  Future<dynamic> goto(String goto) => route(isBack: false, goto: goto);
+  Future<dynamic> goto(String goto, {bool isExit: false, String param}) => route(isExit, goto, param);
 
   //exit 退出当前Native所在页面, 可选跳转.
-  Future<dynamic> exit({String goto}) => route(isBack: true, goto: goto);
+  Future<dynamic> exit({String goto, String param}) => route(true, goto, param);
+
+  //用Native的WebView打开网页
+  Future<dynamic> nativeWeb(String url, String title, {int id, bool isExit: false}) {
+    var param = json.encode({"url": url, "title": title, "id": id});
+    return route(isExit, NativeRouter.WEB, param);
+  }
 
   ////////////////////////////////////////////
   // 原生调用Flutter ///////////////////////////

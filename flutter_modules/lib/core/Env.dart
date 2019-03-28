@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_modules/core/AppComponent.dart';
 import 'package:flutter_modules/core/ZPApplication.dart';
 
 class Env {
   static Env value;
+  static bool isRunAlone = true;
 
   String appName;
   String baseUrl;
@@ -15,6 +18,7 @@ class Env {
 
   Env() {
     value = this;
+    isRunAlone = window.defaultRouteName == "/";
     _init();
   }
 

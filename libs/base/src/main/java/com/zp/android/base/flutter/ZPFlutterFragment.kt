@@ -2,6 +2,7 @@ package com.zp.android.base.flutter
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,7 +24,7 @@ import me.yokeyword.fragmentation.*
 class ZPFlutterFragment : BaseFragment() {
 
     companion object {
-        const val TAG_FLUTTER_FRAGMENT = "flutter_container_fragment"
+        const val TAG = "ZPFlutterFragment"
         fun newInstance(route: String): ISupportFragment {
             return ZPFlutterFragment().also {
                 it.arguments = Bundle().apply {
@@ -40,7 +41,7 @@ class ZPFlutterFragment : BaseFragment() {
     }
 
     @Autowired(name = RouterPath.Flutter.PARAM.ROUTE)
-    @JvmField var route: String = "/"
+    @JvmField var route: String = ""
     private var flutterView: FlutterView? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -48,7 +49,7 @@ class ZPFlutterFragment : BaseFragment() {
         val rootView = FrameLayout(_mActivity)
         flutterView = Flutter.createView(_mActivity, lifecycle, route)
         flutterView?.run {
-            ZPFlutterPlugin.registerWith(this.pluginRegistry.registrarFor(ZPFlutterPlugin::class.java.name))
+            ZPFlutterPlugin.registerWith(this.pluginRegistry.registrarFor(ZPFlutterPlugin.javaClass.name))
         }
         rootView.layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         rootView.addView(flutterView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
@@ -59,9 +60,24 @@ class ZPFlutterFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onBackPressedSupport(): Boolean {
+        if (null != flutterView) {
+            flutterView?.popRoute()
+            return true
+        } else {
+            return super.onBackPressedSupport()
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         flutterView?.pluginRegistry?.onActivityResult(requestCode, resultCode, data)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (null != flutterView) {
+            flutterView = null
+        }
+    }
 }

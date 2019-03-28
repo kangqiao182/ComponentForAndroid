@@ -41,4 +41,6 @@ class ColorRes {
       900: const Color(primaryDarkValue),
     },
   );
+
+  static const int global_toast_bg_color = 0xff191D2B;
 }

@@ -35,21 +35,25 @@ object NetUtils {
 
     fun setConfig(key: String, value: String) = sp.edit().putString(key, value).apply()
 
+    var cookies: String
+        get() = getConfig(HttpConstant.COOKIE_NAME)
+        set(value) = setConfig(HttpConstant.COOKIE_NAME, value)
+
     var token: String
-        get() = getConfig(KEY_TOKEN)
-        set(value) = setConfig(KEY_TOKEN, value)
+        get() = getConfig(HttpConstant.KEY_TOKEN)
+        set(value) = setConfig(HttpConstant.KEY_TOKEN, value)
 
     var cloudToken: String
-        get() = getConfig(KEY_CLOUD_TOKEN)
-        set(value) = setConfig(KEY_CLOUD_TOKEN, value)
+        get() = getConfig(HttpConstant.KEY_CLOUD_TOKEN)
+        set(value) = setConfig(HttpConstant.KEY_CLOUD_TOKEN, value)
 
     var uuid: String
-        get() = getConfig(KEY_UUID, "none")
-        set(value) = setConfig(KEY_UUID, value)
+        get() = getConfig(HttpConstant.KEY_UUID, "none")
+        set(value) = setConfig(HttpConstant.KEY_UUID, value)
 
     var userId: String
-        get() = getConfig(KEY_USER_ID, "none")
-        set(value) = setConfig(KEY_USER_ID, value)
+        get() = getConfig(HttpConstant.KEY_USER_ID, "none")
+        set(value) = setConfig(HttpConstant.KEY_USER_ID, value)
 
     val isLoginCloud: Boolean get() = cloudToken.isNotEmpty()
     val isLoginLocal: Boolean get() = token.isNotEmpty()
@@ -65,6 +69,13 @@ object NetUtils {
         } else {
             return baseUrl.trimEnd('/') + "/" + url.trimStart('/')
         }
+    }
+
+    fun getHttpHeader(): Map<String, String> {
+        return mapOf(
+            "Content-type" to "application/json; charset=utf-8",
+            HttpConstant.COOKIE_NAME to cookies
+        )
     }
 
     //根据baseUrl和参数列表, 排列列表 生成缓存网络请求时的cacheKey

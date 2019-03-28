@@ -1,4 +1,4 @@
-import 'package:flutter_modules/api/WeChatAPI.dart';
+import 'package:flutter_modules/api/WeChatApi.dart';
 import 'package:flutter_modules/config/CommonRouter.dart';
 import 'package:flutter_modules/config/WeChatRouter.dart';
 import 'package:flutter_modules/core/Application.dart';
@@ -16,7 +16,7 @@ class ZPApplication implements Application {
   Future<void> onCreate() async {
     _initLog();
     _initRouter();
-    _initAPI();
+    await _initAPI();
   }
 
   @override
@@ -34,14 +34,14 @@ class ZPApplication implements Application {
     }
   }
 
-  void _initRouter(){
+  void _initRouter() {
     router = new Router();
     CommonRouter.configureRoutes(router);
     WeChatRouter.configureRoutes(router);
   }
 
   void _initAPI() async {
-    //weChatApi = await KycAPI.getInstance();
+    weChatApi = await WeChatApi.getInstance();
   }
 }
 

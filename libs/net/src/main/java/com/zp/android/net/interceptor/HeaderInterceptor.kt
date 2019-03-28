@@ -1,7 +1,6 @@
 package com.zp.android.net.interceptor
 
 import com.zp.android.net.HttpConstant
-import com.zp.android.net.KEY_TOKEN
 import com.zp.android.net.NetUtils
 import okhttp3.Interceptor
 import okhttp3.Response
@@ -16,7 +15,7 @@ class HeaderInterceptor : Interceptor {
     /**
      * token
      */
-    private var token: String = NetUtils.getConfig(KEY_TOKEN, "")
+    private var token: String = NetUtils.getConfig(HttpConstant.KEY_TOKEN, "")
 
     override fun intercept(chain: Interceptor.Chain): Response {
 

@@ -6,6 +6,13 @@ package com.zp.android.net
  */
 object HttpConstant {
 
+    const val KEY_TOKEN = "token"
+    const val KEY_CLOUD_TOKEN = "cloud_token"
+    const val KEY_UUID = "uuid"
+    const val KEY_USER_ID = "user_id"
+    const val KEY_KICK_OFF = "kick_off"
+    const val SETTING_DEBUG_API = "setting_debug_api"
+
     const val DEFAULT_TIMEOUT: Long = 15
     const val SAVE_USER_LOGIN_KEY = "user/login"
     const val SAVE_USER_REGISTER_KEY = "user/register"
@@ -47,6 +54,7 @@ object HttpConstant {
         NetUtils.setConfig(url, cookies)
         domain ?: return
         NetUtils.setConfig(domain, cookies)
+        NetUtils.cookies = cookies
     }
 
 }
