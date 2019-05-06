@@ -5,7 +5,7 @@ import com.zp.android.base.utils.RxUtil;
 import com.zp.android.project.ServerAPI;
 import io.reactivex.functions.Action;
 import kotlin.Lazy;
-import org.koin.java.standalone.KoinJavaComponent;
+import org.koin.java.KoinJavaComponent;
 
 
 /**

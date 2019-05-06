@@ -11,7 +11,7 @@ import com.zp.android.base.mvvm.*
 import com.zp.android.base.showToast
 import com.zp.android.component.RouterPath
 import com.zp.android.lib.statusview.*
-import org.jetbrains.anko.*
+import org.jetbrains.anko.AnkoContext
 import org.koin.android.viewmodel.ext.android.viewModel
 import timber.log.Timber
 

@@ -31,7 +31,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static org.koin.java.standalone.KoinJavaComponent.*;
+import kotlin.Lazy;
+import org.koin.java.KoinJavaComponent;
 
 /**
  * Created by zhaopan on 2018/11/17.
@@ -55,7 +56,7 @@ public class ProjectListFragment extends BaseFragment implements ProjectListCont
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     BaseQuickAdapter<Article, DBViewHolder> adapter;
-    ProjectListContract.Presenter presenter;
+    Lazy<ProjectListContract.Presenter> presenter = KoinJavaComponent.inject(ProjectListContract.Presenter.class);
 
     @Nullable
     @Override
@@ -143,10 +144,7 @@ public class ProjectListFragment extends BaseFragment implements ProjectListCont
     @NotNull
     @Override
     public ProjectListContract.Presenter getPresenter() {
-        if (null == presenter) {
-            presenter = get(ProjectListContract.Presenter.class);
-        }
-        return presenter;
+        return presenter.getValue();
     }
 
     @Override

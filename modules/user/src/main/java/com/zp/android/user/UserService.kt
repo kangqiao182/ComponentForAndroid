@@ -15,8 +15,8 @@ import com.zp.android.component.service.IUserService
 import com.zp.android.net.exception.ExceptionHandle
 import com.zp.android.store.wanandroid.Constant.Companion.LOGIN_KEY
 import com.zp.android.store.wanandroid.Constant.Companion.USERNAME_KEY
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 import timber.log.Timber
 
 /**
@@ -27,7 +27,7 @@ import timber.log.Timber
 class UserService2 : IUserService, KoinComponent {
 
     //手动注入需要的spStorage和server
-    private val spStorage: SPStorage by inject(name = "User")
+    private val spStorage: SPStorage by inject()
     private val server: ServerAPI by inject()
 
     override fun init(context: Context) {

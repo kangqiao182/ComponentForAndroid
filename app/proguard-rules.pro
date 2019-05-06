@@ -242,6 +242,11 @@
     @com.alibaba.android.arouter.facade.annotation.Autowired <fields>;
 }
 
+# AgentWeb https://github.com/Justson/AgentWeb
+-keep class com.just.agentweb.** {
+    *;
+}
+-dontwarn com.just.agentweb.**
 
 # VirtualApk
 -keep class com.didi.virtualapk.internal.VAInstrumentation { *; }

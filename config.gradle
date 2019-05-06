@@ -18,7 +18,7 @@ ext {
             paging                  : "1.0.0",
             room                    : "1.1.1",
             anko                    : "0.10.8",
-            koin                    : "1.0.2",
+            koin                    : "2.0.0-rc-2",
 
             retrofit                : "2.4.0",
             okHttp                  : "3.11.0",
@@ -84,6 +84,7 @@ ext {
     archDeps = [
             "fragmentation"         : "me.yokeyword:fragmentation:1.3.3",
 
+            //https://github.com/Kotlin/anko
             "anko"                  : "org.jetbrains.anko:anko:${dependVersion.anko}",
             "ankoDesign"            : "org.jetbrains.anko:anko-design:${dependVersion.anko}",
             "ankoDesignCoroutines"  : "org.jetbrains.anko:anko-design-coroutines:${dependVersion.anko}",
@@ -91,6 +92,8 @@ ext {
             "ankoRecyclerviewV7"    : "org.jetbrains.anko:anko-recyclerview-v7:${dependVersion.anko}",
             "ankoRecyclerviewV7Coroutines": "org.jetbrains.anko:anko-recyclerview-v7-coroutines:${dependVersion.anko}",
             "ankoConstraintLayout"  : "org.jetbrains.anko:anko-constraint-layout:${dependVersion.anko}",
+            "ankoCardViewV7"        : "org.jetbrains.anko:anko-cardview-v7:${dependVersion.anko}",
+            "ankoGridLayoutV7"      : "org.jetbrains.anko:anko-gridlayout-v7:${dependVersion.anko}",
 
             "koinJava"              : "org.koin:koin-java:${dependVersion.koin}",
             "koinAndroid"           : "org.koin:koin-android:${dependVersion.koin}",
@@ -178,7 +181,7 @@ ext {
     commonLibs = commonDeps.values()
 
     //databindingKapt = "com.android.databinding:compiler:3.2.0-alpha10"
-    databindingKapt = "androidx.databinding:databinding-compiler:3.2.1"
+    //databindingKapt = "androidx.databinding:databinding-compiler:3.2.1"
     //https://github.com/laszlo-galosi/ankodemo/blob/f8df3da79684580d422ef2f417268a47fd5a78c3/app/build.gradle
 
     arouterCompilerKapt = "com.alibaba:arouter-compiler:1.2.2"

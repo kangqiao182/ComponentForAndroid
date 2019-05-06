@@ -2,15 +2,13 @@ package com.zp.android.knowledge
 
 import android.app.Application
 import com.zp.android.base.ModuleApp
-import org.koin.android.ext.android.startKoin
-import org.koin.standalone.StandAloneContext
+import org.koin.core.context.loadKoinModules
 
 /**
  * Created by zhaopan on 2018/10/28.
  */
 
 class KnowledgeApp : ModuleApp() {
-
 
     override fun onCreate() {
         super.onCreate()
@@ -20,8 +18,7 @@ class KnowledgeApp : ModuleApp() {
     }
 
     override fun initModuleApp(application: Application) {
-        //startKoin(application.applicationContext, moduleList)
-        StandAloneContext.loadKoinModules(moduleList)
+        loadKoinModules(moduleList)
     }
 
     override fun initModuleData(application: Application) {

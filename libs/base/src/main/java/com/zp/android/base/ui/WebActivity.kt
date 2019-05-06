@@ -97,7 +97,7 @@ class WebActivity : BaseActivity() {
             setNavigationOnClickListener { finish() }
         }
         ui.tvTitle.apply {
-            setText(R.string.loading)
+            setText(R.string.agentweb_loading)
             visible()
             postDelayed ({
                 ui.tvTitle.isSelected = true

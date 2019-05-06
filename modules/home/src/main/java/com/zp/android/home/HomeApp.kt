@@ -2,7 +2,7 @@ package com.zp.android.home
 
 import android.app.Application
 import com.zp.android.base.ModuleApp
-import org.koin.standalone.StandAloneContext
+import org.koin.core.context.loadKoinModules
 
 /**
  * Created by zhaopan on 2018/9/18.
@@ -18,8 +18,7 @@ class HomeApp : ModuleApp() {
     }
 
     override fun initModuleApp(application: Application) {
-        //startKoin(application.applicationContext, moduleList)
-        StandAloneContext.loadKoinModules(moduleList)
+        loadKoinModules(moduleList)
     }
 
     override fun initModuleData(application: Application) {

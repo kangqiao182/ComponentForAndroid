@@ -11,6 +11,10 @@ import com.zp.android.base.utils.CrashHandler
 import com.zp.android.base.utils.I18NUtil
 import com.zp.android.base.utils.SPUtil
 import me.yokeyword.fragmentation.Fragmentation
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import timber.log.Timber
 
 /**
@@ -57,6 +61,13 @@ open abstract class BaseApp: MultiDexApplication() {
     //BaseApp的OnCreate中写相关
     override fun onCreate() {
         super.onCreate()
+
+        // Start Koin
+        startKoin{
+            androidLogger(level = Level.DEBUG)
+            androidContext(this@BaseApp)
+            //modules(appModule)
+        }
 
         // 初始化 ARouter
         if (BuildConfig.DEBUG) {

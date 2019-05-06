@@ -103,7 +103,7 @@ dependencies {
     implementation project(':modules:user')
     implementation project(':modules:project')
     kapt arouterCompilerKapt
-    kapt databindingKapt
+    //kapt databindingKapt
     // testImplementation rootProject.ext.testDeps["junit"]
     // androidTestImplementation rootProject.ext.testDeps["runner"]
     // androidTestImplementation rootProject.ext.testDeps["espresso-core"]
