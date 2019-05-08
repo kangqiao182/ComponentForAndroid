@@ -21,6 +21,9 @@ android {
 
     }
 
+    dataBinding.enabled true
+    resourcePrefix project.getName() + "_"
+
     buildTypes {
         release {
             minifyEnabled false
@@ -29,9 +32,6 @@ android {
         debug {
         }
     }
-
-    resourcePrefix "base_"
-    dataBinding.enabled true
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

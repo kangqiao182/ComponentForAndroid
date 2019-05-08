@@ -14,8 +14,8 @@ android {
         versionName "1.0"
     }
 
-    resourcePrefix "common_"
     dataBinding.enabled true
+    //resourcePrefix project.getName() + "_"
 
     buildTypes {
         release {
@@ -34,7 +34,7 @@ android {
 
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
 
     configurations {
         all*.exclude group: 'com.android.support', module: 'support-v13'
@@ -57,10 +57,8 @@ dependencies {
         exclude group: 'glide-parent'
     }
 
-    // testImplementation rootProject.ext.testDeps["junit"]
-    // androidTestImplementation rootProject.ext.testDeps["runner"]
-    // androidTestImplementation rootProject.ext.testDeps["espresso-core"]
-    // //leakCanary
-    // debugImplementation rootProject.ext.testDeps["leakcanary-debug"]
-    // releaseImplementation rootProject.ext.testDeps["leakcanary-release"]
+    //"flow-layout"           : 'com.hyman:flowlayout-lib:1.1.2',
+    //"sanckbar"              : "com.androidadvance:topsnackbar:1.1.1",
+    //"editText"              : "com.rengwuxian.materialedittext:library:2.1.4",
+    //"statusbar"             : "com.jaeger.statusbarutil:library:1.5.1",
 }

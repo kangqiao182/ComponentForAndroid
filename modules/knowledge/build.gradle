@@ -65,5 +65,4 @@ dependencies {
     api project(':store:wanandroid')
     api project(':libs:base')
     kapt arouterCompilerKapt
-    //kapt databindingKapt
 }

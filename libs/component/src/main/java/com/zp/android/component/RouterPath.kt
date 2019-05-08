@@ -27,6 +27,10 @@ object RouterPath {
                 const val AUTH_RESPONSE_RESULT = "response_result"
                 const val AUTH_MODE = "auth_mode"
                 const val AUTH_TYPE = "auth_type"
+                const val KEY_ID = "id"
+                const val KEY_URL = "url"
+                const val KEY_TITLE = "title"
+                const val KEY_IS_SHOW_TITLE = "isShowTitle"
             }
         }
     }

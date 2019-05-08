@@ -5,6 +5,21 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.alibaba.arouter'
 apply plugin: 'com.didi.virtualapk.host'
+apply plugin: 'jacoco-android'
+
+jacoco {
+    toolVersion = "0.8.3"
+}
+
+tasks.withType(Test) {
+    jacoco.includeNoLocationClasses = true
+}
+
+jacocoAndroidUnitTestReport {
+    csv.enabled false
+    html.enabled true
+    xml.enabled true
+}
 
 kapt {
     arguments {
@@ -13,7 +28,8 @@ kapt {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         applicationId "com.zp.android.app"
@@ -26,7 +42,7 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        renderscriptTargetApi 21
+        renderscriptTargetApi rootProject.ext.android.minSdkVersion
         renderscriptSupportModeEnabled true
 
         ndk {
@@ -42,6 +58,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
+            testCoverageEnabled true
         }
     }
 
@@ -54,6 +71,8 @@ android {
         exclude 'javax/annotation/**'
         exclude 'com/google/**'
         exclude 'org/bitcoinj/**'
+
+        exclude 'LICENSE.txt'
     }
 
     lintOptions {
@@ -70,31 +89,21 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     androidExtensions {
         experimental = true
     }
-}
 
-/*
-configurations.all {
-    resolutionStrategy {
-        force "com.squareup.okio:okio:1.13.0"
-        force "com.squareup.okhttp3:okhttp:{$dependVersion.okHttp}"
-        force  (group: "com.android.support", name: 'support-v4', version: "{$dependVersion.support}")
-        force  (group: "com.android.support", name: 'support-v7', version: "{$dependVersion.support}")
-        force  (group: "com.android.support", name: 'recyclerview-v7', version: "{$dependVersion.support}")
-        force  (group: "com.android.support", name: 'support-annotations', version: "{$dependVersion.support}")
-        force 'com.fasterxml.jackson.core:jackson-databind:2.9.0.pr3'
-        force 'com.fasterxml.jackson.core:jackson-core:2.9.0.pr3'
-        force 'com.fasterxml.jackson.core:jackson-annotations:2.9.0.pr3'
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
     }
 }
-*/
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    //implementation project(':flutter')
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     api project(':store:wanandroid')
     api project(':libs:base')
     //implementation project(':modules:test')
@@ -104,12 +113,12 @@ dependencies {
     implementation project(':modules:project')
     kapt arouterCompilerKapt
     //kapt databindingKapt
-    // testImplementation rootProject.ext.testDeps["junit"]
-    // androidTestImplementation rootProject.ext.testDeps["runner"]
-    // androidTestImplementation rootProject.ext.testDeps["espresso-core"]
-    // //leakCanary
-    // debugImplementation rootProject.ext.testDeps["leakcanary-debug"]
-    // releaseImplementation rootProject.ext.testDeps["leakcanary-release"]
+
+    testImplementation rootProject.ext.testLibs
+    androidTestImplementation rootProject.ext.androidTestLibs
+    //leakCanary
+    //debugImplementation rootProject.ext.leakcanaryDeps["leakcanary-debug"]
+    //releaseImplementation rootProject.ext.leakcanaryDeps["leakcanary-release"]
 }
 
 //https://github.com/MEiDIK/Cipher.so

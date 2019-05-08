@@ -17,6 +17,8 @@ import com.zp.android.base.mvvm.LoadingEvent
 import com.zp.android.base.mvvm.SuccessEvent
 import com.zp.android.base.showToast
 import com.zp.android.common.DBViewHolder
+import com.zp.android.common.DataBindingQuickAdapter
+import com.zp.android.common.DataBindingViewHolder
 import com.zp.android.component.RouterPath
 import com.zp.android.knowledge.BR
 import com.zp.android.knowledge.KnowledgeTreeBody
@@ -47,7 +49,7 @@ class MainFragment : BaseFragment() {
     }
 
     private val viewModel by viewModel<ViewModel>()
-    private lateinit var adapter: BaseQuickAdapter<KnowledgeTreeBody, DBViewHolder>
+    private lateinit var adapter: DataBindingQuickAdapter<KnowledgeTreeBody>
     private lateinit var statusView: StatusView
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -74,8 +76,8 @@ class MainFragment : BaseFragment() {
             addItemDecoration(DividerItemDecoration(_mActivity, DividerItemDecoration.VERTICAL).apply {
                 ContextCompat.getDrawable(_mActivity, R.drawable.base_divider_line)?.let { setDrawable(it) }
             })
-        }.adapter = object : BaseQuickAdapter<KnowledgeTreeBody, DBViewHolder>(R.layout.knowledge_item_tree_list) {
-            override fun convert(holder: DBViewHolder, item: KnowledgeTreeBody) {
+        }.adapter = object : DataBindingQuickAdapter<KnowledgeTreeBody>(R.layout.knowledge_item_tree_list) {
+            override fun convert(holder: DataBindingViewHolder, item: KnowledgeTreeBody) {
                 holder.bindTo(BR.item, item)
             }
         }.apply {

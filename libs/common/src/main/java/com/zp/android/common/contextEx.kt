@@ -10,7 +10,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.widget.TextView
-import com.androidadvance.topsnackbar.TSnackbar
+import com.zp.android.common.topsnackbar.TSnackbar
 import org.jetbrains.anko.contentView
 import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
@@ -24,7 +24,7 @@ inline fun snackBarToast(view: View, content: String, duration: Int = TSnackbar.
     var snackbar = TSnackbar.make(view, content, duration)
     var snackbarView = snackbar.view
     snackbarView.setBackgroundColor(Color.argb(220, 245,98, 98))
-    val textView = snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text) as TextView
+    val textView = snackbarView.findViewById(R.id.snackbar_text) as TextView
     textView.gravity = Gravity.CENTER
     textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
     textView.setTextColor(Color.WHITE)

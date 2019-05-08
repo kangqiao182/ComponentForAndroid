@@ -2,6 +2,7 @@ package com.zp.android.common
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
+import android.support.annotation.LayoutRes
 import android.view.View
 import android.view.View.NO_ID
 import android.view.ViewGroup
@@ -46,6 +47,41 @@ fun isBindingView(view: View): Boolean {
     if (binding != null) return true
     // DataBinding的实现过程中都会往RootView中注入"layout/....."字符
     return (view.tag as? String)?.startsWith("layout/") ?: false
+}
+
+/**
+ * 注: 在使用Databinding适配Adapter时, 主项目依赖子项目时, 不能使用RuntimeOnly依赖,
+ * 否则无法生成DataBinderMapperImpl实现类, 即无法加载子项目生成的DataBinding绑定类.
+ */
+
+/**
+ * 用于Databinding适配的BaseQuickAdapter
+ */
+open abstract class DataBindingQuickAdapter<T> constructor(@LayoutRes layoutResId: Int, data: List<T>? = null): BaseQuickAdapter<T, DataBindingViewHolder>(layoutResId, data) {
+
+    override fun getItemView(layoutResId: Int, parent: ViewGroup): View {
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(mLayoutInflater, layoutResId, parent, false) ?: return super.getItemView(layoutResId, parent)
+        val view = binding.root
+        view.setTag(R.id.BaseQuickAdapter_databinding_support, binding)
+        return view
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingViewHolder {
+        return super.onCreateViewHolder(parent, viewType)
+    }
+}
+
+open class DataBindingViewHolder(view: View): BaseViewHolder(view) {
+
+    val binding: ViewDataBinding?
+        get() = itemView.getTag(R.id.BaseQuickAdapter_databinding_support) as? ViewDataBinding
+
+    fun <T> bindTo(brId: Int, item: T) {
+        binding?.apply {
+            setVariable(brId, item)
+            executePendingBindings()
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////

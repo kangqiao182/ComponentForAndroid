@@ -22,7 +22,7 @@ public class LinkedHorizontalScrollView extends HorizontalScrollView {
         super(context, attrs, defStyleAttr);
     }
 
-    public void setOnScrollChangeListener(LinkScrollChangeListener listener) {
+    public void setLinkScrollChangeListener(LinkScrollChangeListener listener) {
         this.listener = listener;
     }
 

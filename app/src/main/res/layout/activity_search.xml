@@ -32,7 +32,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/sp_16" />
 
-            <com.zhy.view.flowlayout.TagFlowLayout
+            <com.zp.android.common.flowlayout.TagFlowLayout
                 android:id="@+id/hot_search_flow_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

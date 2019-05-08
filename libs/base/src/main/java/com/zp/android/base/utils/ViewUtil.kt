@@ -29,7 +29,6 @@ import android.view.WindowManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import com.androidadvance.topsnackbar.TSnackbar
 import com.zp.android.base.CtxUtil
 import com.zp.android.base.R
 
@@ -81,22 +80,6 @@ object ViewUtil {
         objectAnimator.repeatCount = 3
         objectAnimator.start()
 
-    }
-
-    /****
-     * if you have your owen title bar , you have to use CoordinatorLayout
-     * wrap your messageContent view other wise snackbar view show below statusbar
-     */
-    fun showErrorSnackbar(view: View, text: String, showLength: Int): TSnackbar {
-        var tSnackbar = TSnackbar.make(view, text, showLength)
-        var snackbarView = tSnackbar.view
-        snackbarView.setBackgroundColor(Color.argb(220, 245,98, 98))
-        val textView = snackbarView.findViewById(com.androidadvance.topsnackbar.R.id.snackbar_text) as TextView
-        textView.gravity = Gravity.CENTER
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
-        textView.setTextColor(Color.WHITE)
-        tSnackbar.show()
-        return tSnackbar
     }
 
     fun getTextSpan(text: CharSequence, startIndex: Int, endIndex: Int, textColor: Int, textSize: Int): CharSequence? {

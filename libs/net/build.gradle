@@ -15,6 +15,8 @@ android {
 
     }
 
+    resourcePrefix project.getName() + "_"
+
     buildTypes {
         release {
             resValue "string", "api_host", "https://www.wanandroid.com/"
@@ -41,7 +43,7 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib:${versions.kotlin}"
     api rootProject.ext.supportDeps["appcompatv7"]
     api rootProject.ext.otherDeps["spongycastle"]
     api rxJavaLibs

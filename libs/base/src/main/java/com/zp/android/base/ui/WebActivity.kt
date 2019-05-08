@@ -40,19 +40,14 @@ import org.jetbrains.anko.design.themedAppBarLayout
 class WebActivity : BaseActivity() {
 
     companion object {
-        const val KEY_ID = "id"
-        const val KEY_URL = "url"
-        const val KEY_TITLE = "title"
-        const val KEY_IS_SHOW_TITLE = "isShowTitle"
-
         @JvmOverloads
         @JvmStatic
         fun open(context: Context, url: String, title: String, id: Int = 0, isShowTitle: Boolean = true) {
             context.startActivity(Intent(context, WebActivity::class.java).apply {
-                putExtra(KEY_ID, id)
-                putExtra(KEY_URL, url)
-                putExtra(KEY_TITLE, title)
-                putExtra(KEY_IS_SHOW_TITLE, isShowTitle)
+                putExtra(RouterPath.Base.Param.KEY_ID, id)
+                putExtra(RouterPath.Base.Param.KEY_URL, url)
+                putExtra(RouterPath.Base.Param.KEY_TITLE, title)
+                putExtra(RouterPath.Base.Param.KEY_IS_SHOW_TITLE, isShowTitle)
             })
         }
 
@@ -60,21 +55,21 @@ class WebActivity : BaseActivity() {
         @JvmStatic
         fun open(url: String, title: String, id: Int = 0, isShowTitle: Boolean = true) {
             ARouter.getInstance().build(RouterPath.Base.WEB)
-                .withInt(KEY_ID, id)
-                .withString(KEY_URL, url)
-                .withString(KEY_TITLE, title)
-                .withBoolean(KEY_IS_SHOW_TITLE, isShowTitle)
+                .withInt(RouterPath.Base.Param.KEY_ID, id)
+                .withString(RouterPath.Base.Param.KEY_URL, url)
+                .withString(RouterPath.Base.Param.KEY_TITLE, title)
+                .withBoolean(RouterPath.Base.Param.KEY_IS_SHOW_TITLE, isShowTitle)
                 .navigation()
         }
     }
 
-    @Autowired(name = KEY_ID)
+    @Autowired(name = RouterPath.Base.Param.KEY_ID)
     @JvmField var id = 0
-    @Autowired(name = KEY_TITLE)
+    @Autowired(name = RouterPath.Base.Param.KEY_TITLE)
     @JvmField var title = ""
-    @Autowired(name = KEY_URL)
+    @Autowired(name = RouterPath.Base.Param.KEY_URL)
     @JvmField var url = ""
-    @Autowired(name = KEY_IS_SHOW_TITLE)
+    @Autowired(name = RouterPath.Base.Param.KEY_IS_SHOW_TITLE)
     @JvmField var isShowTitle = true
 
     private val ui: WebActivityUI by lazy { WebActivityUI() }
@@ -83,10 +78,10 @@ class WebActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this)
-        id = argument(KEY_ID, 0)
-        url = argument(KEY_URL, "")
-        title = argument(KEY_TITLE, "")
-        isShowTitle = argument(KEY_IS_SHOW_TITLE, true)
+        id = argument(RouterPath.Base.Param.KEY_ID, id)
+        url = argument(RouterPath.Base.Param.KEY_URL, url)
+        title = argument(RouterPath.Base.Param.KEY_TITLE, title)
+        isShowTitle = argument(RouterPath.Base.Param.KEY_IS_SHOW_TITLE, isShowTitle)
         ui.setContentView(this)
 
         ui.toolbar.run {

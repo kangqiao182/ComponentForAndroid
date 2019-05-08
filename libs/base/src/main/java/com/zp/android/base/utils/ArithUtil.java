@@ -239,9 +239,9 @@ public final class ArithUtil {
 
         BigDecimal bigDecimal = new BigDecimal(num);
         if(null != mode){
-            bigDecimal.setScale(x, mode);
+            bigDecimal = bigDecimal.setScale(x, mode);
         } else {
-            bigDecimal.setScale(x, defaultRoundMode);
+            bigDecimal = bigDecimal.setScale(x, defaultRoundMode);
         }
         return new DecimalFormat(formatStr).format(bigDecimal);
     }
@@ -441,7 +441,7 @@ public final class ArithUtil {
         }
 
         BigDecimal bigDecimal = BigDecimal.valueOf(value);
-        bigDecimal.setScale(scale, mode);
+        bigDecimal = bigDecimal.setScale(scale, mode);
         DecimalFormat format = new DecimalFormat(",##0" + formatStr.toString());
         format.setRoundingMode(RoundingMode.valueOf(mode));
         return format.format(bigDecimal);

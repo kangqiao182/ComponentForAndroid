@@ -4,9 +4,8 @@ import android.app.Activity
 import android.os.Build
 import android.support.v4.content.ContextCompat
 import android.view.View
-import com.zp.android.base.CtxUtil
 import com.zp.android.base.R
-import com.jaeger.library.StatusBarUtil
+import com.zp.android.common.StatusBarUtil
 
 /**
  * Created by zhaopan on 2018/9/7.
