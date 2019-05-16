@@ -31,6 +31,7 @@ ext {
             rxFingerprint           : "2.2.1"
     ]
 
+    //被废弃了
     supportDeps = [
             "multidex"         : "com.android.support:multidex:1.0.3",
             "supportv4"        : "com.android.support:support-v4:${dependVersion.support}",
@@ -43,6 +44,34 @@ ext {
             "gridLayout"       : "com.android.support:gridlayout-v7:${dependVersion.support}",
             "dynamicAnims"     : "com.android.support:support-dynamic-animation:${dependVersion.support}",
             "percent"          : "com.android.support:percent:${dependVersion.support}"
+    ]
+
+    androidxSupportDeps = [
+            "multidex"                  : "androidx.multidex:multidex:2.0.0",
+            "multidex-instrumentation"  : "androidx.multidex:multidex-instrumentation:2.0.0",
+            "core"                      : "androidx.core:core:1.0.0",
+            "core-ktx"                  : "androidx.core:core-ktx:1.0.0",
+            "annotation"                : "androidx.annotation:annotation:1.0.0",
+            "fragment"                  : "androidx.fragment:fragment:1.0.0",
+            "viewpager"                 : "androidx.viewpager:viewpager:1.0.0",
+            "legacy-support-v4"         : "androidx.legacy:legacy-support-v4:1.0.0",
+            "legacy-support-v13"        : "androidx.legacy:legacy-support-v13:1.0.0",
+            "appcompat"                 : "androidx.appcompat:appcompat:1.0.0",
+            "cardview"                  : "androidx.cardview:cardview:1.0.0",
+            "design"                    : "com.google.android.material:material:1.0.0-rc01",
+            "constraintlayout"          : "androidx.constraintlayout:constraintlayout:1.1.2",
+            "constraintlayout-solver"   : "androidx.constraintlayout:constraintlayout-solver:1.1.2",
+            "recyclerview"              : "androidx.recyclerview:recyclerview:1.0.0",
+            "recyclerview-selection"    : "androidx.recyclerview:recyclerview-selection:1.0.0",
+            "drawerlayout"              : "androidx.drawerlayout:drawerlayout:1.0.0",
+            "gridlayout"                : "androidx.gridlayout:gridlayout:1.0.0",
+            "percentlayout"             : "androidx.percentlayout:percentlayout:1.0.0",
+            "coordinatorlayout"         : "androidx.coordinatorlayout:coordinatorlayout:1.0.0",
+            "swiperefreshlayout"        : "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0",
+            "webkit"                    : "androidx.webkit:webkit:1.0.0",
+            "dynamicanimation"          : "androidx.dynamicanimation:dynamicanimation:1.0.0",
+
+
     ]
 
     retrofit = [
@@ -77,7 +106,7 @@ ext {
     ]
 
     componentDeps = [
-            "arouterApi"       : "com.alibaba:arouter-api:1.4.1",
+            "arouterApi"       : "com.alibaba:arouter-api:1.5.0",
             //"arouterCompiler"  : "com.alibaba:arouter-compiler:1.2.1",
             "virtualapk"       : "com.didi.virtualapk:core:0.9.6"
     ]
@@ -99,8 +128,8 @@ ext {
 
             "koinJava"              : "org.koin:koin-java:${dependVersion.koin}",
             "koinAndroid"           : "org.koin:koin-android:${dependVersion.koin}",
-            "koinAndroidScope"      : "org.koin:koin-android-scope:${dependVersion.koin}",
-            "koinAndroidViewmodel"  : "org.koin:koin-android-viewmodel:${dependVersion.koin}",
+            "koinAndroidScope"      : "org.koin:koin-androidx-scope:${dependVersion.koin}",
+            "koinAndroidViewmodel"  : "org.koin:koin-androidx-viewmodel:${dependVersion.koin}",
 
             "pagingRuntime"         : "android.arch.paging:runtime:${dependVersion.paging}",
             "pagingCommon"          : "android.arch.paging:common:${dependVersion.paging}",
@@ -115,7 +144,7 @@ ext {
     ]
 
     commonDeps = [
-            "brvh"                  : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46',
+            "brvh"                  : 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45-androidx',
             //Banner 转播器
             "banner"                : 'com.youth.banner:banner:1.4.10',
             // AgentWeb is a powerful library based on Android WebView. https://github.com/Justson/AgentWeb
@@ -161,19 +190,19 @@ ext {
     ]
 
     androidTestDeps = [
-            "espresso-core"             : "com.android.support.test.espresso:espresso-core:${dependVersion.espressoSdkVersion}",
-            "espresso-contrib"          : "com.android.support.test.espresso:espresso-contrib:${dependVersion.espressoSdkVersion}",
-            "espresso-intents"          : "com.android.support.test.espresso:espresso-intents:${dependVersion.espressoSdkVersion}",
+            //"espresso-core"             : "com.android.support.test.espresso:espresso-core:${dependVersion.espressoSdkVersion}",
+            //"espresso-contrib"          : "com.android.support.test.espresso:espresso-contrib:${dependVersion.espressoSdkVersion}",
+            //"espresso-intents"          : "com.android.support.test.espresso:espresso-intents:${dependVersion.espressoSdkVersion}",
 
             //https://developer.android.com/training/testing/espresso/setup
-            //androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-            //androidTestImplementation 'androidx.test:runner:1.1.0'
-            //androidTestImplementation 'androidx.test:rules:1.1.0'
+            "espresso-core"             : "androidx.test.espresso:espresso-core:3.1.0",
+            "test:runner"               : 'androidx.test:runner:1.1.0',
+            "test:rules"                : 'androidx.test:rules:1.1.0',
     ]
 
     testDeps = [
             "junit"                     : 'junit:junit:4.12',
-            "runner"                    : 'com.android.support.test:runner:1.0.2',
+            //"runner"                    : 'com.android.support.test:runner:1.0.2',
             "koin-test"                 : "org.koin:koin-test:${dependVersion.koin}",
             //https://github.com/mockito/mockito
             "mockito-core"              : "org.mockito:mockito-core:2.27.0",
@@ -189,9 +218,9 @@ ext {
             //  https://github.com/robolectric/robolectric          //GitHub地址
             //  https://mvnrepository.com/artifact/org.robolectric  //仓库地址, 可查看可用版本号
             //  https://blog.csdn.net/watertekhqx/article/details/71657348 单元测试Robolectric的使用详解
-            //"espresso-core"             : 'androidx.test.espresso:espresso-core:3.2.0-alpha05',
-            //"androidx-test-core"        : 'androidx.test:core:1.2.0-alpha05',
-            //"androidx.test.ext"         : 'androidx.test.ext:junit:1.1.1-alpha05',
+            "espresso-core"             : 'androidx.test.espresso:espresso-core:3.2.0-alpha05',
+            "androidx-test-core"        : 'androidx.test:core:1.2.0-alpha05',
+            "androidx.test.ext"         : 'androidx.test.ext:junit:1.1.1-alpha05',
             "robolectric"               : 'org.robolectric:robolectric:4.3-alpha-3',
             "shadows-multidex"          : "org.robolectric:shadows-multidex:4.3-alpha-3",
             "annotations"               : "org.robolectric:annotations:4.3-alpha-3",
@@ -204,7 +233,7 @@ ext {
             "leakcanary-debug-fragment": 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1',
     ]
 
-    supportLibs = supportDeps.values()
+    supportLibs = androidxSupportDeps.values()
     retrofitLibs = retrofit.values()
     okGoLibs = okGo.values()
     jacksonLibs = jackson.values()

@@ -1,7 +1,7 @@
 package com.zp.android.base.widget.dialog
 
 import android.content.Context
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import android.support.annotation.StyleRes
 import com.zp.android.base.R
 

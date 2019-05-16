@@ -1,11 +1,12 @@
 package com.zp.android.knowledge.ui
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.DefaultItemAnimator
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
@@ -21,6 +22,7 @@ import com.zp.android.base.showToast
 import com.zp.android.common.DBViewHolder
 import com.zp.android.common.snackBarToast
 import com.zp.android.common.widget.SpaceItemDecoration
+import com.zp.android.component.BR
 import com.zp.android.component.RouterPath
 import com.zp.android.component.ServiceManager
 import com.zp.android.component.service.BackResult
@@ -33,7 +35,7 @@ import com.zp.android.net.NetUtils
 import kotlinx.android.synthetic.main.knowledge_fragment_refresh_layout.*
 import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.support.v4.onRefresh
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 /**
@@ -94,7 +96,7 @@ class DetailFragment : BaseFragment() {
         }
 
         recyclerView.apply {
-            //layoutManager = LinearLayoutManager(_mActivity)
+            layoutManager = LinearLayoutManager(_mActivity)
             addItemDecoration(SpaceItemDecoration(_mActivity))
             itemAnimator = DefaultItemAnimator()
         }.adapter = adapter.apply {

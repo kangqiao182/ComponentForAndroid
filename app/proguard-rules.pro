@@ -194,14 +194,14 @@
 -keep class org.json.** { *; }
 
 -keep class com.alibaba.android.vlayout.ExposeLinearLayoutManagerEx { *; }
--keep class android.support.v7.widget.RecyclerView$LayoutParams { *; }
--keep class android.support.v7.widget.RecyclerView$ViewHolder { *; }
+-keep class androidx.recyclerview.widget.RecyclerView$LayoutParams { *; }
+-keep class androidx.recyclerview.widget.RecyclerView$ViewHolder { *; }
 -keep class android.support.v7.widget.ChildHelper { *; }
 -keep class android.support.v7.widget.ChildHelper$Bucket { *; }
--keep class android.support.v7.widget.RecyclerView$LayoutManager { *; }
+-keep class androidx.recyclerview.widget.RecyclerView$LayoutManager { *; }
 
 -keep public class android.support.** {*;}     # 保持哪些类不被混淆
--keep class android.support.design.widget.TabLayout { *; }
+-keep class com.google.android.material.tabs.TabLayout { *; }
 
 
 #MobSDK 分享SDK混淆 http://wiki.mob.com/%E5%AE%8C%E6%95%B4%E9%9B%86%E6%88%90%E6%96%87%E6%A1%A3%EF%BC%88gradle%EF%BC%89/

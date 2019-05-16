@@ -1,12 +1,12 @@
 package com.zp.android.common
 
 import android.content.Context
-import android.support.v7.widget.Toolbar
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewManager
 import android.widget.LinearLayout
+import androidx.appcompat.widget.Toolbar
 import org.jetbrains.anko.AnkoViewDslMarker
 import org.jetbrains.anko.custom.ankoView
 
@@ -19,8 +19,8 @@ internal object `$$Anko$Factories$V7WidgetView` {
     val V7_WIDGET_TOOLBAR = { ctx: Context -> _ToolbarV7(ctx) }
 }
 
-inline fun ViewManager.toolbarV7(): android.support.v7.widget.Toolbar = toolbarV7() {}
-inline fun ViewManager.toolbarV7(init: (@AnkoViewDslMarker _ToolbarV7).() -> Unit): android.support.v7.widget.Toolbar {
+inline fun ViewManager.toolbarV7(): Toolbar = toolbarV7() {}
+inline fun ViewManager.toolbarV7(init: (@AnkoViewDslMarker _ToolbarV7).() -> Unit): Toolbar {
     return ankoView(`$$Anko$Factories$V7WidgetView`.V7_WIDGET_TOOLBAR, theme = 0) { init() }
 }
 

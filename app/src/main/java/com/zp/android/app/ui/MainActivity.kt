@@ -15,7 +15,7 @@ import com.zp.android.component.RouterPath
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar.*
 import me.yokeyword.fragmentation.SupportFragment
-import android.support.v4.app.ActivityCompat
+import androidx.core.app.ActivityCompat
 import android.widget.TextView
 import com.zp.android.base.RxBus
 import com.zp.android.base.flutter.ZPFlutterFragment

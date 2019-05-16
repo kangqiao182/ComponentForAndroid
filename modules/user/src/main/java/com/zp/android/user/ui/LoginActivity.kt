@@ -1,7 +1,7 @@
 package com.zp.android.user.ui
 
-import android.arch.lifecycle.Observer
-import android.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
+import androidx.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -17,7 +17,7 @@ import com.zp.android.component.RouterPath
 import com.zp.android.component.event.LoginSuccessEvent
 import com.zp.android.user.R
 import com.zp.android.user.databinding.UserActivityLoginBinding
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 /**

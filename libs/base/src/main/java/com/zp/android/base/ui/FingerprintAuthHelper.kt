@@ -7,10 +7,10 @@ import android.os.Build
 import android.security.keystore.KeyGenParameterSpec
 import android.security.keystore.KeyPermanentlyInvalidatedException
 import android.security.keystore.KeyProperties
-import android.support.annotation.RequiresApi
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat
-import android.support.v4.os.CancellationSignal
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat
+import androidx.core.os.CancellationSignal
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.zp.android.base.BR
 import com.zp.android.base.CtxUtil
 import com.zp.android.base.CtxUtil.showToast

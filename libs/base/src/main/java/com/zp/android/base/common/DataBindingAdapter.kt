@@ -1,11 +1,10 @@
 package com.zp.android.base.common
 
-import android.databinding.BindingAdapter
-import android.support.annotation.DrawableRes
+import androidx.databinding.BindingAdapter
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import com.bumptech.glide.Glide
 import com.zp.android.base.utils.ImageLoaderUtil
-import com.zp.android.common.GlideApp
 
 object DataBindingAdapter {
     @JvmStatic

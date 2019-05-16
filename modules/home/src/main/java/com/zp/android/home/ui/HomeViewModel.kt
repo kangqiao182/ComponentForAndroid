@@ -1,6 +1,6 @@
 package com.zp.android.home.ui
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.zp.android.base.mvvm.*
 import com.zp.android.base.utils.RxUtil
 import com.zp.android.home.ArticleResponseBody

@@ -3,7 +3,7 @@ package com.zp.android.base
 import android.app.Application
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import com.zp.android.base.widget.CustomToast
 
 /**

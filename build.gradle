@@ -70,6 +70,7 @@ task clean(type: Delete) {
 //https://github.com/square/leakcanary/blob/master/build.gradle
 //https://github.com/tbroyer/gradle-errorprone-plugin-v0.0.x
 //应用到所有子Project中
+/*
 subprojects {
     group = GROUP
     version = VERSION_NAME
@@ -125,4 +126,4 @@ subprojects {
     dependencies {
         errorprone "com.google.errorprone:error_prone_core:${versions.errorProne}"
     }
-}
+}*/

@@ -1,8 +1,8 @@
 package com.zp.android.user.ui
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -28,7 +28,7 @@ import com.zp.android.user.BR
 import com.zp.android.user.CollectionResponseBody
 import kotlinx.android.synthetic.main.user_activity_refresh_layout.*
 import org.jetbrains.anko.support.v4.onRefresh
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 /**

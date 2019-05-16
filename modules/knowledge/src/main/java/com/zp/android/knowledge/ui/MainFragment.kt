@@ -1,24 +1,22 @@
 package com.zp.android.knowledge.ui
 
-import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
-import android.support.v7.widget.LinearLayoutManager
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DividerItemDecoration
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.zp.android.base.BaseFragment
 import com.zp.android.base.mvvm.ExceptionEvent
 import com.zp.android.base.mvvm.FailedEvent
 import com.zp.android.base.mvvm.LoadingEvent
 import com.zp.android.base.mvvm.SuccessEvent
 import com.zp.android.base.showToast
-import com.zp.android.common.DBViewHolder
 import com.zp.android.common.DataBindingQuickAdapter
 import com.zp.android.common.DataBindingViewHolder
+import com.zp.android.component.BR
 import com.zp.android.component.RouterPath
 import com.zp.android.knowledge.BR
 import com.zp.android.knowledge.KnowledgeTreeBody
@@ -29,7 +27,7 @@ import com.zp.android.lib.statusview.initStatusView
 import kotlinx.android.synthetic.main.knowledge_fragment_refresh_layout.*
 import me.yokeyword.fragmentation.SupportFragment
 import org.jetbrains.anko.support.v4.onRefresh
-import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 /**

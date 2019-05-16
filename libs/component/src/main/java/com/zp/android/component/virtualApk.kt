@@ -5,7 +5,7 @@ import android.os.Environment
 import android.util.Log
 import com.didi.virtualapk.PluginManager
 import java.io.File
-import android.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil
 
 /**
  * Created by zhaopan on 2018/8/26.

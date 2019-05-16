@@ -1,8 +1,8 @@
 package com.zp.android.base.widget
 
 import android.content.Context
-import android.support.design.widget.AppBarLayout
-import android.support.v7.widget.Toolbar
+import com.google.android.material.appbar.AppBarLayout
+import androidx.appcompat.widget.Toolbar
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View

@@ -1,7 +1,7 @@
 package com.zp.android.base
 
 import android.content.Context
-import android.support.v4.app.Fragment
+import androidx.fragment.app.Fragment
 import com.zp.android.base.widget.CustomToast
 
 /**

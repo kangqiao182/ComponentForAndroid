@@ -3,13 +3,11 @@ package com.zp.android.base.flutter
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.Animation
-import com.alibaba.android.arouter.facade.annotation.Route
+import androidx.fragment.app.FragmentActivity
 import com.alibaba.android.arouter.launcher.ARouter
 import com.zp.android.component.RouterPath
 import io.flutter.facade.FlutterFragment

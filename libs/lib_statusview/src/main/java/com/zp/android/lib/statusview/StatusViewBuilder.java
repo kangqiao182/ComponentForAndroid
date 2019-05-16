@@ -1,7 +1,7 @@
 package com.zp.android.lib.statusview;
 
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
 import android.view.View;
 
 /**

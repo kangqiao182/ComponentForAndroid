@@ -1,10 +1,10 @@
 package com.zp.android.lib.statusview
 
 import android.app.Activity
-import android.support.annotation.IdRes
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
 import android.view.View
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
 
 /**
  * Created by zhaopan on 2018/12/6.

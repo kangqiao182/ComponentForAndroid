@@ -1,10 +1,7 @@
 package com.zp.android.base
 
 import android.os.Bundle
-import android.support.annotation.IdRes
-import android.support.annotation.Nullable
 import android.view.View
-import android.view.View.NO_ID
 import me.yokeyword.fragmentation.SupportFragment
 
 /**

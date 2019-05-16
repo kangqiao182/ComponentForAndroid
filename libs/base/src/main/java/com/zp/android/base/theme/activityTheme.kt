@@ -2,7 +2,7 @@ package com.zp.android.base.theme
 
 import android.app.Activity
 import android.os.Build
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.view.View
 import com.zp.android.base.R
 import com.zp.android.common.StatusBarUtil
