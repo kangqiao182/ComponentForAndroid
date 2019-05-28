@@ -13,11 +13,11 @@ import android.view.View
  * 当直接在 Fragment 中使用时，init()方法需要在onCreateView()之后的生命周期方法中执行！
  */
 
-inline fun Activity.initStatusView() = StatusView.init(this)
-inline fun Activity.initStatusView(@IdRes id: Int) = StatusView.init(this, id)
+public inline fun Activity.initStatusView() = StatusView.init(this)
+public inline fun Activity.initStatusView(@IdRes id: Int) = StatusView.init(this, id)
 @Deprecated("慎用, 必须保证view是Activity布局中的子View")
 fun Activity.initStatusView(view: View) = StatusView.init(view)
-inline fun Fragment.initStatusView(@IdRes id: Int) = StatusView.init(this, id)
+public inline fun Fragment.initStatusView(@IdRes id: Int) = StatusView.init(this, id)
 @Deprecated("慎用, 必须保证view为Fragment布局中的子View, 且不能是Fragment的根布局View")
 fun Fragment.initStatusView(view: View) = StatusView.init(view)
 

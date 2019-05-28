@@ -71,7 +71,7 @@ class MainFragment : BaseFragment() {
 
     override fun initView(view: View) {
         toolbar.run {
-            title = getString(R.string.app_name)
+            title = getString(R.string.app_wan_name)
             //setSupportActionBar(this)
         }
         val tabIdArray = arrayOf(R.id.action_home, R.id.action_knowledge_system, R.id.action_project, R.id.action_wechat)

@@ -1,5 +1,6 @@
 package com.zp.android.component
 
+/*
 import android.content.Context
 import android.os.Environment
 import android.util.Log
@@ -7,9 +8,11 @@ import com.didi.virtualapk.PluginManager
 import java.io.File
 import android.databinding.DataBindingUtil
 
+*/
 /**
  * Created by zhaopan on 2018/8/26.
- */
+ *//*
+
 
 const val TAG = "virtualAPK"
 const val PLUGIN_TEST = "Test.apk"
@@ -67,4 +70,4 @@ fun loadPlugin(context: Context, packageName: String, pluginPath: String){
     } else {
         Log.w(TAG, "$packageName plugin already loaded!!!")
     }
-}
+}*/

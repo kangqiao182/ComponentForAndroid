@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.alibaba.arouter'
-apply plugin: 'com.didi.virtualapk.host'
+//apply plugin: 'com.didi.virtualapk.host'
 apply plugin: 'jacoco-android'
 
 jacoco {

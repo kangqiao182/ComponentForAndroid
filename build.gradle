@@ -6,7 +6,7 @@ buildscript {
     //https://github.com/zaihuishou/Kotlin-Coroutine-Retrofit-Okhttp-Sample //Kotlin+Coroutine+Retrofit+Okhttp网络框架.https://www.jianshu.com/p/b58555b47991
     ext.versions = [
             'errorProne': '2.3.1',
-            'kotlin'    : '1.3.21',
+            'kotlin'    : '1.3.31',
             'arouter_register'  : '1.0.2',
     ]
     repositories {
@@ -21,7 +21,7 @@ buildscript {
     }
     dependencies {
         //https://blog.csdn.net/yuzhiqiang_1993/article/details/86576718  //更新至gradle3.3.0后，variant.getJavaCompile()和variantOutput.getPackageApplication()警告的原因
-        classpath 'com.android.tools.build:gradle:3.2.1'
+        classpath 'com.android.tools.build:gradle:3.4.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:${versions.kotlin}"
 
@@ -30,7 +30,7 @@ buildscript {
 
         //classpath 'com.github.MEiDIK:Cipher.so:dev-SNAPSHOT'
         classpath "com.alibaba:arouter-register:${versions.arouter_register}"
-        classpath 'com.didi.virtualapk:gradle:0.9.8.6'
+        //classpath 'com.didi.virtualapk:gradle:0.9.8.6'
         classpath 'com.dicedmelon.gradle:jacoco-android:0.1.4'
         classpath 'net.ltgt.gradle:gradle-errorprone-plugin:0.0.16'
     }
@@ -71,6 +71,12 @@ task clean(type: Delete) {
 //https://github.com/tbroyer/gradle-errorprone-plugin-v0.0.x
 //应用到所有子Project中
 subprojects {
+
+    //设置各子项目的build目录统一到rootProject下的build目录中
+    if (project.projectDir.path.startsWith(rootProject.projectDir.path)){
+        project.buildDir = project.projectDir.path.replaceFirst(rootProject.projectDir.path, rootProject.buildDir.path)
+    }
+
     group = GROUP
     version = VERSION_NAME
 
@@ -124,5 +130,17 @@ subprojects {
 
     dependencies {
         errorprone "com.google.errorprone:error_prone_core:${versions.errorProne}"
+    }
+}
+
+task zhaopan {
+    println("hello zhaopan")
+    for (ppp in subprojects) {
+        if (ppp.projectDir.path.startsWith(rootProject.projectDir.path)){
+            println(ppp.buildDir)
+            ppp.buildDir = ppp.projectDir.path.replaceFirst(rootProject.projectDir.path, rootProject.buildDir.path)
+            println(ppp.buildDir)
+            println("=====")
+        }
     }
 }

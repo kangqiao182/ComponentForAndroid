@@ -54,7 +54,7 @@ open abstract class BaseApp: MultiDexApplication() {
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(base)
         application = this
-        com.zp.android.component.initVirtualApk(base)
+        //com.zp.android.component.initVirtualApk(base)
         com.zp.android.net.initNetConfig(this)
     }
 

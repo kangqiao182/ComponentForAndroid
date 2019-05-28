@@ -77,9 +77,8 @@ ext {
     ]
 
     componentDeps = [
-            "arouterApi"       : "com.alibaba:arouter-api:1.4.1",
-            //"arouterCompiler"  : "com.alibaba:arouter-compiler:1.2.1",
-            "virtualapk"       : "com.didi.virtualapk:core:0.9.6"
+            "arouterApi"       : "com.alibaba:arouter-api:1.5.0",
+            //"virtualapk"       : "com.didi.virtualapk:core:0.9.6"
     ]
 
     archDeps = [

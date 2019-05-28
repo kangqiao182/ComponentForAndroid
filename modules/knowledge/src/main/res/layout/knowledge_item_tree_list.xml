@@ -39,7 +39,7 @@
                         android:textColor="@color/item_title"
                         android:textSize="@dimen/sp_16"
                         android:text="@{item.name}"
-                        tools:text="@string/app_name"/>
+                        tools:text="@string/app_wan_name"/>
 
                 <TextView
                         android:id="@+id/title_second"
