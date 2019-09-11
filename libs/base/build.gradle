@@ -49,5 +49,8 @@ dependencies {
     api project(":libs:common")
     api project(":libs:net")
     api project(":libs:lib_statusview")
+
+    //fuel kotlin网络库.
+    api rootProject.ext.fuelLibs
     kapt arouterCompilerKapt
 }
